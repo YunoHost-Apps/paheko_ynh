@@ -192,35 +192,35 @@ ynh_handle_app_migration ()  {
     # MOVE THE DATABASE
     #=================================================
 
-    db_pwd=$(ynh_app_setting_get $old_app mysqlpwd)
-    db_name=$dbname
+    # db_pwd=$(ynh_app_setting_get $old_app mysqlpwd)
+    # db_name=$dbname
 
-    # Check if a database exists before trying to move it
-    local mysql_root_password=$(cat $MYSQL_ROOT_PWD_FILE)
-    if [ -n "$db_name" ] && mysqlshow -u root -p$mysql_root_password | grep -q "^| $db_name"
-    then
-        new_db_name=$(ynh_sanitize_dbid $new_app)
-        echo "Rename the database $db_name to $new_db_name" >&2
+    # # Check if a database exists before trying to move it
+    # local mysql_root_password=$(cat $MYSQL_ROOT_PWD_FILE)
+    # if [ -n "$db_name" ] && mysqlshow -u root -p$mysql_root_password | grep -q "^| $db_name"
+    # then
+    #     new_db_name=$(ynh_sanitize_dbid $new_app)
+    #     echo "Rename the database $db_name to $new_db_name" >&2
 
-        local sql_dump="/tmp/${db_name}-$(date '+%s').sql"
+    #     local sql_dump="/tmp/${db_name}-$(date '+%s').sql"
 
-        # Dump the old database
-        ynh_mysql_dump_db "$db_name" > "$sql_dump"
+    #     # Dump the old database
+    #     ynh_mysql_dump_db "$db_name" > "$sql_dump"
 
-        # Create a new database
-        ynh_mysql_setup_db $new_db_name $new_db_name $db_pwd
-        # Then restore the old one into the new one
-        ynh_mysql_connect_as $new_db_name $db_pwd $new_db_name < "$sql_dump"
+    #     # Create a new database
+    #     ynh_mysql_setup_db $new_db_name $new_db_name $db_pwd
+    #     # Then restore the old one into the new one
+    #     ynh_mysql_connect_as $new_db_name $db_pwd $new_db_name < "$sql_dump"
 
-        # Remove the old database
-        ynh_mysql_remove_db $db_name $db_name
-        # And the dump
-        ynh_secure_remove --file="$sql_dump"
+    #     # Remove the old database
+    #     ynh_mysql_remove_db $db_name $db_name
+    #     # And the dump
+    #     ynh_secure_remove --file="$sql_dump"
 
-        # Update the value of $db_name
-        db_name=$new_db_name
-        ynh_app_setting_set $new_app db_name $db_name
-    fi
+    #     # Update the value of $db_name
+    #     db_name=$new_db_name
+    #     ynh_app_setting_set $new_app db_name $db_name
+    # fi
 
     #=================================================
     # CHANGE THE FAKE DEPENDENCIES PACKAGE
