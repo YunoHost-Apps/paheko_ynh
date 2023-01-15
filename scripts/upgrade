@@ -76,9 +76,16 @@ fi
 ynh_handle_app_migration --migration_id=garradin --migration_list=garradin_migrations
 
 if [[ $migration_process -eq 1 ]]; then
+	final_path="/var/www/$app"
+
     # Replace the user
-    ynh_system_user_delete --username="$old_app" --home_dir="$final_path"
+    ynh_system_user_delete $old_app
         ynh_system_user_create --username=$app --home_dir="$final_path"
+
+    # Ensuring the user has the right home dir
+    if [ ~$app != "$final_path" ]; then
+       usermod -d "$final_path" $app
+    fi
 fi
 
 #=================================================
