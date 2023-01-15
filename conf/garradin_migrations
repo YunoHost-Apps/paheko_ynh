@@ -1,2 +1,2 @@
-/$final_path
+$final_path
 /etc/nginx/conf.d/$domain.d/$app.conf
