@@ -120,7 +120,7 @@ ynh_handle_app_migration ()  {
     # CHECK THE LIST OF FILES TO MOVE
     #=================================================
 
-    local temp_migration_list="$(tempfile)"
+    local temp_migration_list="$(mktemp)"
 
     # Build the list by removing blank lines and comment lines
     sed '/^#.*\|^$/d' "../conf/$migration_list" > "$temp_migration_list"
