@@ -80,6 +80,7 @@ if [[ $migration_process -eq 1 ]]; then
     ynh_system_user_delete --username="$old_app"
         useradd -d "$final_path" --system --user-group "$app" || \
             ynh_die --message "Unable to create $app system account"
+fi
 
 #=================================================
 # STANDARD UPGRADE STEPS
