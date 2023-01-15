@@ -6,6 +6,9 @@
 # IMPORT GENERIC HELPERS
 #=================================================
 
+# Load common variables and helpers
+source ./experimental_helper.sh
+
 source _common.sh
 source /usr/share/yunohost/helpers
 
@@ -62,6 +65,30 @@ if ynh_legacy_permissions_exists; then
 
 	ynh_app_setting_delete --app=$app --key=is_public
 fi
+
+#=================================================
+# MIGRATION FROM Garradin
+#=================================================
+
+[[ $YNH_APP_ID == "garradin" ]] \
+    && [[ "$(cat "/opt/$app/templates/.VERSION")" != 1.2.2 ]] \
+    && ynh_die --message "It look like that you have an old Garradin install. You need first upgrade Gogs instance (id: $garradin_migrate_id) and after migrate to Paheko."
+ynh_handle_app_migration --migration_id=garradin --migration_list=garradin_migrations
+
+if [[ $migration_process -eq 1 ]]; then
+    # Reload variables
+    dbname=$app
+    db_user=$app
+
+    # Replace the user
+    ynh_system_user_delete $old_app
+    test getent passwd "$app" &>/dev/null || \
+        useradd -d "$datadir" --system --user-group "$app" --shell /bin/bash || \
+            ynh_die --message "Unable to create $app system account"
+
+#=================================================
+# STANDARD UPGRADE STEPS
+#=================================================
 
 #=================================================
 # CREATE DEDICATED USER
@@ -153,6 +180,26 @@ ynh_local_curl "/index.php"
 ynh_script_progression --message="Reloading NGINX web server..." --weight=1
 
 ynh_systemd_action --service_name=nginx --action=reload
+
+#=================================================
+# FINISH MIGRATION PROCESS
+#=================================================
+
+if [[ $migration_process -eq 1 ]]; then
+    echo "Garradin has been successfully migrated to Paheko! \
+A last scheduled operation will run in a couple of minutes to finish the \
+migration in YunoHost side. Do not proceed any application operation while \
+you don't see Garradin as installed." >&2
+
+    # Execute a post migration script after the end of this upgrade.
+    # Mainly for some cleaning
+    script_post_migration=garradin_post_migration.sh
+    ynh_replace_string --match_string __OLD_APP__ --replace_string "$old_app" --target_file ../conf/$script_post_migration
+    ynh_replace_string --match_string __NEW_APP__ --replace_string "$app" --target_file ../conf/$script_post_migration
+    cp ../conf/$script_post_migration /tmp
+    chmod +x /tmp/$script_post_migration
+    (cd /tmp; echo "/tmp/$script_post_migration > /tmp/$script_post_migration.log 2>&1" | at now + 2 minutes)
+fi
 
 #=================================================
 # END OF SCRIPT
