@@ -5,8 +5,8 @@ It shall NOT be edited by hand.
 
 # Garradin for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/garradin.svg)](https://dash.yunohost.org/appci/app/garradin) ![Working status](https://ci-apps.yunohost.org/ci/badges/garradin.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/garradin.maintain.svg)  
-[![Install Garradin with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=garradin)
+[![Integration level](https://dash.yunohost.org/integration/paheko.svg)](https://dash.yunohost.org/appci/app/paheko) ![Working status](https://ci-apps.yunohost.org/ci/badges/paheko.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/paheko.maintain.svg)  
+[![Install Garradin with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=paheko)
 
 *[Lire ce readme en français.](./README_fr.md)*
 
@@ -30,19 +30,19 @@ Garradin (word meaning money in an aboriginal dialect of northern Australia, pro
 * Official app website: <http://garradin.eu>
 * Official admin documentation: <https://fossil.kd2.org/garradin/wiki?name=Documentation>
 * Upstream app code repository: <https://fossil.kd2.org/garradin/dir?ci=tip>
-* YunoHost documentation for this app: <https://yunohost.org/app_garradin>
-* Report a bug: <https://github.com/YunoHost-Apps/garradin_ynh/issues>
+* YunoHost documentation for this app: <https://yunohost.org/app_paheko>
+* Report a bug: <https://github.com/YunoHost-Apps/paheko_ynh/issues>
 
 ## Developer info
 
-Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/garradin_ynh/tree/testing).
+Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/paheko_ynh/tree/testing).
 
 To try the testing branch, please proceed like that.
 
 ``` bash
-sudo yunohost app install https://github.com/YunoHost-Apps/garradin_ynh/tree/testing --debug
+sudo yunohost app install https://github.com/YunoHost-Apps/paheko_ynh/tree/testing --debug
 or
-sudo yunohost app upgrade garradin -u https://github.com/YunoHost-Apps/garradin_ynh/tree/testing --debug
+sudo yunohost app upgrade paheko -u https://github.com/YunoHost-Apps/paheko_ynh/tree/testing --debug
 ```
 
 **More info regarding app packaging:** <https://yunohost.org/packaging_apps>
