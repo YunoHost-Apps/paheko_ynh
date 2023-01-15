@@ -71,7 +71,7 @@ fi
 #=================================================
 
 [[ $YNH_APP_ID == "garradin" ]] \
-    && [[ "$(cat "/$final_path/VERSION")" != 1.2.2 ]] \
+    && [[ "$(cat "$final_path/VERSION")" != 1.2.2 ]] \
     && ynh_die --message "It look like that you have an old Garradin install. You need first upgrade Garradin instance (id: $garradin_migrate_id) and after migrate to Paheko."
 ynh_handle_app_migration --migration_id=garradin --migration_list=garradin_migrations
 
