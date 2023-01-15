@@ -78,8 +78,7 @@ ynh_handle_app_migration --migration_id=garradin --migration_list=garradin_migra
 if [[ $migration_process -eq 1 ]]; then
     # Replace the user
     ynh_system_user_delete --username="$old_app"
-        useradd -d "$final_path" --system --user-group "$app" || \
-            ynh_die --message "Unable to create $app system account"
+        ynh_system_user_create --username=$app --home_dir="$final_path"
 fi
 
 #=================================================
