@@ -183,7 +183,7 @@ ynh_handle_app_migration ()  {
     ynh_replace_string "\(^checksum__etc_nginx.*\)_$old_app" "\1_$new_app/" "$settings_dir/$new_app/settings.yml"
 
     # Replace php5-fpm checksums
-    ynh_replace_string "\(^checksum__etc_php5.*[-_]\)$old_app" "\1$new_app/" "$settings_dir/$new_app/settings.yml"
+    ynh_replace_string "\(^checksum__etc_php8.O.*[-_]\)$old_app" "\1$new_app/" "$settings_dir/$new_app/settings.yml"
 
     # Replace final_path
     ynh_replace_string "\(^final_path: .*\)$old_app" "\1$new_app" "$settings_dir/$new_app/settings.yml"
