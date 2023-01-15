@@ -1,3 +1,2 @@
-$final_path
 /etc/nginx/conf.d/$domain.d/$app.conf
 /etc/php/8.0/fpm/pool.d/$app.conf
