@@ -72,7 +72,7 @@ fi
 
 [[ $YNH_APP_ID == "garradin" ]] \
     && [[ "$(cat "/opt/$app/templates/.VERSION")" != 1.2.2 ]] \
-    && ynh_die --message "It look like that you have an old Garradin install. You need first upgrade Gogs instance (id: $garradin_migrate_id) and after migrate to Paheko."
+    && ynh_die --message "It look like that you have an old Garradin install. You need first upgrade Garradin instance (id: $garradin_migrate_id) and after migrate to Paheko."
 ynh_handle_app_migration --migration_id=garradin --migration_list=garradin_migrations
 
 if [[ $migration_process -eq 1 ]]; then
