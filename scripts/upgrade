@@ -81,7 +81,7 @@ if [[ $migration_process -eq 1 ]]; then
     db_user=$app
 
     # Replace the user
-    ynh_system_user_delete $old_app
+    ynh_system_user_delete --username="$old_app"
     test getent passwd "$app" &>/dev/null || \
         useradd -d "$datadir" --system --user-group "$app" --shell /bin/bash || \
             ynh_die --message "Unable to create $app system account"
