@@ -76,11 +76,12 @@ fi
 ynh_handle_app_migration --migration_id=garradin --migration_list=garradin_migrations
 
 if [[ $migration_process -eq 1 ]]; then
-	final_path="/var/www/$app"
+   final_path="/var/www/$app"
 
     # Replace the user
-    ynh_system_user_delete --username="$old_app"
-        ynh_system_user_create --username="$app" --home_dir="$final_path"
+    ynh_system_user_delete --username=$old_app
+        ynh_system_user_create --username=$app || \
+            ynh_die --message "Unable to create $app system account"
 fi
 
 #=================================================
