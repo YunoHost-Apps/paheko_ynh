@@ -87,6 +87,8 @@ ynh_handle_app_migration --migration_id=garradin --migration_list=garradin_migra
 
 if [[ $migration_process -eq 1 ]]; then
 	final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+	ynh_permission_update --permission="main" --add="all_users"
+	ynh_permission_update --permission="main" --add="visitors"
 fi
 
 #=================================================
