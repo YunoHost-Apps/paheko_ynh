@@ -25,6 +25,12 @@ script_name="$0"
 ynh_secure_remove --file="/etc/yunohost/apps/$old_app"
 yunohost app ssowatconf
 
+
+#=================================================
+# REMOVE THE OLD USER
+#=================================================
+ynh_user_exists --username=$old_app && ynh_system_user_delete $old_app
+
 #=================================================
 # DELETE THIS SCRIPT
 #=================================================

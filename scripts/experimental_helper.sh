@@ -76,7 +76,7 @@ ynh_handle_app_migration ()  {
   fi
 
   #=================================================
-  # CHECK IF IT HAS TO MIGRATE 
+  # CHECK IF IT HAS TO MIGRATE
   #=================================================
 
   migration_process=0
@@ -147,7 +147,7 @@ ynh_handle_app_migration ()  {
         new_label=$(echo $new_app_id | cut -c1 | tr [:lower:] [:upper:])$(echo $new_app_id | cut -c2-)
         ynh_app_setting_set --app=$new_app --key=label --value=$new_label
     fi
-    
+
     permissions_name=$(yunohost user permission list $old_app --short --output-as plain)
     for permission_name in $permissions_name
     do
@@ -196,10 +196,9 @@ ynh_handle_app_migration ()  {
     #=================================================
 
     old_db_name=$(ynh_app_setting_get --app=$old_app --key=db_name)
-    
+
     # Check if a database exists before trying to move it
-    local mysql_root_password=$(cat $MYSQL_ROOT_PWD_FILE)
-    if [ -n "$old_db_name" ] && mysqlshow -u root -p$mysql_root_password | grep -q "^| $old_db_name"
+    if [ -n "$old_db_name" ] && mysqlshow | grep -q "^| $old_db_name"
     then
         old_db_user=$old_db_name
         db_pwd=$(ynh_app_setting_get --app=$old_app --key=mysqlpwd)
@@ -215,7 +214,7 @@ ynh_handle_app_migration ()  {
 
         # Create a new database
         ynh_mysql_setup_db --db_user=$new_db_user --db_name=$new_db_name --db_pwd=$db_pwd
-        
+
         # Then restore the old one into the new one
         ynh_mysql_connect_as --user=$new_db_user --password=$db_pwd --database=$new_db_name < "$sql_dump"
 
