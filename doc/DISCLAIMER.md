@@ -7,3 +7,5 @@ sudo yunohost app upgrade garradin -u https://github.com/YunoHost-Apps/paheko_yn
 ```
 
 The --debug option will let you see the full output. If you encounter any issue, please report it aand paste the logs.
+
+**Important**: After the migration, you'll have to wait a couple of minutes (at most 3 minutes) before you can start using Paheko.
