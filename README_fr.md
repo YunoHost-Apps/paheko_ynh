@@ -5,15 +5,15 @@ It shall NOT be edited by hand.
 
 # Paheko pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/paheko.svg)](https://dash.yunohost.org/appci/app/paheko) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/paheko.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/paheko.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/paheko.svg)](https://dash.yunohost.org/appci/app/paheko) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/paheko.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/paheko.maintain.svg)
 [![Installer Paheko avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=paheko)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer Paheko rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer Paheko rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 Paheko (Nous avons choisi le nom Paheko, un mot de la langue Māori qui signifie « coopérer », illustrant le but du logiciel : améliorer ensemble le quotidien de la gestion d'une association) est un logiciel de gestion associative. Il est l'outil de prédilection pour gérer une association, un club sportif, une ONG, etc. Il est conçu pour répondre aux besoins d'une structure de petite à moyenne taille : gestion des adhérents, comptabilité, site web, prise de notes en réunion, archivage et partage des documents de fonctionnement de l'association, discussion entre adhérents, etc etc.
 
@@ -29,19 +29,33 @@ Paheko (Nous avons choisi le nom Paheko, un mot de la langue Māori qui signifie
 ![Logo Paheko](https://master.garradin.eu/garradin-devient-paheko/logo_v3_small-fs8.png)
 
 
-**Version incluse :** 1.2.4~ynh1
+**Version incluse :** 1.2.6~ynh1
 
 **Démo :** https://paheko.cloud/essai/
 
-## Captures d'écran
+## Captures d’écran
 
-![Capture d'écran de Paheko](./doc/screenshots/screenshot.png)
+![Capture d’écran de Paheko](./doc/screenshots/screenshot.png)
+
+## Avertissements / informations importantes
+
+### Migrer depuis Garradin
+
+Ce paquet supporte la migration de Garradin vers Paheko. Pour ce faire, vous allez devoir mettre à jour l'application Garradin à l'aide de ce dépôt. Cette opération ne peut se faire seulement depuis une interface en ligne de commande, autrement dit en SSH. Une fois connecté/e, vous devez simplement lancer la commande suivante :
+
+```bash
+sudo yunohost app upgrade garradin -u https://github.com/YunoHost-Apps/paheko_ynh --debug
+```
+
+L'option debug vous permet de voir l'entièreté du journal d'installation. Si vous rencontrez des difficultés, merci de créer un ticket en collant le journal d'erreur.
+
+**Important** : Après la migration, veuillez attendre quelques instants (maximum 3 minutes) avant de commencer à utiliser Paheko.
 
 ## Documentations et ressources
 
-* Site officiel de l'app : <https://paheko.cloud>
-* Documentation officielle de l'admin : <https://fossil.kd2.org/paheko/wiki?name=Documentation>
-* Dépôt de code officiel de l'app : <https://fossil.kd2.org/paheko/dir?ci=tip>
+* Site officiel de l’app : <https://paheko.cloud>
+* Documentation officielle de l’admin : <https://fossil.kd2.org/paheko/wiki?name=Documentation>
+* Dépôt de code officiel de l’app : <https://fossil.kd2.org/paheko/dir?ci=tip>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_paheko>
 * Signaler un bug : <https://github.com/YunoHost-Apps/paheko_ynh/issues>
 
@@ -57,4 +71,4 @@ ou
 sudo yunohost app upgrade paheko -u https://github.com/YunoHost-Apps/paheko_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>

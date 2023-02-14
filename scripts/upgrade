@@ -39,9 +39,18 @@ ynh_script_progression --message="Backing up the app before upgrading (may take 
 
 # Backup the current version of the app
 ynh_backup_before_upgrade
+ynh_clean_setup_migration() {
+	yunohost app remove $app
+	app=garradin ynh_restore_upgradebackup
+}
+
 ynh_clean_setup () {
 	# Restore it if the upgrade fails
-	ynh_restore_upgradebackup
+	if [[ $migration_process -eq 1 ]]; then
+		ynh_clean_setup_migration
+	else
+		ynh_restore_upgradebackup
+	fi
 }
 # Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
@@ -59,6 +68,13 @@ if [ -z "$final_path" ]; then
 	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 fi
 
+# If secret_key doesn't exist, create it
+if [[ -z "$secret_key" ]]; then
+	secret_key=$(ynh_string_random --length=50)
+	ynh_app_setting_set --app=$app --key=secret_key --value=$secret_key
+fi
+
+
 # Cleaning legacy permissions
 if ynh_legacy_permissions_exists; then
 	ynh_legacy_permissions_delete_all
@@ -71,20 +87,16 @@ fi
 #=================================================
 
 [[ $YNH_APP_ID == "garradin" ]] \
-    && [[ "$(cat "/opt/$app/templates/.VERSION")" != 1.2.2 ]] \
-    && ynh_die --message "It look like that you have an old Garradin install. You need first upgrade Garradin instance (id: $garradin_migrate_id) and after migrate to Paheko."
+	&& [[ "$(cat "$final_path/VERSION")" != 1.2.2 ]] \
+	&& ynh_die --message "It looks like that you have an old Garradin installed. You need to first upgrade your Garradin instance (id: $garradin_migrate_id) and after to migrate to Paheko."
+
 ynh_handle_app_migration --migration_id=garradin --migration_list=garradin_migrations
 
 if [[ $migration_process -eq 1 ]]; then
-    # Reload variables
-    dbname=$app
-    db_user=$app
-
-    # Replace the user
-    ynh_system_user_delete --username="$old_app"
-    test getent passwd "$app" &>/dev/null || \
-        useradd -d "$datadir" --system --user-group "$app" --shell /bin/bash || \
-            ynh_die --message "Unable to create $app system account"
+	final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+	ynh_permission_update --permission="main" --add="all_users"
+	ynh_permission_update --permission="main" --add="visitors"
+fi
 
 #=================================================
 # STANDARD UPGRADE STEPS
@@ -186,19 +198,19 @@ ynh_systemd_action --service_name=nginx --action=reload
 #=================================================
 
 if [[ $migration_process -eq 1 ]]; then
-    echo "Garradin has been successfully migrated to Paheko! \
-A last scheduled operation will run in a couple of minutes to finish the \
-migration in YunoHost side. Do not proceed any application operation while \
-you don't see Garradin as installed." >&2
+	echo "Garradin has been successfully migrated to Paheko! \
+	A last scheduled operation will run in a couple of minutes to finish the \
+	migration in YunoHost side. Do not proceed any application operation while \
+	you don't see Garradin as installed." >&2
 
-    # Execute a post migration script after the end of this upgrade.
-    # Mainly for some cleaning
-    script_post_migration=garradin_post_migration.sh
-    ynh_replace_string --match_string __OLD_APP__ --replace_string "$old_app" --target_file ../conf/$script_post_migration
-    ynh_replace_string --match_string __NEW_APP__ --replace_string "$app" --target_file ../conf/$script_post_migration
-    cp ../conf/$script_post_migration /tmp
-    chmod +x /tmp/$script_post_migration
-    (cd /tmp; echo "/tmp/$script_post_migration > /tmp/$script_post_migration.log 2>&1" | at now + 2 minutes)
+	# Execute a post migration script after the end of this upgrade.
+	# Mainly for some cleaning
+	script_post_migration=garradin_post_migration.sh
+	ynh_replace_string --match_string __OLD_APP__ --replace_string "$old_app" --target_file ../conf/$script_post_migration
+	ynh_replace_string --match_string __NEW_APP__ --replace_string "$app" --target_file ../conf/$script_post_migration
+	cp ../conf/$script_post_migration /tmp
+	chmod +x /tmp/$script_post_migration
+	(cd /tmp; echo "/tmp/$script_post_migration > /tmp/$script_post_migration.log 2>&1" | at now + 2 minutes)
 fi
 
 #=================================================

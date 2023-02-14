@@ -1,0 +1,7 @@
+# App main directory
+/var/www/$app
+
+# NGINX web server configuration
+/etc/nginx/conf.d/$domain.d/$app.conf
+
+/etc/php/8.0/fpm/pool.d/$app.conf

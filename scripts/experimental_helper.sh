@@ -1,15 +1,4 @@
-# Execute a command as another user
-# usage: exec_as USER COMMAND [ARG ...]
-exec_as() {
-  local USER=$1
-  shift 1
-
-  if [[ $USER = $(whoami) ]]; then
-    eval "$@"
-  else
-    sudo -u "$USER" "$@"
-  fi
-}
+#!/bin/bash
 
 # Need also the helper https://github.com/YunoHost-Apps/Experimental_helpers/blob/master/ynh_handle_getopts_args/ynh_handle_getopts_args
 
@@ -87,7 +76,7 @@ ynh_handle_app_migration ()  {
   fi
 
   #=================================================
-  # CHECK IF IT HAS TO MIGRATE 
+  # CHECK IF IT HAS TO MIGRATE
   #=================================================
 
   migration_process=0
@@ -102,10 +91,10 @@ ynh_handle_app_migration ()  {
     if [ "$old_app_id" != "$migration_id" ]
     then
         # If the new app is not the authorized id, fail.
-        ynh_die --message "Incompatible application for migration from $old_app_id to $new_app_id"
+        ynh_die --message="Incompatible application for migration from $old_app_id to $new_app_id"
     fi
 
-    echo "Migrate from $old_app_id to $new_app_id" >&2
+    ynh_print_info --message="Migrate from $old_app_id to $new_app_id" >&2
 
     #=================================================
     # CHECK IF THE MIGRATION CAN BE DONE
@@ -113,8 +102,8 @@ ynh_handle_app_migration ()  {
 
     # TODO Handle multi instance apps...
     # Check that there is not already an app installed for this id.
-    (yunohost app list --installed -f "$new_app" | grep -q id) \
-    && ynh_die "$new_app is already installed"
+    (yunohost app list | grep -q -w "id: $new_app") \
+    && ynh_die --message="$new_app is already installed"
 
     #=================================================
     # CHECK THE LIST OF FILES TO MOVE
@@ -131,7 +120,7 @@ ynh_handle_app_migration ()  {
     do
         # Replace all occurences of $app by $new_app in each file to move.
         local move_to_destination="${file_to_move//\$app/$new_app}"
-        test -e "$move_to_destination" && ynh_die "A file named $move_to_destination already exists."
+        test -e "$move_to_destination" && ynh_die --message="A file named $move_to_destination already exists."
     done < "$temp_migration_list"
 
     #=================================================
@@ -140,10 +129,10 @@ ynh_handle_app_migration ()  {
 
     local settings_dir="/etc/yunohost/apps"
     cp -a "$settings_dir/$old_app" "$settings_dir/$new_app"
-    cp -a ../{scripts,conf} "$settings_dir/$new_app"
+    cp -a ../{scripts,conf,manifest.json} "$settings_dir/$new_app"
 
     # Replace the old id by the new one
-    ynh_replace_string "\(^id: .*\)$old_app" "\1$new_app" "$settings_dir/$new_app/settings.yml"
+    ynh_replace_string --match_string="\(^id: .*\)$old_app" --replace_string="\1$new_app" --target_file="$settings_dir/$new_app/settings.yml"
     # INFO: There a special behavior with yunohost app setting:
     # if the id given in argument does not match with the id
     # stored in the config file, the config file will be purged.
@@ -151,16 +140,21 @@ ynh_handle_app_migration ()  {
     # https://github.com/YunoHost/yunohost/blob/c6b5284be8da39cf2da4e1036a730eb5e0515096/src/yunohost/app.py#L1316-L1321
 
     # Change the label if it's simply the name of the app
-    old_label=$(ynh_app_setting_get $new_app label)
+    old_label=$(ynh_app_setting_get --app=$new_app --key=label)
     if [ "${old_label,,}" == "$old_app_id" ]
     then
         # Build the new label from the id of the app. With the first character as upper case
         new_label=$(echo $new_app_id | cut -c1 | tr [:lower:] [:upper:])$(echo $new_app_id | cut -c2-)
-        ynh_app_setting_set $new_app label $new_label
+        ynh_app_setting_set --app=$new_app --key=label --value=$new_label
     fi
 
-    yunohost tools shell -c "from yunohost.permission import permission_delete; permission_delete('$old_app.main', force=True, sync_perm=False)"
-    yunohost tools shell -c "from yunohost.permission import permission_create; permission_create('$new_app.main', url='/' , sync_perm=True)"
+    permissions_name=$(yunohost user permission list $old_app --short --output-as plain)
+    for permission_name in $permissions_name
+    do
+      yunohost tools shell -c "from yunohost.permission import permission_delete; permission_delete('$permission_name', force=True, sync_perm=False)"
+    done
+
+    yunohost tools shell -c "from yunohost.permission import permission_create; permission_create('$new_app.main', url='/' , show_tile=True , sync_perm=True)"
 
     #=================================================
     # MOVE FILES TO THE NEW DESTINATION
@@ -171,7 +165,7 @@ ynh_handle_app_migration ()  {
         # Replace all occurence of $app by $new_app in each file to move.
         move_to_destination="$(eval echo "${file_to_move//\$app/$new_app}")"
         local real_file_to_move="$(eval echo "${file_to_move//\$app/$old_app}")"
-        echo "Move file $real_file_to_move to $move_to_destination" >&2
+        ynh_print_info --message="Move file $real_file_to_move to $move_to_destination" >&2
         mv "$real_file_to_move" "$move_to_destination"
     done < "$temp_migration_list"
 
@@ -180,46 +174,60 @@ ynh_handle_app_migration ()  {
     #=================================================
 
     # Replace nginx checksum
-    ynh_replace_string "\(^checksum__etc_nginx.*\)_$old_app" "\1_$new_app/" "$settings_dir/$new_app/settings.yml"
+    ynh_replace_string --match_string="\(^checksum__etc_nginx.*\)_$old_app" --replace_string="\1_$new_app" --target_file="$settings_dir/$new_app/settings.yml"
 
-    # Replace php5-fpm checksums
-    ynh_replace_string "\(^checksum__etc_php5.*[-_]\)$old_app" "\1$new_app/" "$settings_dir/$new_app/settings.yml"
+    # Replace php-fpm checksums
+    ynh_replace_string --match_string="\(^checksum__etc_php.*[-_]\)$old_app" --replace_string="\1$new_app" --target_file="$settings_dir/$new_app/settings.yml"
 
     # Replace final_path
-    ynh_replace_string "\(^final_path: .*\)$old_app" "\1$new_app" "$settings_dir/$new_app/settings.yml"
+    ynh_replace_string --match_string="\(^final_path: .*\)$old_app" --replace_string="\1$new_app" --target_file="$settings_dir/$new_app/settings.yml"
+
+    # Replace fail2ban_filter
+    ynh_replace_string --match_string="\(^checksum__etc_fail2ban_filter.*\)_$old_app" --replace_string="\1_$new_app" --target_file="$settings_dir/$new_app/settings.yml"
+
+    # Replace fail2ban_jail
+    ynh_replace_string --match_string="\(^checksum__etc_fail2ban_jail.*\)_$old_app" --replace_string="\1_$new_app" --target_file="$settings_dir/$new_app/settings.yml"
+
+    # Replace systemd
+    ynh_replace_string --match_string="\(^checksum__etc_systemd_system.*\)_$old_app" --replace_string="\1_$new_app" --target_file="$settings_dir/$new_app/settings.yml"
 
     #=================================================
-    # MOVE THE DATABASE
+    # MOVE THE MYSQL DATABASE
     #=================================================
 
-    db_pwd=$(ynh_app_setting_get $old_app mysqlpwd)
-    db_name=$dbname
+    old_db_name=$(ynh_app_setting_get --app=$old_app --key=db_name)
 
     # Check if a database exists before trying to move it
-    local mysql_root_password=$(cat $MYSQL_ROOT_PWD_FILE)
-    if [ -n "$db_name" ] && mysqlshow -u root -p$mysql_root_password | grep -q "^| $db_name"
+    if [ -n "$old_db_name" ] && mysqlshow | grep -q "^| $old_db_name"
     then
-        new_db_name=$(ynh_sanitize_dbid $new_app)
-        echo "Rename the database $db_name to $new_db_name" >&2
+        old_db_user=$old_db_name
+        db_pwd=$(ynh_app_setting_get --app=$old_app --key=mysqlpwd)
+
+        new_db_name=$(ynh_sanitize_dbid --db_name=$new_app)
+        new_db_user=$new_db_name
+        ynh_print_info --message="Rename the database $db_name to $new_db_name" >&2
 
         local sql_dump="/tmp/${db_name}-$(date '+%s').sql"
 
         # Dump the old database
-        ynh_mysql_dump_db "$db_name" > "$sql_dump"
+        ynh_mysql_dump_db --database="$old_db_name" > "$sql_dump"
 
         # Create a new database
-        ynh_mysql_setup_db $new_db_name $new_db_name $db_pwd
+        ynh_mysql_setup_db --db_user=$new_db_user --db_name=$new_db_name --db_pwd=$db_pwd
+
         # Then restore the old one into the new one
-        ynh_mysql_connect_as $new_db_name $db_pwd $new_db_name < "$sql_dump"
+        ynh_mysql_connect_as --user=$new_db_user --password=$db_pwd --database=$new_db_name < "$sql_dump"
 
         # Remove the old database
-        ynh_mysql_remove_db $db_name $db_name
+        ynh_mysql_remove_db --db_user=$old_db_user --db_name=$old_db_name
+
         # And the dump
         ynh_secure_remove --file="$sql_dump"
 
         # Update the value of $db_name
         db_name=$new_db_name
-        ynh_app_setting_set $new_app db_name $db_name
+        db_user=$new_db_user
+        ynh_app_setting_set --app=$new_app --key=db_name --value=$db_name
     fi
 
     #=================================================
@@ -234,7 +242,7 @@ ynh_handle_app_migration ()  {
       local old_package_name="${old_app//_/-}-ynh-deps"
       local new_package_name="${new_app//_/-}-ynh-deps"
 
-      if ynh_package_is_installed "$old_package_name"
+      if ynh_package_is_installed --package="$old_package_name"
       then
         # Install a new fake package
         app=$new_app
