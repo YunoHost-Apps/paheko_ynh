@@ -38,8 +38,6 @@ ynh_clean_setup () {
 		ynh_restore_upgradebackup
 	fi
 }
-# Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
 
 #=================================================
 # STANDARD UPGRADE STEPS
