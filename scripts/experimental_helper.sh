@@ -68,7 +68,7 @@ ynh_handle_app_migration ()  {
   ynh_handle_getopts_args "$@"
 
   # Get the new app id in the manifest
-  local new_app_id=$(grep \"id\": ../manifest.json | cut -d\" -f4)
+  local new_app_id=$(grep \"id\": ../manifest.toml| cut -d\" -f4)
   if [ $old_app_number -eq 1 ]; then
     local new_app=$new_app_id
   else
@@ -129,7 +129,7 @@ ynh_handle_app_migration ()  {
 
     local settings_dir="/etc/yunohost/apps"
     cp -a "$settings_dir/$old_app" "$settings_dir/$new_app"
-    cp -a ../{scripts,conf,manifest.json} "$settings_dir/$new_app"
+    cp -a ../{scripts,conf,manifest.json} "$settings_dir/$new_app/{scripts,conf,manifest.toml}"
 
     # Replace the old id by the new one
     ynh_replace_string --match_string="\(^id: .*\)$old_app" --replace_string="\1$new_app" --target_file="$settings_dir/$new_app/settings.yml"

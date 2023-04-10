@@ -47,7 +47,7 @@ ynh_clean_setup () {
 ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
 # If secret_key doesn't exist, create it
-if [[ -z "$secret_key" ]]; then
+if [[ -z "${secret_key:-}" ]]; then
 	secret_key=$(ynh_string_random --length=50)
 	ynh_app_setting_set --app=$app --key=secret_key --value=$secret_key
 fi
