@@ -54,4 +54,4 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "php8.0-sqlite3 php8.0-gd php8.0-intl  php8.0-cli php8.0-gnupg"
+    packages = "php8.0-sqlite3 php8.0-gd php8.0-intl php8.0-cli php8.0-gnupg"
