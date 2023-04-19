@@ -48,9 +48,9 @@ secret_key=$(ynh_string_random --length=50)
 ynh_app_setting_set --app=$app --key=secret_key --value=$secret_key
 
 # Install configuration files
-ynh_add_config --template="../conf/config.local.php" --destination="$install_dir/config.local.php"
-ynh_add_config --template="../conf/config.local.yunohost.php" --destination="$install_dir/config.local.yunohost.php"
-ynh_add_config --template="../conf/config.local.user.php" --destination="$install_dir/config.local.user.php"
+ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
+ynh_add_config --template="config.local.yunohost.php" --destination="$install_dir/config.local.yunohost.php"
+ynh_add_config --template="config.local.user.php" --destination="$install_dir/config.local.user.php"
 
 # Permissions on files and directories
 chmod -R o-rwx "$install_dir"
