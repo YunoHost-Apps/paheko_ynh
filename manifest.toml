@@ -35,8 +35,8 @@ ram.runtime = "50M"
     default = "/paheko"
 
     [install.init_main_permission]
-    help.en = "The SSO is not implemented for this app and yunohost is not sure for hundred of users..."
-    help.fr = "Le SSO n'est pas implémenté pour cette application et yunohost n'est pas sûr pour une centaine d'utilisateurs..."
+    help.en = "The SSO is not implemented for this app and YunoHost is not sure for hundred of users..."
+    help.fr = "Le SSO n'est pas implémenté pour cette application et YunoHost n'est pas sûr pour une centaine d'utilisateurs..."
     type = "group"
     default = "visitors"
 
