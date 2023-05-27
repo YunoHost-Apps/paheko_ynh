@@ -1,5 +1,5 @@
-SOURCE_URL=https://fossil.kd2.org/paheko/uv/paheko-1.2.8.tar.gz
-SOURCE_SUM=d1946fca1a56b03fc59f577fe750aca2e94251a10440eea354b523d553ddd3fa
+SOURCE_URL=https://fossil.kd2.org/paheko/uv/paheko-1.2.9.tar.gz
+SOURCE_SUM=e07b51f35fefbe63387dc3f00df107438f224216085f1689a1911afa40438939
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=true
