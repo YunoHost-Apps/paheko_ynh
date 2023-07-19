@@ -32,7 +32,7 @@ You can now upgrade Garradin with Paheko !
 ![Logo Paheko](https://master.garradin.eu/garradin-devient-paheko/logo_v3_small-fs8.png)
 
 
-**Shipped version:** 1.2.9~ynh1
+**Shipped version:** 1.3.0~ynh1
 
 **Demo:** https://paheko.cloud/essai/
 
