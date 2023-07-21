@@ -12,4 +12,6 @@ The --debug option will let you see the full output. If you encounter any issue,
 
 Once the migration is done, you should then upgrade to new release of Paheko.
 
+If you wish, you can add personal costum configurations by editing the `/var/www/paheko/config.local.user.php` file. To see the possibilities, you can read the `/var/www/paheko/config.dist.php` file first.
+
 
