@@ -17,7 +17,7 @@ admindoc = "https://fossil.kd2.org/paheko/wiki?name=Documentation"
 code = "https://fossil.kd2.org/paheko/dir?ci=tip"
 
 [integration]
-yunohost = ">= 11.1.21"
+yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = true
 ldap = false
