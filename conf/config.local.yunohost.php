@@ -33,7 +33,7 @@ const SECRET_KEY = '__SECRET_KEY__';
  * Défaut : répertoire racine de Paheko (__DIR__)
  */
 
-const ROOT = ___DIR__;
+//const ROOT = ___DIR__;
 
 /**
  * Répertoire où sont situées les données de Paheko
@@ -51,7 +51,7 @@ const DATA_ROOT = ROOT . '/data';
  * Défaut : sous-répertoire 'cache' de DATA_ROOT
  */
 
-const CACHE_ROOT = DATA_ROOT . '/cache';
+//const CACHE_ROOT = DATA_ROOT . '/cache';
 
 /**
  * Répertoire où est situé le cache partagé entre instances
@@ -61,7 +61,7 @@ const CACHE_ROOT = DATA_ROOT . '/cache';
  * Défaut : sous-répertoire 'shared' de CACHE_ROOT
  */
 
-const SHARED_CACHE_ROOT = CACHE_ROOT . '/shared';
+//const SHARED_CACHE_ROOT = CACHE_ROOT . '/shared';
 
 /**
  * Motif qui détermine l'emplacement des fichiers de cache du site web.
@@ -90,7 +90,7 @@ const SHARED_CACHE_ROOT = CACHE_ROOT . '/shared';
  * Défaut : DATA_ROOT . '/association.sqlite'
  */
 
-const DB_FILE = DATA_ROOT . '/association.sqlite';
+//const DB_FILE = DATA_ROOT . '/association.sqlite';
 
 /**
  * Emplacement de stockage des plugins
@@ -98,7 +98,7 @@ const DB_FILE = DATA_ROOT . '/association.sqlite';
  * Défaut : DATA_ROOT . '/plugins'
  */
 
-const PLUGINS_ROOT = DATA_ROOT . '/plugins';
+//const PLUGINS_ROOT = DATA_ROOT . '/plugins';
 
 /**
  * Adresse URI de la racine du site Paheko
