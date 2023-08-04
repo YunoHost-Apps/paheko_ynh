@@ -42,7 +42,7 @@ const SECRET_KEY = '__SECRET_KEY__';
  * Défaut : sous-répertoire "data" de la racine
  */
 
-const DATA_ROOT = ROOT . '/data';
+//const DATA_ROOT = ROOT . '/data';
 
 /**
  * Répertoire où est situé le cache,
