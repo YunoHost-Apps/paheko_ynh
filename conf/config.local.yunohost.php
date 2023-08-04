@@ -33,7 +33,7 @@ const SECRET_KEY = '__SECRET_KEY__';
  * Défaut : répertoire racine de Paheko (__DIR__)
  */
 
-const ROOT = __INSTALL_DIR__;
+const ROOT = '__INSTALL_DIR__';
 
 /**
  * Répertoire où sont situées les données de Paheko
@@ -42,7 +42,7 @@ const ROOT = __INSTALL_DIR__;
  * Défaut : sous-répertoire "data" de la racine
  */
 
-const DATA_ROOT = ROOT . '/data';
+//const DATA_ROOT = ROOT . '/data';
 
 /**
  * Répertoire où est situé le cache,
