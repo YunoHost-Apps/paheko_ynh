@@ -98,6 +98,8 @@ ynh_local_curl "/admin/index.php"
 sleep 5
 ynh_local_curl "/index.php"
 
+# remove directory duplicated
+ynh_secure_remove --file=$install_dir/data/data
 #=================================================
 # END OF SCRIPT
 #=================================================
