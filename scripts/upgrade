@@ -98,11 +98,11 @@ ynh_local_curl "/admin/index.php"
 sleep 5
 ynh_local_curl "/index.php"
 sleep 5
-# remove directory duplicated
-ynh_secure_remove --file="$install_dir/data/data"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
+# remove directory duplicated
+ynh_secure_remove --file="$install_dir/data/data"
 
 ynh_script_progression --message="Upgrade of $app completed" --last
