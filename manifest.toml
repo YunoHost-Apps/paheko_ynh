@@ -44,7 +44,6 @@ ram.runtime = "50M"
         [resources.sources.main]
         url = "https://fossil.kd2.org/paheko/uv/paheko-1.2.11.tar.gz"
         sha256 = "9d8a505d9165c38ee0d262316ba636536ebddf0a6127b2e731bc231fe053f28d"
-        autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
 
