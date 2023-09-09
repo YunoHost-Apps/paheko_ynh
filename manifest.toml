@@ -1,0 +1,56 @@
+packaging_format = 2
+
+id = "paheko"
+name = "Paheko"
+description.en = "Software to manage association"
+description.fr = "Logiciel libre de gestion d'association"
+
+version = "1.2.11~ynh1"
+
+maintainers = ["rodinux"]
+
+[upstream]
+license = "GPL-3.0-or-later"
+website = "https://paheko.cloud"
+demo = "https://paheko.cloud/essai/"
+admindoc = "https://fossil.kd2.org/paheko/wiki?name=Documentation"
+code = "https://fossil.kd2.org/paheko/dir?ci=tip"
+
+[integration]
+yunohost = ">= 11.2"
+architectures = "all"
+multi_instance = true
+ldap = false
+sso = false
+disk = "50M"
+ram.build = "50M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.path]
+    type = "path"
+    default = "/paheko"
+
+    [install.init_main_permission]
+    help.en = "The SSO is not implemented for this app and YunoHost is not sure for hundred of users..."
+    help.fr = "Le SSO n'est pas implémenté pour cette application et YunoHost n'est pas sûr pour une centaine d'utilisateurs..."
+    type = "group"
+    default = "visitors"
+
+[resources]
+        [resources.sources.main]
+        url = "https://fossil.kd2.org/paheko/uv/paheko-1.2.11.tar.gz"
+        sha256 = "9d8a505d9165c38ee0d262316ba636536ebddf0a6127b2e731bc231fe053f28d"
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"
+
+    [resources.apt]
+    packages = "php8.2-sqlite3 php8.2-gd php8.2-intl php8.2-cli php8.2-gnupg php8.2-mbstring"

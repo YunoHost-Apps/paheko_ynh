@@ -28,12 +28,11 @@ namespace Garradin;
 const SECRET_KEY = '__SECRET_KEY__';
 
 /**
- * Adresse URI de la racine du site Garradin
+ * Adresse URI de la racine du site Paheko
  * (doit se terminer par un slash)
  *
  * Défaut : découverte automatique à partir de SCRIPT_NAME
  */
-
 const WWW_URI = '__PATH__/';
 
 /**
