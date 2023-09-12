@@ -78,6 +78,10 @@ ynh_add_config --template="config.local.php" --destination="$install_dir/config.
 ynh_add_config --template="config.local.yunohost.php" --destination="$install_dir/config.local.yunohost.php"
 # NOTE: Don't overwrite config.local.user.php
 
+# Move the database on folder data/data created and remove the folder
+mv $install_dir/data/data/association.sqlite $install_dir/data/
+ynh_secure_remove --file=$install_dir/data/data
+
 # Permissions on files and directories
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
@@ -93,6 +97,10 @@ chmod 660 "$install_dir/config.local.user.php"
 # FINALISE UPGRADE
 #=================================================
 ynh_script_progression --message="Finalise upgrade" --weight=1
+
+# Move the database on folder data/data created and remove the folder
+mv $install_dir/data/data/association.sqlite $install_dir/data/
+ynh_secure_remove --file=$install_dir/data/data
 
 ynh_local_curl "/admin/index.php"
 sleep 5
