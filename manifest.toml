@@ -5,7 +5,7 @@ name = "Paheko"
 description.en = "Software to manage association"
 description.fr = "Logiciel libre de gestion d'association"
 
-version = "1.2.11~ynh2"
+version = "1.2.11~ynh3"
 
 maintainers = ["rodinux"]
 
