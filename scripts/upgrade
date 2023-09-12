@@ -76,6 +76,7 @@ if ynh_compare_current_package_version --comparison ge --version 1.3.0~ynh1; the
 fi
 # NOTE: Don't overwrite config.local.user.php
 ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
+ynh_add_config --template="config.local.user.php" --destination="$install_dir/config.local.user.php"
 
 # Permissions on files and directories
 chmod -R o-rwx "$install_dir"
