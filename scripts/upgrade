@@ -30,6 +30,12 @@ if [[ -z "${secret_key:-}" ]]; then
 fi
 
 #=================================================
+# BACKUP SQLITE DATABASE
+#=================================================
+ynh_script_progression --message="Backup of the DB in temporary file...." --weight=5
+cp -a $install_dir/data/association.sqlite /tmp/
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
@@ -78,6 +84,9 @@ fi
 # NOTE: Don't overwrite config.local.user.php
 ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
 ynh_add_config --template="config.local.yunohost.php" --destination="$install_dir/config.local.yunohost.php"
+
+# Restore the sqlite DB
+mv /tmp/association.sqlite $install_dir/data 
 
 # Permissions on files and directories
 chmod -R o-rwx "$install_dir"
