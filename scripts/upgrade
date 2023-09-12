@@ -74,7 +74,7 @@ fi
 
 # NOTE: Don't overwrite config.local.user.php
 ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
-ynh_add_config --template="config.user.local.php" --destination="$install_dir/config.local.php"
+ynh_add_config --template="config.local.user.php" --destination="$install_dir/config.local.php"
 
 # Permissions on files and directories
 chmod -R o-rwx "$install_dir"
