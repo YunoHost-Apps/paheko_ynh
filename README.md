@@ -21,7 +21,7 @@ Paheko (we chose the name Paheko, a word from the Māori language meaning "to co
 It is the tool of choice for managing an association, a sports club, an NGO, etc. It is designed to meet the needs of a small to medium-sized structure: management of members, accounting, website, note-taking in meetings, archiving and sharing of the association's operating documents, discussion between members, etc. etc.. 
 
 
-**Shipped version:** 1.3.0~ynh6
+**Shipped version:** 1.3.0~ynh7
 
 **Demo:** https://paheko.cloud/essai/
 
