@@ -30,7 +30,7 @@ Paheko (Nous avons choisi le nom Paheko, un mot de la langue Māori qui signifie
 ![Logo Paheko](https://master.garradin.eu/garradin-devient-paheko/logo_v3_small-fs8.png)
 
 
-**Version incluse :** 1.2.11~ynh2
+**Version incluse :** 1.2.11~ynh3
 
 **Démo :** https://paheko.cloud/essai/
 
