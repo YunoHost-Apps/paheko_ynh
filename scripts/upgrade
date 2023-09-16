@@ -34,9 +34,8 @@ fi
 #=================================================
 ynh_script_progression --message="Backup of the DB in temporary file...." --weight=5
 
-if [ -f "$install_dir/data/association.sqlite" ];then
-cp -a $install_dir/data/association.sqlite /tmp/
-fi
+# copy data directory bacckup
+cp -a $install_dir/data /tmp/data
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -85,10 +84,8 @@ fi
 ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
 ynh_add_config --template="config.local.yunohost.php" --destination="$install_dir/config.local.yunohost.php"
 
-# Restore the sqlite DB
-if [ -f "/tmp/association.sqlite" ];then
-mv /tmp/association.sqlite $install_dir/data
-fi
+# Sync data directory backup
+rsync -R /tmp/data/ $install_dir/data/
 
 # Permissions on files and directories
 chmod -R o-rwx "$install_dir"
@@ -115,6 +112,6 @@ sleep 5
 # END OF SCRIPT
 #=================================================
 # remove directory duplicated
-ynh_secure_remove --file="$install_dir/data/data"
+ynh_secure_remove --file="/tmp/data"
 
 ynh_script_progression --message="Upgrade of $app completed" --last
