@@ -30,11 +30,11 @@ if [[ -z "${secret_key:-}" ]]; then
 fi
 
 #=================================================
-# BACKUP SQLITE DATABASE
+# BACKUP SQLITE DATABASE AND DATAS
 #=================================================
 ynh_script_progression --message="Backup of the DB in temporary file...." --weight=5
 
-# copy data directory bacckup
+# copy data directory backup
 cp -a $install_dir/data /tmp/data
 
 #=================================================
@@ -84,8 +84,18 @@ fi
 ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
 ynh_add_config --template="config.local.yunohost.php" --destination="$install_dir/config.local.yunohost.php"
 
+#=================================================
+# RESTORE BACKUP SQLITE DATABASE AND DATAS
+#=================================================
+ynh_script_progression --message="Restore datas..." --weight=5
+
 # Sync data directory backup
 rsync -R /tmp/data/ $install_dir/data/
+
+#=================================================
+# FIX PERMISSIONS
+#=================================================
+ynh_script_progression --message="Fix permissions..." --weight=2
 
 # Permissions on files and directories
 chmod -R o-rwx "$install_dir"
@@ -108,10 +118,11 @@ sleep 5
 ynh_local_curl "/index.php"
 sleep 5
 
+# remove directory duplicated
+ynh_secure_remove --file="/tmp/data"
+
 #=================================================
 # END OF SCRIPT
 #=================================================
-# remove directory duplicated
-ynh_secure_remove --file="/tmp/data"
 
 ynh_script_progression --message="Upgrade of $app completed" --last
