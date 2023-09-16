@@ -35,7 +35,7 @@ fi
 ynh_script_progression --message="Backup of the DB in temporary file...." --weight=5
 
 # keep a data directory backup
-cp -R $install_dir/data /tmp/data
+cp -a $install_dir/data /tmp/data
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -88,7 +88,7 @@ ynh_add_config --template="config.local.php" --destination="$install_dir/config.
 ynh_add_config --template="config.local.yunohost.php" --destination="$install_dir/config.local.yunohost.php"
 
 # Sync the data directory backup
-rsync /tmp/data/ $install_dir/data/
+rsync -R /tmp/data/ $install_dir/data/
 
 # Permissions on files and directories
 chmod -R o-rwx "$install_dir"
