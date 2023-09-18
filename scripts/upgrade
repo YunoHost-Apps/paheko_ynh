@@ -36,7 +36,8 @@ ynh_script_progression --message="Backup of the DB in temporary file...." --weig
 
 # copy data directory backup
 tmp_data_backup=$(mktemp -d $app_dataXXX --suffix=BKP)
-rsync -R $install_dir/data/ /var/www/$tmp_data_backup/
+echo "$tmp_data_backup"
+rsync -a $install_dir/data/ $tmp_data_backup/
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -89,7 +90,7 @@ ynh_add_config --template="config.local.php" --destination="$install_dir/config.
 ynh_add_config --template="config.local.yunohost.php" --destination="$install_dir/config.local.yunohost.php"
 
 # Sync data directory backup
-rsync -R /var/www/$tmp_data_backup/ $install_dir/data/
+rsync -a /var/www/$tmp_data_backup/ $install_dir/data/
 
 # Permissions on files and directories
 chmod -R o-rwx "$install_dir"
