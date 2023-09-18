@@ -38,6 +38,10 @@ ynh_script_progression --message="Backup of the DB in temporary file...." --weig
 tmp_data_backup=$(mktemp -d)
 rsync -a $install_dir/data/ $tmp_data_backup/
 
+if ynh_compare_current_package_version --comparison le --version 1.2.11~ynh4; then
+        mv $install_dir/config.local.user.php $tmp_data_backup/
+fi
+
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
@@ -47,7 +51,7 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=5
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir" --keep="config.local.user.php" --full_replace=1
+	ynh_setup_source --dest_dir="$install_dir" --full_replace=1
 fi
 
 chmod -R o-rwx "$install_dir"
@@ -77,11 +81,8 @@ ynh_add_nginx_config
 ynh_script_progression --message="Updating a configuration file..." --weight=5
 
 if ynh_compare_current_package_version --comparison lt --version 1.1.15~ynh1; then
-        chmod 750 "$install_dir/config.local.user.php"
-	ynh_add_config --template="config.local.user.php" --destination="$install_dir/config.local.user.php"
-fi
-if ynh_compare_current_package_version --comparison le --version 1.2.11~ynh3; then
-        ynh_replace_string --match_string="namespace Garradin;" --replace_string="namespace Paheko;" --target_file="$install_dir/config.local.user.php"
+        chmod 750 "$install_dir/data/config.local.user.php"
+	ynh_add_config --template="config.local.user.php" --destination="$install_dir/data/config.local.user.php"
 fi
 
 # NOTE: Don't overwrite config.local.user.php
@@ -95,6 +96,10 @@ ynh_script_progression --message="Restore datas..." --weight=5
 
 # Sync data directory backup
 rsync -a $tmp_data_backup/ $install_dir/data/
+
+if ynh_compare_current_package_version --comparison le --version 1.2.11~ynh4; then
+        ynh_replace_string --match_string="namespace Garradin;" --replace_string="namespace Paheko;" --target_file="$install_dir/data/config.local.user.php"
+fi
 
 #=================================================
 # FIX PERMISSIONS
@@ -110,7 +115,7 @@ find "$install_dir/data" -type d -exec chmod 770 {} +
 find "$install_dir/data" -type f -exec chmod 660 {} +
 chmod 440 "$install_dir/config.local.php"
 chmod 440 "$install_dir/config.local.yunohost.php"
-chmod 660 "$install_dir/config.local.user.php"
+chmod 660 "$install_dir/data/config.local.user.php"
 
 #=================================================
 # FINALISE UPGRADE
