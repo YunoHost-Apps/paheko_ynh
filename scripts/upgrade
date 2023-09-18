@@ -90,7 +90,7 @@ ynh_add_config --template="config.local.php" --destination="$install_dir/config.
 ynh_add_config --template="config.local.yunohost.php" --destination="$install_dir/config.local.yunohost.php"
 
 # Sync data directory backup
-rsync -a /var/www/$tmp_data_backup/ $install_dir/data/
+rsync -a $tmp_data_backup/ $install_dir/data/
 
 # Permissions on files and directories
 chmod -R o-rwx "$install_dir"
