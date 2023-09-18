@@ -6,4 +6,4 @@
  * Pour ajouter vos configurations personnalisées, rendez-vous dans le fichier config.local.user.php
  */
 require '__INSTALL_DIR__/config.local.yunohost.php';
-require '__INSTALL_DIR__/config.local.user.php';
+require '__INSTALL_DIR__/data/config.local.user.php';

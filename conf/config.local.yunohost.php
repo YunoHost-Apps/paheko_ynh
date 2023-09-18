@@ -5,7 +5,7 @@
  *
  * Ce fichier sera mis à jour à chaque nouvelle version de Yunohost
  *
- * Pour ajouter vos configurations personnalisées, rendez-vous dans le fichier config.local.user.php
+ * Pour ajouter vos configurations personnalisées, rendez-vous dans le fichier data/config.local.user.php
  *
  */
 
