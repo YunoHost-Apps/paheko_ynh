@@ -30,11 +30,11 @@ if [[ -z "${secret_key:-}" ]]; then
 fi
 
 #=================================================
-# BACKUP SQLITE DATABASE
+# BACKUP SQLITE DATABASE AND DATAS
 #=================================================
 ynh_script_progression --message="Backup of the DB in temporary file...." --weight=5
 
-# keep a data directory backup
+# copy data directory backup
 cp -a $install_dir/data /tmp/data
 
 #=================================================
@@ -46,7 +46,7 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=5
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir" --keep="association.sqlite data config.local.user.php" --full_replace=1
+	ynh_setup_source --dest_dir="$install_dir" --keep="association.sqlite data config.local.user.php" --full_replace=1 
 fi
 
 chmod -R o-rwx "$install_dir"
@@ -79,16 +79,23 @@ if ynh_compare_current_package_version --comparison lt --version 1.1.15~ynh1; th
         chmod 750 "$install_dir/config.local.user.php"
 	ynh_add_config --template="config.local.user.php" --destination="$install_dir/config.local.user.php"
 fi
-if ynh_compare_current_package_version --comparison le --version 1.2.11~ynh3; then
-        ynh_replace_string --match_string="namespace Garradin;" --replace_string="namespace Paheko;" --target_file="$install_dir/config.local.user.php"
-fi
 
 # NOTE: Don't overwrite config.local.user.php
 ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
 ynh_add_config --template="config.local.yunohost.php" --destination="$install_dir/config.local.yunohost.php"
 
-# Sync the data directory backup
+#=================================================
+# RESTORE BACKUP SQLITE DATABASE AND DATAS
+#=================================================
+ynh_script_progression --message="Restore datas..." --weight=5
+
+# Sync data directory backup
 rsync -R /tmp/data/ $install_dir/data/
+
+#=================================================
+# FIX PERMISSIONS
+#=================================================
+ynh_script_progression --message="Fix permissions..." --weight=2
 
 # Permissions on files and directories
 chmod -R o-rwx "$install_dir"
@@ -111,10 +118,11 @@ sleep 5
 ynh_local_curl "/index.php"
 sleep 5
 
+# remove directory duplicated
+ynh_secure_remove --file="/tmp/data"
+
 #=================================================
 # END OF SCRIPT
 #=================================================
-# remove data directory backup
-ynh_secure_remove --file="/tmp/data"
 
 ynh_script_progression --message="Upgrade of $app completed" --last
