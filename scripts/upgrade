@@ -35,8 +35,8 @@ fi
 ynh_script_progression --message="Backup of the DB in temporary file...." --weight=5
 
 # copy data directory backup
-file=$(mktemp -d $app_dataXXX --suffix=BKP)
-cp -a $install_dir/data /var/www/$file
+tmp_data_backup=$(mktemp -d)
+rsync -a $install_dir/data/ $tmp_data_backup/
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -91,7 +91,7 @@ ynh_add_config --template="config.local.yunohost.php" --destination="$install_di
 ynh_script_progression --message="Restore datas..." --weight=5
 
 # Sync data directory backup
-rsync -R /var/www/$file/ $install_dir/data/
+rsync -a $tmp_data_backup/ $install_dir/data/
 
 #=================================================
 # FIX PERMISSIONS
@@ -119,8 +119,8 @@ sleep 5
 ynh_local_curl "/index.php"
 sleep 5
 
-# remove directory duplicated
-ynh_secure_remove --file="/var/www/$file"
+# remove data directory backup
+ynh_secure_remove --file="$tmp_data_backup"
 
 #=================================================
 # END OF SCRIPT
