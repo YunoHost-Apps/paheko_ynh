@@ -36,7 +36,6 @@ ynh_script_progression --message="Backup of the DB in temporary file...." --weig
 
 # copy data directory backup
 tmp_data_backup=$(mktemp -d $app_dataXXX --suffix=BKP)
-echo "$tmp_data_backup"
 rsync -a $install_dir/data/ $tmp_data_backup/
 
 #=================================================
@@ -48,7 +47,7 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=5
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir" --keep="association.sqlite data config.local.user.php" --full_replace=1
+	ynh_setup_source --dest_dir="$install_dir" --keep="config.local.user.php" --full_replace=1
 fi
 
 chmod -R o-rwx "$install_dir"
@@ -114,7 +113,7 @@ ynh_local_curl "/index.php"
 sleep 5
 
 # remove data directory backup
-ynh_secure_remove --file="/var/www/$tmp_data_backup"
+ynh_secure_remove --file="$tmp_data_backup"
 
 #=================================================
 # END OF SCRIPT
