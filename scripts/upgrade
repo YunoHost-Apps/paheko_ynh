@@ -34,7 +34,9 @@ fi
 #=================================================
 ynh_script_progression --message="Backup of the DB in temporary file...." --weight=5
 
-cp -R $install_dir/data /tmp/data
+# copy data directory backup
+file=$(mktemp -d $app_dataXXX --suffix=BKP)
+cp -a $install_dir/data /var/www/$file
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -45,7 +47,7 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=5
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir" --keep="data config.local.user.php" --full_replace=1
+	ynh_setup_source --dest_dir="$install_dir" --keep="association.sqlite data config.local.user.php" --full_replace=1
 fi
 
 chmod -R o-rwx "$install_dir"
@@ -86,8 +88,8 @@ fi
 ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
 ynh_add_config --template="config.local.yunohost.php" --destination="$install_dir/config.local.yunohost.php"
 
-# Restore the sqlite DB
-rsync -a /tmp/data/ $install_dir/data/ 
+# Sync data directory backup
+rsync -R /var/www/$file/ $install_dir/data/
 
 # Permissions on files and directories
 chmod -R o-rwx "$install_dir"
@@ -110,10 +112,11 @@ sleep 5
 ynh_local_curl "/index.php"
 sleep 5
 
+# remove data directory backup
+ynh_secure_remove --file="/var/www/$file"
+
 #=================================================
 # END OF SCRIPT
 #=================================================
-# remove directory duplicated
-ynh_secure_remove --file="tmp/data"
 
 ynh_script_progression --message="Upgrade of $app completed" --last
