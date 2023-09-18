@@ -35,7 +35,7 @@ fi
 ynh_script_progression --message="Backup of the DB in temporary file...." --weight=5
 
 # copy data directory backup
-file=$(mktemp -d $app_dataXXX --suffix=BKP)
+tmp_data_backup=$(mktemp -d $app_dataXXX --suffix=BKP)
 rsync -R $install_dir/data/ /var/www/$tmp_data_backup/
 
 #=================================================
