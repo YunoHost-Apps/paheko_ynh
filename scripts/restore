@@ -27,7 +27,7 @@ find "$install_dir/data" -type f -exec chmod 660 {} +
 chmod 440 "$install_dir/config.local.php"
 chmod 440 "$install_dir/config.local.yunohost.php"
 
-if ynh_compare_current_package_version --comparison le --version 1.2.11~ynh1; then
+if ynh_compare_current_package_version --comparison le --version 1.2.11~ynh4; then
 chmod 660 "$install_dir/config.local.user.php"
 else
 chmod 660 "$install_dir/data/config.local.user.php"
