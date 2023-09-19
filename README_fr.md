@@ -32,7 +32,6 @@ Paheko (Nous avons choisi le nom Paheko, un mot de la langue Māori qui signifie
 
 **Version incluse :** 1.3.0~ynh9
 
-
 **Démo :** https://paheko.cloud/essai/
 
 ## Captures d’écran
