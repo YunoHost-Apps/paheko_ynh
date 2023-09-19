@@ -28,7 +28,7 @@ chmod 440 "$install_dir/config.local.php"
 chmod 440 "$install_dir/config.local.yunohost.php"
 
 if [[ $install_dir/config.local.user.php -f ]]; then
-chmod 660 $install_dir/config.local.user.php
+chmod 660 "$install_dir/config.local.user.php"
 else
 chmod 660 "$install_dir/data/config.local.user.php"
 fi
