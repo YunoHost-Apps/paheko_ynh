@@ -26,7 +26,9 @@ find "$install_dir/data" -type d -exec chmod 770 {} +
 find "$install_dir/data" -type f -exec chmod 660 {} +
 chmod 440 "$install_dir/config.local.php"
 chmod 440 "$install_dir/config.local.yunohost.php"
-chmod 660 "$install_dir/config.local.user.php"
+if [[ -f "$install_dir/config.local.user.php" ]]; then
+	chmod 660 "$install_dir/config.local.user.php"
+fi
 
 #=================================================
 # RESTORE THE PHP-FPM CONFIGURATION

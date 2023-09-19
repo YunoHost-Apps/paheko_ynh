@@ -50,7 +50,7 @@ ynh_app_setting_set --app=$app --key=secret_key --value=$secret_key
 # Install configuration files
 ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
 ynh_add_config --template="config.local.yunohost.php" --destination="$install_dir/config.local.yunohost.php"
-ynh_add_config --template="config.local.user.php" --destination="$install_dir/config.local.user.php"
+ynh_add_config --template="config.local.user.php" --destination="$install_dir/data/config.local.user.php"
 
 # Permissions on files and directories
 chmod -R o-rwx "$install_dir"
@@ -61,7 +61,7 @@ find "$install_dir/data" -type d -exec chmod 770 {} +
 find "$install_dir/data" -type f -exec chmod 660 {} +
 chmod 440 "$install_dir/config.local.php"
 chmod 440 "$install_dir/config.local.yunohost.php"
-chmod 660 "$install_dir/config.local.user.php"
+chmod 660 "$install_dir/data/config.local.user.php"
 
 #=================================================
 # END OF SCRIPT

@@ -35,7 +35,16 @@ fi
 ynh_script_progression --message="Backup of the DB in temporary file...." --weight=5
 
 # copy data directory backup
-cp -a $install_dir/data /tmp/data
+tmp_data_backup=$(mktemp -d)
+rsync -a $install_dir/data/ $tmp_data_backup/
+
+if [[ -f "$install_dir/config.local.user.php" ]]; then
+	cp -a $install_dir/config.local.user.php $tmp_data_backup/
+fi
+
+if  [[ $(grep "Garradin" $tmp_data_backup/config.local.user.php) ]] ; then
+	ynh_replace_string --match_string="namespace Garradin;" --replace_string="namespace Paheko;" --target_file="$tmp_data_backup/config.local.user.php"
+fi
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -45,8 +54,8 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=5
 
-	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir" --keep="association.sqlite data config.local.user.php" --full_replace=1 
+# Download, check integrity, uncompress and patch the source from app.src
+	ynh_setup_source --dest_dir="$install_dir" --full_replace=1
 fi
 
 chmod -R o-rwx "$install_dir"
@@ -76,8 +85,8 @@ ynh_add_nginx_config
 ynh_script_progression --message="Updating a configuration file..." --weight=5
 
 if ynh_compare_current_package_version --comparison lt --version 1.1.15~ynh1; then
-        chmod 750 "$install_dir/config.local.user.php"
-	ynh_add_config --template="config.local.user.php" --destination="$install_dir/config.local.user.php"
+        chmod 750 "$install_dir/data/config.local.user.php"
+	      ynh_add_config --template="config.local.user.php" --destination="$install_dir/data/config.local.user.php"
 fi
 
 # NOTE: Don't overwrite config.local.user.php
@@ -90,7 +99,7 @@ ynh_add_config --template="config.local.yunohost.php" --destination="$install_di
 ynh_script_progression --message="Restore datas..." --weight=5
 
 # Sync data directory backup
-rsync -R /tmp/data/ $install_dir/data/
+rsync -a $tmp_data_backup/ $install_dir/data/
 
 #=================================================
 # FIX PERMISSIONS
@@ -106,7 +115,7 @@ find "$install_dir/data" -type d -exec chmod 770 {} +
 find "$install_dir/data" -type f -exec chmod 660 {} +
 chmod 440 "$install_dir/config.local.php"
 chmod 440 "$install_dir/config.local.yunohost.php"
-chmod 660 "$install_dir/config.local.user.php"
+chmod 660 "$install_dir/data/config.local.user.php"
 
 #=================================================
 # FINALISE UPGRADE
@@ -118,8 +127,8 @@ sleep 5
 ynh_local_curl "/index.php"
 sleep 5
 
-# remove directory duplicated
-ynh_secure_remove --file="/tmp/data"
+# remove data directory backup
+ynh_secure_remove --file="$tmp_data_backup"
 
 #=================================================
 # END OF SCRIPT
