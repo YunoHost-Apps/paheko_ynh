@@ -39,8 +39,8 @@ ynh_script_progression --message="Backup of the DB in temporary file...." --weig
 tmp_data_backup=$(mktemp -d)
 rsync -a $install_dir/data/ $tmp_data_backup/
 
-if ynh_compare_current_package_version --comparison le --version 1.2.11~ynh4; then
-        mv $install_dir/config.local.user.php $tmp_data_backup/
+if [[ $install_dir/config.local.user.php -f ]]; then
+        cp -a $install_dir/config.local.user.php $tmp_data_backup/
 fi
 
 #=================================================
