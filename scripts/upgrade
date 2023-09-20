@@ -128,7 +128,7 @@ sleep 5
 ynh_secure_remove --file="$tmp_data_backup"
 
 # clean duplicate folder if exist
-if [ -d "$install_dir/data/data" ], then
+if [ -d "$install_dir/data/data" ]; then
 	ynh_secure_remove --file="$install_dir/data/data"
 fi
 
