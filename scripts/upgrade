@@ -132,6 +132,11 @@ if [ -d "$install_dir/data/data" ]; then
 	ynh_secure_remove --file="$install_dir/data/data"
 fi
 
+# clean unused file if exist
+if [[ -f "$install_dir/config.local.user.php" ]]; then
+        ynh_secure_remove --file="$install_dir/config.local.user.php"
+fi
+
 #=================================================
 # END OF SCRIPT
 #=================================================
