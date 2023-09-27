@@ -5,7 +5,7 @@ name = "Paheko"
 description.en = "Software to manage association"
 description.fr = "Logiciel libre de gestion d'association"
 
-version = "1.3.0~ynh10"
+version = "1.3.0~ynh11"
 
 maintainers = ["rodinux"]
 
@@ -42,8 +42,8 @@ ram.runtime = "50M"
 
 [resources]
         [resources.sources.main]
-        url = "https://fossil.kd2.org/paheko/uv/paheko-1.3.0-rc13.tar.gz"
-        sha256 = "36981c43949745117b8981945c06ed2318383d1ce4e04d91d66e73d994995a92"
+        url = "https://fossil.kd2.org/paheko/uv/paheko-1.3.0-rc14.tar.gz"
+        sha256 = "4d90459f2a659fbe30bb16776bdd580d3f7f51278923b2961cf4524f5ca4ebf3"
 
     [resources.system_user]
 
