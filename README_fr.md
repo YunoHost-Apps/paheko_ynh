@@ -30,7 +30,7 @@ Paheko (Nous avons choisi le nom Paheko, un mot de la langue Māori qui signifie
 ![Logo Paheko](https://master.garradin.eu/garradin-devient-paheko/logo_v3_small-fs8.png)
 
 
-**Version incluse :** 1.3.0~ynh11
+**Version incluse :** 1.3.0~ynh12
 
 **Démo :** https://paheko.cloud/essai/
 
@@ -43,7 +43,6 @@ Paheko (Nous avons choisi le nom Paheko, un mot de la langue Māori qui signifie
 * Site officiel de l’app : <https://paheko.cloud>
 * Documentation officielle de l’admin : <https://fossil.kd2.org/paheko/wiki?name=Documentation>
 * Dépôt de code officiel de l’app : <https://fossil.kd2.org/paheko/dir?ci=tip>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_paheko>
 * Signaler un bug : <https://github.com/YunoHost-Apps/paheko_ynh/issues>
 
 ## Informations pour les développeurs
