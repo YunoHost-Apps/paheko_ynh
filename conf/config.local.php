@@ -77,7 +77,7 @@ const SECRET_KEY = '__SECRET_KEY__';
 /**
  * Répertoire où se situe le code source de Paheko
  *
- * Défaut : répertoire racine de Paheko (__DIR__)
+ * Défaut : répertoire racine de Paheko (DIR)
  */
 
 const ROOT = '__INSTALL_DIR__';
@@ -279,26 +279,7 @@ const WWW_URI = '__PATH__/';
 
 //const ENABLE_TECH_DETAILS = true;
 
-/**
- * Activation du log SQL (option de développement)
- *
- * Si cette constante est renseignée par un chemin de fichier SQLite valide,
- * alors *TOUTES* les requêtes SQL et leur contenu sera logué dans la base de données indiquée.
- *
- * Cette option permet ensuite de parcourir les requêtes via l'interface dans
- * Configuration -> Fonctions avancées -> Journal SQL pour permettre d'identifier
- * les requêtes qui mettent trop de temps, et comment elles pourraient
- * être améliorées. Visualiser les requêtes SQL nécessite d'avoir également activé
- * ENABLE_TECH_DETAILS.
- *
- * ATTENTION : cela signifie que des informations personnelles (mot de passe etc.)
- * peuvent se retrouver dans le log. Ne pas utiliser à moins de tester en développement.
- * Cette option peut significativement ralentir le chargement des pages.
- *
- * Défaut : null (= désactivé)
- * @var string|null
- */
-// const SQL_DEBUG = __DIR__ . '/debug_sql.sqlite';
+
 
 /**
 /**
@@ -328,21 +309,6 @@ const WWW_URI = '__PATH__/';
  */
 const SQLITE_JOURNAL_MODE = 'WAL';
 
-/**
- * Activation du log HTTP (option de développement)
- *
- * Si cette constante est renseignée par un fichier texte, *TOUTES* les requêtes HTTP
- * ainsi que leur contenu y sera enregistré.
- *
- * C'est surtout utile pour débuguer les problèmes de WebDAV par exemple.
- *
- * ATTENTION : cela signifie que des informations personnelles (mot de passe etc.)
- * peuvent se retrouver dans le log. Ne pas utiliser à moins de tester en développement.
- *
- * Default : null (= désactivé)
- * @var string|null
- */
-// const HTTP_LOG_FILE = __DIR__ . '/http.log';
 
 /**
  * Activer la possibilité de faire une mise à jour semi-automatisée
