@@ -89,7 +89,7 @@ const ROOT = '__INSTALL_DIR__';
  * Défaut : sous-répertoire "data" de la racine
  */
 
-const DATA_ROOT = ROOT . '__DATA_DIR__';
+const DATA_ROOT = '__DATA_DIR__';
 
 /**
  * Répertoire où est situé le cache,
