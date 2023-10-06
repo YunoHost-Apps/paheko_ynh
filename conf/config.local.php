@@ -137,7 +137,7 @@ const DATA_ROOT = ROOT . '__DATA_DIR__';
  * Défaut : DATA_ROOT . '/association.sqlite'
  */
 
-const DB_FILE = DATA_ROOT . '__DATA_DIR__/association.sqlite';
+//const DB_FILE = DATA_ROOT . '__DATA_DIR__/association.sqlite';
 
 /**
  * Emplacement de stockage des plugins
