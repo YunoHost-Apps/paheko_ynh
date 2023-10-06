@@ -46,16 +46,6 @@ ynh_add_config --template="../conf/config.local.php" --destination="$install_dir
 chmod 650 "$install_dir/config.local.php"
 chown $app:$app "$install_dir/config.local.php"
 
-# Permissions on files and directories
-
-#find "$install_dir" -type d -exec chmod 550 {} +
-#find "$install_dir" -type f -exec chmod 440 {} +
-#find "$install_dir/data" -type d -exec chmod 770 {} +
-#find "$install_dir/data" -type f -exec chmod 660 {} +
-#chmod 440 "$install_dir/config.local.php"
-#chmod 440 "$install_dir/config.local.yunohost.php"
-#chmod 660 "$install_dir/data/config.local.user.php"
-
 #=================================================
 # END OF SCRIPT
 #=================================================

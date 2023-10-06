@@ -30,23 +30,6 @@ if [[ -z "${secret_key:-}" ]]; then
 fi
 
 #=================================================
-# BACKUP SQLITE DATABASE AND DATAS
-#=================================================
-ynh_script_progression --message="Backup of the DB in temporary file...." --weight=5
-
-# copy data directory backup
-tmp_data_backup=$(mktemp -d)
-rsync -a $install_dir/data/ $tmp_data_backup/
-
-if [[ -f "$install_dir/config.local.user.php" ]]; then
-	cp -a $install_dir/config.local.user.php $tmp_data_backup/
-fi
-
-if  [[ $(grep "Garradin" "$tmp_data_backup/config.local.user.php") ]] ; then
-	ynh_replace_string --match_string="namespace Garradin;" --replace_string="namespace Paheko;" --target_file="$tmp_data_backup/config.local.user.php"
-fi
-
-#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
@@ -78,61 +61,11 @@ ynh_add_nginx_config
 #=================================================
 ynh_script_progression --message="Updating a configuration file..." --weight=5
 
-if ynh_compare_current_package_version --comparison lt --version 1.1.15~ynh1; then
-        chmod 750 "$install_dir/data/config.local.user.php"
-	ynh_add_config --template="config.local.user.php" --destination="$install_dir/data/config.local.user.php"
-fi
+# Install configuration files
+ynh_add_config --template="../conf/config.local.php" --destination="$install_dir/config.local.php"
 
-# NOTE: Don't overwrite config.local.user.php
-ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
-ynh_add_config --template="config.local.yunohost.php" --destination="$install_dir/config.local.yunohost.php"
-
-#=================================================
-# RESTORE BACKUP SQLITE DATABASE AND DATAS
-#=================================================
-ynh_script_progression --message="Restore datas..." --weight=5
-
-# Sync data directory backup
-rsync -a $tmp_data_backup/ $install_dir/data/
-
-#=================================================
-# FIX PERMISSIONS
-#=================================================
-ynh_script_progression --message="Fix permissions..." --weight=2
-
-# Permissions on files and directories
-chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
-find "$install_dir" -type d -exec chmod 550 {} +
-find "$install_dir" -type f -exec chmod 440 {} +
-find "$install_dir/data" -type d -exec chmod 770 {} +
-find "$install_dir/data" -type f -exec chmod 660 {} +
-chmod 440 "$install_dir/config.local.php"
-chmod 440 "$install_dir/config.local.yunohost.php"
-chmod 660 "$install_dir/data/config.local.user.php"
-
-#=================================================
-# FINALISE UPGRADE
-#=================================================
-ynh_script_progression --message="Finalise upgrade" --weight=1
-
-ynh_local_curl "/admin/index.php"
-sleep 5
-ynh_local_curl "/index.php"
-sleep 5
-
-# remove data directory backup
-ynh_secure_remove --file="$tmp_data_backup"
-
-# clean duplicate folder if exist
-if [[ -d "$install_dir/data/data" ]]; then
-	ynh_secure_remove --file="$install_dir/data/data"
-fi
-
-# clean unused file if exist
-if [[ -f "$install_dir/config.local.user.php" ]]; then
-        ynh_secure_remove --file="$install_dir/config.local.user.php"
-fi
+chmod 650 "$install_dir/config.local.php"
+chown $app:$app "$install_dir/config.local.php"
 
 #=================================================
 # END OF SCRIPT
