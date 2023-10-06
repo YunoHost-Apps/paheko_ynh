@@ -1,7 +1,7 @@
 <?php
 
 /**
- * NE PAS MODIFIER CE FICHIER. Il est regénéré automatiquement à chaque mise à jour de Yunohost
+ * NE PAS MODIFIER CE FICHIER. Il est regénéré automatiquement à chaque mise à jour de YunoHost
  *
  * Pour ajouter vos configurations personnalisées, rendez-vous dans le fichier data/config.local.user.php
  */

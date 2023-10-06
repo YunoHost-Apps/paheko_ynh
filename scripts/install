@@ -9,6 +9,9 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
+secret_key=$(ynh_string_random --length=50)
+ynh_app_setting_set --app=$app --key=secret_key --value=$secret_key
+
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
@@ -38,25 +41,29 @@ ynh_add_nginx_config
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=5
 
-# create a key for the secret key CSFR:
-secret_key=$(ynh_string_random --length=50)
-ynh_app_setting_set --app=$app --key=secret_key --value=$secret_key
-
 # Install configuration files
-ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
-ynh_add_config --template="config.local.yunohost.php" --destination="$install_dir/config.local.yunohost.php"
-ynh_add_config --template="config.local.user.php" --destination="$install_dir/data/config.local.user.php"
+ynh_add_config --template="../conf/config.local.php" --destination="$install_dir/config.local.php"
+chmod 400 "$install_dir/config.local.php"
+chown $app:$app "$install_dir/config.local.php"
+
+ynh_add_config --template="../conf/config.local.yunohost.php" --destination="$install_dir/config.local.yunohost.php"
+chmod 400 "$install_dir/config.local.yunohost.php"
+chown $app:$app "$install_dir/config.local.yunohost.php"
+
+ynh_add_config --template="../conf/config.local.user.php" --destination="$install_dir/data/config.local.user.php"
+chmod 400 "$install_dir/data/config.local.user.php"
+chown $app:$app "$install_dir/data/config.local.user.php"
+
 
 # Permissions on files and directories
-chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
-find "$install_dir" -type d -exec chmod 550 {} +
-find "$install_dir" -type f -exec chmod 440 {} +
-find "$install_dir/data" -type d -exec chmod 770 {} +
-find "$install_dir/data" -type f -exec chmod 660 {} +
-chmod 440 "$install_dir/config.local.php"
-chmod 440 "$install_dir/config.local.yunohost.php"
-chmod 660 "$install_dir/data/config.local.user.php"
+
+#find "$install_dir" -type d -exec chmod 550 {} +
+#find "$install_dir" -type f -exec chmod 440 {} +
+#find "$install_dir/data" -type d -exec chmod 770 {} +
+#find "$install_dir/data" -type f -exec chmod 660 {} +
+#chmod 440 "$install_dir/config.local.php"
+#chmod 440 "$install_dir/config.local.yunohost.php"
+#chmod 660 "$install_dir/data/config.local.user.php"
 
 #=================================================
 # END OF SCRIPT
