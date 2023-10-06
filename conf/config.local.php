@@ -168,7 +168,7 @@ const DB_FILE = DATA_ROOT . '__DATA_DIR__/association.sqlite';
  * Défaut : découverte automatique à partir de SCRIPT_NAME
  */
 
-//const WWW_URI = '/asso/';
+const WWW_URI = '__PATH__/';
 
 /**
  * Adresse URL HTTP(S) publique de Paheko
@@ -326,7 +326,7 @@ const DB_FILE = DATA_ROOT . '__DATA_DIR__/association.sqlite';
  * Défaut : 'TRUNCATE'
  * @var string
  */
-//const SQLITE_JOURNAL_MODE = 'TRUNCATE';
+const SQLITE_JOURNAL_MODE = 'WAL';
 
 /**
  * Activation du log HTTP (option de développement)
@@ -364,7 +364,7 @@ const DB_FILE = DATA_ROOT . '__DATA_DIR__/association.sqlite';
  * @var bool
  */
 
-//const ENABLE_UPGRADES = true;
+const ENABLE_UPGRADES = false;
 
 /**
  * Utilisation de cron pour les tâches automatiques
