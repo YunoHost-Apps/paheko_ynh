@@ -26,22 +26,18 @@ find "$install_dir/data" -type d -exec chmod 770 {} +
 find "$install_dir/data" -type f -exec chmod 660 {} +
 chmod 440 "$install_dir/config.local.php"
 chmod 440 "$install_dir/config.local.yunohost.php"
-
-if [ -f "$install_dir/config.local.user.php" ]; then
-chmod 660 "$install_dir/config.local.user.php"
+if [[ -f "$install_dir/config.local.user.php" ]]; then
+	chmod 660 "$install_dir/config.local.user.php"
 fi
 
 #=================================================
+# RESTORE SYSTEM CONFIGURATIONS
+#=================================================
 # RESTORE THE PHP-FPM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Restoring the PHP-FPM configuration..." --weight=6
+ynh_script_progression --message="Restoring system configurations related to $app..." --weight=1
 
 ynh_restore_file --origin_path="/etc/php/$phpversion/fpm/pool.d/$app.conf"
-
-#=================================================
-# RESTORE THE NGINX CONFIGURATION
-#=================================================
-ynh_script_progression --message="Restoring the NGINX web server configuration..." --weight=1
 
 ynh_restore_file --origin_path="/etc/nginx/conf.d/$domain.d/$app.conf"
 

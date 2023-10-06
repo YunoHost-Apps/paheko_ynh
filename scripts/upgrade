@@ -30,17 +30,20 @@ if [[ -z "${secret_key:-}" ]]; then
 fi
 
 #=================================================
-# BACKUP DATABASE, DATAS AND CONFIG LOCAL USER
+# BACKUP SQLITE DATABASE AND DATAS
 #=================================================
 ynh_script_progression --message="Backup of the DB in temporary file...." --weight=5
-
 
 # copy data directory backup
 tmp_data_backup=$(mktemp -d)
 rsync -a $install_dir/data/ $tmp_data_backup/
 
-if [ -f "$install_dir/config.local.user.php" ]; then
-        cp -a $install_dir/config.local.user.php $tmp_data_backup/
+if [[ -f "$install_dir/config.local.user.php" ]]; then
+	cp -a $install_dir/config.local.user.php $tmp_data_backup/
+fi
+
+if  [[ $(grep "Garradin" "$tmp_data_backup/config.local.user.php") ]] ; then
+	ynh_replace_string --match_string="namespace Garradin;" --replace_string="namespace Paheko;" --target_file="$tmp_data_backup/config.local.user.php"
 fi
 
 #=================================================
@@ -50,7 +53,6 @@ fi
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=5
-
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$install_dir" --full_replace=1
 fi
@@ -59,17 +61,12 @@ chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 
 #=================================================
-# PHP-FPM CONFIGURATION
+# REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=2
+ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
 
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config
-
-#=================================================
-# NGINX CONFIGURATION
-#=================================================
-ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=2
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
@@ -82,7 +79,7 @@ ynh_add_nginx_config
 ynh_script_progression --message="Updating a configuration file..." --weight=5
 
 if ynh_compare_current_package_version --comparison lt --version 1.1.15~ynh1; then
-        chmod 750 "$install_dir/config.local.user.php"
+        chmod 750 "$install_dir/data/config.local.user.php"
 	ynh_add_config --template="config.local.user.php" --destination="$install_dir/data/config.local.user.php"
 fi
 
@@ -128,7 +125,7 @@ sleep 5
 ynh_secure_remove --file="$tmp_data_backup"
 
 # clean duplicate folder if exist
-if [ -d "$install_dir/data/data" ]; then
+if [[ -d "$install_dir/data/data" ]]; then
 	ynh_secure_remove --file="$install_dir/data/data"
 fi
 
