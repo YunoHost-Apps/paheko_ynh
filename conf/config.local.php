@@ -348,7 +348,7 @@ const ENABLE_UPGRADES = false;
  * Défaut : false
  */
 
-//const USE_CRON = false;
+const USE_CRON = true;
 
 /**
  * Activation de l'envoi de fichier directement par le serveur web.
