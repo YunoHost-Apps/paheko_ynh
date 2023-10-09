@@ -42,7 +42,7 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=5
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir" --keep="config.local.php" #--full_replace=1
+	ynh_setup_source --dest_dir="$install_dir" #--keep="config.local.php"
 fi
 
 chmod -R o-rwx "$install_dir"
@@ -68,13 +68,17 @@ chmod 644 "/etc/cron.d/$app"
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
-#ynh_script_progression --message="Updating a configuration file..." --weight=5
+ynh_script_progression --message="Updating a configuration file..." --weight=5
+
+# remove old configuration files
+ynh_secure_remove --file="$install_dir/config.local.user.php"
+ynh_secure_remove --file="$install_dir/config.local.yunohost.php"
 
 # Install configuration files
-#ynh_add_config --template="../conf/config.local.php" --destination="$install_dir/config.local.php"
+ynh_add_config --template="../conf/config.local.php" --destination="$install_dir/config.local.php"
 
-#chmod 650 "$install_dir/config.local.php"
-#chown $app:$app "$install_dir/config.local.php"
+chmod 650 "$install_dir/config.local.php"
+chown $app:$app "$install_dir/config.local.php"
 
 #=================================================
 # END OF SCRIPT
