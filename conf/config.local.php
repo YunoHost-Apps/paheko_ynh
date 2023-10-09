@@ -58,19 +58,6 @@ const SECRET_KEY = '__SECRET_KEY__';
 
 //const LOCAL_LOGIN = null;
 
-const LOCAL_LOGIN = [
-	'user' => [
-		'_name' => '__ADMIN__',
-	],
-	'permissions' => [
-		'users'      => 9,
-		'accounting' => 9,
-		'web'        => 9,
-		'documents'  => 9,
-		'config'     => 9,
-	],
-];
-
 /**
  * Autoriser (ou non) l'import de sauvegarde qui a été modifiée ?
  *
@@ -102,7 +89,7 @@ const ROOT = '__INSTALL_DIR__';
  * Défaut : sous-répertoire "data" de la racine
  */
 
-const DATA_ROOT = ROOT . '__DATA_DIR__';
+const DATA_ROOT = '__DATA_DIR__';
 
 /**
  * Répertoire où est situé le cache,
@@ -361,7 +348,7 @@ const ENABLE_UPGRADES = false;
  * Défaut : false
  */
 
-//const USE_CRON = false;
+const USE_CRON = true;
 
 /**
  * Activation de l'envoi de fichier directement par le serveur web.
