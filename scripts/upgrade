@@ -42,10 +42,10 @@ then
 
     	# remove old configuration files
 		ynh_secure_remove --file="$install_dir/data/config.local.user.php"
+		ynh_secure_remove --file="$install_dir/config.local.yunohost.php"
+		
 		mv "$install_dir/data" "$data_dir"
 	fi
-
-	ynh_secure_remove --file="$install_dir/config.local.yunohost.php"
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$install_dir" #--keep="config.local.php"
