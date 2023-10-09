@@ -38,9 +38,6 @@ ram.runtime = "50M"
     type = "group"
     default = "visitors"
 
-    [install.admin]
-    type = "user"
-
 [resources]
         [resources.sources.main]
         url = "https://fossil.kd2.org/paheko/uv/paheko-1.3.0.tar.gz"
