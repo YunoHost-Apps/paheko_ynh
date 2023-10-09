@@ -37,7 +37,7 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=5
 
-	if [ -d "$install_dir/data" ]; then
+	if [ ! -d "$data_dir/data" ]; then
     	ynh_print_warn "Migrating data directory to $data_dir..."
 
     	# remove old configuration files
@@ -46,7 +46,7 @@ then
 	fi
 
 	ynh_secure_remove --file="$install_dir/config.local.yunohost.php"
-	
+
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$install_dir" #--keep="config.local.php"
 fi
