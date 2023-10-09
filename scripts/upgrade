@@ -31,7 +31,10 @@ fi
 
 if [ -d "$install_dir/data" ]; then
     ynh_print_warn "Migrating data directory to $data_dir..."
-    mv "$install_dir/data" "$data_dir"
+
+    # remove old configuration files
+	ynh_secure_remove --file="$install_dir/data/config.local.user.php"
+	mv "$install_dir/data" "$data_dir"
 fi
 
 #=================================================
@@ -44,6 +47,8 @@ then
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$install_dir" #--keep="config.local.php"
 fi
+
+ynh_secure_remove --file="$install_dir/config.local.yunohost.php"
 
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
@@ -69,10 +74,6 @@ chmod 644 "/etc/cron.d/$app"
 # UPDATE A CONFIG FILE
 #=================================================
 ynh_script_progression --message="Updating a configuration file..." --weight=5
-
-# remove old configuration files
-ynh_secure_remove --file="$install_dir/config.local.user.php"
-ynh_secure_remove --file="$install_dir/config.local.yunohost.php"
 
 # Install configuration files
 ynh_add_config --template="../conf/config.local.php" --destination="$install_dir/config.local.php"
