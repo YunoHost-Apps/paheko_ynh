@@ -55,6 +55,10 @@ ram.runtime = "50M"
     api.allowed = "visitors"
     api.show_tile = false
     api.protected = true
+    admin.url = "/admin"
+    admin.auth_header = false
+    admin.allowed = ["admins"]
+    admin.show_tile = false
 
     [resources.apt]
     packages = "sqlite3, php8.2-sqlite3, php8.2-gd, php8.2-intl, php8.2-cli, php8.2-gnupg, php8.2-mbstring"
