@@ -280,7 +280,6 @@ const WWW_URI = '__PATH__/';
 //const ENABLE_TECH_DETAILS = true;
 
 
-
 /**
 /**
  * Mode de journalisation de SQLite
