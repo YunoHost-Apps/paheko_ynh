@@ -52,14 +52,6 @@ chmod 650 "$install_dir/config.local.php"
 chown $app:$app "$install_dir/config.local.php"
 
 #=================================================
-# ADD Data folder
-#=================================================
-ynh_script_progression --message="Adding a data folder..." --weight=5
-
-# move data folder
-mv $install_dir/data $data_dir/
-
-#=================================================
 # END OF SCRIPT
 #=================================================
 
