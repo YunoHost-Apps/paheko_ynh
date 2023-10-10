@@ -48,7 +48,7 @@ then
 	fi
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir" --keep="config.local.php"
+	ynh_setup_source --dest_dir="$install_dir" --keep="config.local.php data/plugins"
 fi
 
 chmod -R o-rwx "$install_dir"
