@@ -411,7 +411,7 @@ const USE_CRON = true;
  * Défaut : false
  */
 
-//const SMTP_HOST = false;
+//const SMTP_HOST = true;
 
 /**
  * Port du serveur SMTP
@@ -432,7 +432,7 @@ const USE_CRON = true;
  * Défaut : null
  */
 
-//const SMTP_USER = 'paheko@monserveur.com';
+//const SMTP_USER = 'paheko@__DOMAIN__';
 
 /**
  * Mot de passe pour le serveur SMTP
@@ -442,7 +442,7 @@ const USE_CRON = true;
  * Défaut : null
  */
 
-//const SMTP_PASSWORD = 'abcd';
+//const SMTP_PASSWORD = '__MAIL_PWD__';
 
 /**
  * Sécurité du serveur SMTP
