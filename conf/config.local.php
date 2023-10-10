@@ -145,7 +145,7 @@ const DATA_ROOT = '__DATA_DIR__/data';
  * Défaut : DATA_ROOT . '/plugins'
  */
 
-//const PLUGINS_ROOT = DATA_ROOT . '/plugins';
+const PLUGINS_ROOT = '__INSTALL_DIR__/data/plugins';
 
 /**
  * Signaux système
