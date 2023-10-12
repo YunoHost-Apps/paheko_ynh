@@ -432,7 +432,7 @@ const USE_CRON = true;
  * Défaut : null
  */
 
-//const SMTP_USER = 'paheko@__DOMAIN__';
+//const SMTP_USER = '__APP__@__DOMAIN__';
 
 /**
  * Mot de passe pour le serveur SMTP
@@ -484,7 +484,7 @@ const USE_CRON = true;
  * Défaut : null
  */
 
-//const MAIL_RETURN_PATH = 'returns@monserveur.com';
+//const MAIL_RETURN_PATH = 'returns@__DOMAIN__';
 
 
 /**
@@ -502,7 +502,7 @@ const USE_CRON = true;
  * Défaut : null
  */
 
-//const MAIL_SENDER = 'associations@monserveur.com';
+//const MAIL_SENDER = 'associations@__DOMAINE__';
 
 /**
  * Mot de passe pour l'accès à l'API permettant de gérer les mails d'erreur
