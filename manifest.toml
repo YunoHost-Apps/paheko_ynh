@@ -10,7 +10,7 @@ version = "1.3.0~ynh1"
 maintainers = ["rodinux"]
 
 [upstream]
-license = "GPL-3.0-or-later"
+license = "AGPL-3.0-or-later"
 website = "https://paheko.cloud"
 demo = "https://paheko.cloud/essai/"
 admindoc = "https://fossil.kd2.org/paheko/wiki?name=Documentation"
