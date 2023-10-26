@@ -32,6 +32,7 @@ Paheko (a word from the Māori language meaning "to cooperate", illustrating the
 * Official app website: <https://paheko.cloud>
 * Official admin documentation: <https://fossil.kd2.org/paheko/wiki?name=Documentation>
 * Upstream app code repository: <https://fossil.kd2.org/paheko/dir?ci=tip>
+* YunoHost Store: <https://apps.yunohost.org/app/paheko>
 * Report a bug: <https://github.com/YunoHost-Apps/paheko_ynh/issues>
 
 ## Developer info
