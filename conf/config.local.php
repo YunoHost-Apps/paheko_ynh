@@ -797,7 +797,7 @@ const FILE_STORAGE_QUOTA = 10*1024*1024; // Forcer le quota alloué à 10 Mo, qu
  *
  * Défaut : null (= fonctionnalité désactivée)
  */
-//const PDFTOTEXT_COMMAND = 'pdftotext';
+const PDFTOTEXT_COMMAND = 'mupdf';
 
 /**
  * API_USER et API_PASSWORD
