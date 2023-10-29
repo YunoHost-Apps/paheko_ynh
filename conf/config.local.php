@@ -468,7 +468,7 @@ const SMTP_SECURITY = 'NONE';
  * @var null|string
  */
 
-const SMTP_HELO_HOSTNAME = '__DOMAIN__';
+const SMTP_HELO_HOSTNAME = 'localhost';
 
 /**
  * Adresse e-mail destinée à recevoir les erreurs de mail
