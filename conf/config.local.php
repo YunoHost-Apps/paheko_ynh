@@ -177,7 +177,7 @@ const WWW_URI = '__PATH__/';
  * @var null|string
  */
 
-const WWW_URL = 'https://__DOMAIN____PATH__';
+const WWW_URL = 'https://__DOMAIN____PATH__/';
 
 /**
  * Adresse URL HTTP(S) de l'admin Paheko
