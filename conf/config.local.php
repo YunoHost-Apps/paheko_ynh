@@ -177,7 +177,7 @@ const WWW_URI = '__PATH__/';
  * @var null|string
  */
 
-//const WWW_URL = 'http://paheko.chezmoi.tld' . WWW_URI;
+const WWW_URL = 'https://__DOMAIN__' . WWW_URI;
 
 /**
  * Adresse URL HTTP(S) de l'admin Paheko
@@ -634,7 +634,7 @@ const USE_CRON = true;
  * Défaut : null (dans ce cas c'est le stockage qui détermine la taille disponible, donc généralement l'espace dispo sur le disque dur !)
  */
 
-const FILE_STORAGE_QUOTA = 10*1024*1024; // Forcer le quota alloué à 10 Mo, quel que soit le backend de stockage
+//const FILE_STORAGE_QUOTA = 10*1024*1024; // Forcer le quota alloué à 10 Mo, quel que soit le backend de stockage
 
 /**
  * FILE_VERSIONING_POLICY
@@ -797,7 +797,7 @@ const FILE_STORAGE_QUOTA = 10*1024*1024; // Forcer le quota alloué à 10 Mo, qu
  *
  * Défaut : null (= fonctionnalité désactivée)
  */
-const PDFTOTEXT_COMMAND = 'mupdf';
+//const PDFTOTEXT_COMMAND = 'mupdf';
 
 /**
  * API_USER et API_PASSWORD
