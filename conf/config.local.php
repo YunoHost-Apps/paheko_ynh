@@ -177,7 +177,7 @@ const WWW_URI = '__PATH__/';
  * @var null|string
  */
 
-//const WWW_URL = 'http://paheko.chezmoi.tld' . WWW_URI;
+const WWW_URL = 'https://__DOMAIN____PATH__/';
 
 /**
  * Adresse URL HTTP(S) de l'admin Paheko
@@ -411,7 +411,7 @@ const USE_CRON = true;
  * Défaut : false
  */
 
-const SMTP_HOST = true;
+//const SMTP_HOST = true;
 
 /**
  * Port du serveur SMTP
@@ -422,7 +422,7 @@ const SMTP_HOST = true;
  * Défaut : 587
  */
 
-const SMTP_PORT = 25;
+//const SMTP_PORT = 25;
 
 /**
  * Login utilisateur pour le server SMTP
@@ -432,7 +432,7 @@ const SMTP_PORT = 25;
  * Défaut : null
  */
 
-const SMTP_USER = '__APP__';
+//const SMTP_USER = '';
 
 /**
  * Mot de passe pour le serveur SMTP
@@ -442,7 +442,7 @@ const SMTP_USER = '__APP__';
  * Défaut : null
  */
 
-const SMTP_PASSWORD = '__MAIL_PWD__';
+//const SMTP_PASSWORD = '';
 
 /**
  * Sécurité du serveur SMTP
@@ -455,7 +455,7 @@ const SMTP_PASSWORD = '__MAIL_PWD__';
  * Défaut : STARTTLS
  */
 
-const SMTP_SECURITY = 'NONE';
+//const SMTP_SECURITY = 'NONE';
 
 /**
  * Nom du serveur utilisé dans le HELO SMTP
@@ -484,7 +484,7 @@ const SMTP_HELO_HOSTNAME = '__DOMAIN__';
  * Défaut : null
  */
 
-const MAIL_RETURN_PATH = 'returns@__DOMAIN__';
+//const MAIL_RETURN_PATH = 'returns@__DOMAIN__';
 
 
 /**
@@ -634,7 +634,7 @@ const MAIL_SENDER = '__APP__@__DOMAIN__';
  * Défaut : null (dans ce cas c'est le stockage qui détermine la taille disponible, donc généralement l'espace dispo sur le disque dur !)
  */
 
-const FILE_STORAGE_QUOTA = 10*1024*1024; // Forcer le quota alloué à 10 Mo, quel que soit le backend de stockage
+//const FILE_STORAGE_QUOTA = 10*1024*1024; // Forcer le quota alloué à 10 Mo, quel que soit le backend de stockage
 
 /**
  * FILE_VERSIONING_POLICY
@@ -797,7 +797,7 @@ const FILE_STORAGE_QUOTA = 10*1024*1024; // Forcer le quota alloué à 10 Mo, qu
  *
  * Défaut : null (= fonctionnalité désactivée)
  */
-const PDFTOTEXT_COMMAND = 'mupdf';
+//const PDFTOTEXT_COMMAND = 'mupdf';
 
 /**
  * API_USER et API_PASSWORD
