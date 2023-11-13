@@ -468,7 +468,7 @@ const SMTP_SECURITY = 'NONE';
  * @var null|string
  */
 
-const SMTP_HELO_HOSTNAME = 'localhost';
+const SMTP_HELO_HOSTNAME = '__DOMAIN__';
 
 /**
  * Adresse e-mail destinée à recevoir les erreurs de mail
@@ -502,7 +502,7 @@ const MAIL_RETURN_PATH = 'returns@__DOMAIN__';
  * Défaut : null
  */
 
-const MAIL_SENDER = 'associations@__DOMAIN__';
+const MAIL_SENDER = '__APP__@__DOMAIN__';
 
 /**
  * Mot de passe pour l'accès à l'API permettant de gérer les mails d'erreur
