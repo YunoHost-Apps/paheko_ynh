@@ -21,7 +21,6 @@ Paheko (mot de la langue Māori qui signifie « coopérer », illustrant le but 
 
 **Version incluse :** 1.3.2~ynh1
 
-
 **Démo :** https://paheko.cloud/essai/
 
 ## Captures d’écran
