@@ -422,7 +422,7 @@ const SMTP_HOST = '__DOMAIN__';
  * Défaut : 587
  */
 
-const SMTP_PORT = 25;
+//const SMTP_PORT = 25;
 
 /**
  * Login utilisateur pour le server SMTP
@@ -455,7 +455,7 @@ const SMTP_PASSWORD = '__MAIL_PWD__';
  * Défaut : STARTTLS
  */
 
-const SMTP_SECURITY = 'NONE';
+//const SMTP_SECURITY = 'NONE';
 
 /**
  * Nom du serveur utilisé dans le HELO SMTP
