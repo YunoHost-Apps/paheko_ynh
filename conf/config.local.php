@@ -468,7 +468,7 @@ const SMTP_SECURITY = 'NONE';
  * @var null|string
  */
 
-//const SMTP_HELO_HOSTNAME = '__DOMAIN__';
+const SMTP_HELO_HOSTNAME = '__DOMAIN__';
 
 /**
  * Adresse e-mail destinée à recevoir les erreurs de mail
@@ -484,7 +484,7 @@ const SMTP_SECURITY = 'NONE';
  * Défaut : null
  */
 
-const MAIL_RETURN_PATH = 'returns@__DOMAIN__';
+//const MAIL_RETURN_PATH = 'returns@__DOMAIN__';
 
 
 /**
