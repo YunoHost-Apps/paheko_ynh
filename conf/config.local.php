@@ -411,7 +411,7 @@ const USE_CRON = true;
  * Défaut : false
  */
 
-const SMTP_HOST = 'localhost';
+const SMTP_HOST = '__DOMAIN__';
 
 /**
  * Port du serveur SMTP
