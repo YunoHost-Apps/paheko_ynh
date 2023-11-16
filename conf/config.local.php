@@ -455,7 +455,7 @@ const SMTP_PASSWORD = '__MAIL_PWD__';
  * Défaut : STARTTLS
  */
 
-const SMTP_SECURITY = 'NONE';
+const SMTP_SECURITY = 'STARTTLS';
 
 /**
  * Nom du serveur utilisé dans le HELO SMTP
