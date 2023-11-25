@@ -484,7 +484,7 @@ const SMTP_HELO_HOSTNAME = '__DOMAIN__';
  * Défaut : null
  */
 
-//const MAIL_RETURN_PATH = 'returns@__DOMAIN__';
+const MAIL_RETURN_PATH = '__APP__@__DOMAIN__';
 
 
 /**
