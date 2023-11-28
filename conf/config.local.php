@@ -411,7 +411,7 @@ const USE_CRON = true;
  * Défaut : false
  */
 
-//const SMTP_HOST = true;
+const SMTP_HOST = '__DOMAIN__';
 
 /**
  * Port du serveur SMTP
@@ -422,7 +422,7 @@ const USE_CRON = true;
  * Défaut : 587
  */
 
-//const SMTP_PORT = 25;
+const SMTP_PORT = 25;
 
 /**
  * Login utilisateur pour le server SMTP
@@ -432,7 +432,7 @@ const USE_CRON = true;
  * Défaut : null
  */
 
-//const SMTP_USER = '';
+const SMTP_USER = '__APP__';
 
 /**
  * Mot de passe pour le serveur SMTP
@@ -442,7 +442,7 @@ const USE_CRON = true;
  * Défaut : null
  */
 
-//const SMTP_PASSWORD = '';
+const SMTP_PASSWORD = '__MAIL_PWD__';
 
 /**
  * Sécurité du serveur SMTP
@@ -455,7 +455,7 @@ const USE_CRON = true;
  * Défaut : STARTTLS
  */
 
-//const SMTP_SECURITY = 'NONE';
+const SMTP_SECURITY = 'STARTTLS';
 
 /**
  * Nom du serveur utilisé dans le HELO SMTP
@@ -468,7 +468,7 @@ const USE_CRON = true;
  * @var null|string
  */
 
-//const SMTP_HELO_HOSTNAME = 'localhost';
+const SMTP_HELO_HOSTNAME = '__DOMAIN__';
 
 /**
  * Adresse e-mail destinée à recevoir les erreurs de mail
@@ -484,7 +484,7 @@ const USE_CRON = true;
  * Défaut : null
  */
 
-//const MAIL_RETURN_PATH = 'returns@__DOMAIN__';
+const MAIL_RETURN_PATH = '__APP__@__DOMAIN__';
 
 
 /**
@@ -502,7 +502,7 @@ const USE_CRON = true;
  * Défaut : null
  */
 
-//const MAIL_SENDER = 'associations@__DOMAIN__';
+const MAIL_SENDER = '__APP__@__DOMAIN__';
 
 /**
  * Mot de passe pour l'accès à l'API permettant de gérer les mails d'erreur
