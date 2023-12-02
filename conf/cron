@@ -1,0 +1,3 @@
+@daily __APP__ /usr/bin/php__PHPVERSION__ __INSTALL_DIR__/scripts/cron.php
+* * * * * __APP__ /usr/bin/php__PHPVERSION__ __INSTALL_DIR__/scripts/emails.php
+ 
