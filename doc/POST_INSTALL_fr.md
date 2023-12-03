@@ -1,3 +1,1 @@
-Ensuite, vous pouvez ouvrir le domaine Paheko : https://__DOMAIN____PATH__
-
-Vous devez finaliser votre instance Paheko avec les identifiants de votre association et le premier utilisateur créé qui sera l'utilisateur admin.
+Pour finaliser l'installation de Paheko, rendez-vous sur https://__DOMAIN____PATH__ pour saisir les identifiants de votre association et créer le premier utilisateur qui sera aussi admin.
