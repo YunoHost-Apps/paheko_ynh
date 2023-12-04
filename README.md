@@ -27,6 +27,17 @@ Paheko (a word from the Māori language meaning "to cooperate", illustrating the
 
 ![Screenshot of Paheko](./doc/screenshots/screenshot.png)
 
+## Disclaimers / important information
+
+## Prerequisite
+
+You should not install PAHEKO on your main YunoHost domain, especially for sending mails.
+* Add a new domain for PAHEKO in YunoHost.
+  * If your main YunoHost domain was provided by YunoHost, e.g. `domain.nohost.me`, then you don't have to buy/register a new domain name.
+  * Just click on `I already have a domain`.
+  * Type e.g. `paheko.domain.nohost.me` and click on `Add`.
+* Add a Let's Encrypt certificate for this domain.
+
 ## Documentation and resources
 
 * Official app website: <https://paheko.cloud>
