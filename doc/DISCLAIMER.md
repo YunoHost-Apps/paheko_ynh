@@ -1,6 +1,6 @@
 ## Prerequisite
 
-You should not install PAHEKO on your main YunoHost domain, especially for sending mails.
+You should not install PAHEKO on your main YunoHost domain, especially for sending emails.
 * Add a new domain for PAHEKO in YunoHost.
   * If your main YunoHost domain was provided by YunoHost, e.g. `domain.nohost.me`, then you don't have to buy/register a new domain name.
   * Just click on `I already have a domain`.
