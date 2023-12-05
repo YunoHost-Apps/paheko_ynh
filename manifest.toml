@@ -32,7 +32,7 @@ ram.runtime = "50M"
 
     [install.path]
     type = "path"
-    default = "/paheko"
+    default = "/"
 
     [install.init_main_permission]
     type = "group"
