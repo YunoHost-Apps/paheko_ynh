@@ -6,7 +6,7 @@
  *
  * NE PAS MODIFIER CE FICHIER!
  *
- * Pour configurer Paheko, copiez ce fichier en 'config.local.php'
+ * Pour ajouter des configurations personneles à Paheko, ajoutez-les dans __DATA__DIR__/data/config.local.user.php'
  * puis décommentez et modifiez ce dont vous avez besoin.
  */
 
@@ -884,3 +884,5 @@ const MAIL_SENDER = '__APP__@__DOMAIN__';
  * @var null|string
  */
 //const ALERT_MESSAGE = 'Ceci est un compte de test.';
+
+require '__DATA__DIR__/data/config.local.user.php';
