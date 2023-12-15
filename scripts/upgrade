@@ -38,10 +38,9 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=5
 
 	if [ ! -d "$data_dir/data" ]; then
-    	ynh_print_warn "Migrating data directory to $data_dir..."
+    		ynh_print_warn "Migrating data directory to $data_dir..."
 
-    	# remove old configuration files
-		ynh_secure_remove --file="$install_dir/data/config.local.user.php"
+    		# remove old configuration files
 		ynh_secure_remove --file="$install_dir/config.local.yunohost.php"
 		
 		mv "$install_dir/data" "$data_dir"
