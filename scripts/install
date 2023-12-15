@@ -18,7 +18,7 @@ ynh_app_setting_set --app=$app --key=secret_key --value=$secret_key
 ynh_script_progression --message="Setting up source files..." --weight=4
 
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$install_dir"
+ynh_setup_source --dest_dir="$data_dir"data/
 
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
@@ -47,9 +47,12 @@ ynh_script_progression --message="Adding a configuration file..." --weight=5
 
 # Install configuration files
 ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
+ynh_add_config --template="config.local.user.php" --destination="$install_dir/data/config.local.user.php"
 
 chmod 650 "$install_dir/config.local.php"
 chown $app:$app "$install_dir/config.local.php"
+chmod 650 "$data_dir/data/config.local.user.php"
+chown $app:$app "$data_dir/data/config.local.user.php"
 
 #=================================================
 # END OF SCRIPT
