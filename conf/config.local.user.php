@@ -5,7 +5,7 @@
  * disponibles pour Paheko.
  *
  * Modifiez ce fichier à votre guise, il ne sera pas modifié lors des mises à jour.
- * Consultez le fichier config.dist.php pour disposer d'un exemple.
+ * Consultez le fichier config.local.php pour disposer d'un exemple.
  *
  */
 
