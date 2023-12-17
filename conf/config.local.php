@@ -2,11 +2,11 @@
 
 /**
  * Ce fichier représente un exemple des constantes de configuration
- * disponibles pour Paheko.
+ * disponibles pour Paheko. Il est bâti depuis une copie du fichier __INSTALL_DIR__/config.dist.php
  *
- * NE PAS MODIFIER CE FICHIER!
+ * NE PAS MODIFIER LES VALEURS PRÉSENTES DÉCOMMENTÉES DANS CE FICHIER!
  *
- * Pour ajouter des configurations personneles à Paheko, ajoutez-les dans __DATA__DIR__/data/config.local.user.php'
+ * Pour ajouter des configurations personneles à Paheko, lisez-les battentivement dans ce fichier,
  * puis décommentez et modifiez ce dont vous avez besoin.
  */
 
