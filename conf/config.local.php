@@ -6,8 +6,9 @@
  *
  * NE PAS MODIFIER LES VALEURS PRÉSENTES DÉCOMMENTÉES DANS CE FICHIER!
  *
- * Pour ajouter des configurations personneles à Paheko, lisez-les battentivement dans ce fichier,
- * puis décommentez et modifiez ce dont vous avez besoin.
+ * Pour ajouter des configurations personnelles à votre instance et les garder,
+ * lisez attentivement ce fichier, puis ajoutez les constantes commentées nécessaires
+ * dans le fichier __DATA_DIR__/data/config.local.user.php.
  */
 
 // Nécessaire pour situer les constantes dans le bon namespace
@@ -885,4 +886,8 @@ const MAIL_SENDER = '__APP__@__DOMAIN__';
  */
 //const ALERT_MESSAGE = 'Ceci est un compte de test.';
 
+/**
+ * Chemin vers le fichier pour des configurations personnelles
+ * qui ne sera pas écraser lors des mises à jour.
+ */
 require '__DATA__DIR__/data/config.local.user.php';
