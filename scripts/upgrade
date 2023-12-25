@@ -30,6 +30,27 @@ if [ -z "${secret_key:-}" ]; then
 fi
 
 #=================================================
+# ADD SPECIFIC FILE IF NEEDED
+#=================================================
+
+# first add config file if not present
+if [ ! -f "$data_dir/data/config.local.user.php" ]; then
+
+	ynh_script_progression --message="Adding a configuration file..." --weight=5
+
+	ynh_script_progression --message=" files..." --weight=5
+  ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
+  chmod 650 "$data_dir/data/config.local.user.php"
+  chown $app:$app "$data_dir/data/config.local.user.php"
+  echo'
+	/**
+	 * Chemin vers le fichier pour des configurations personnelles
+	 * qui ne sera pas écraser lors des mises à jour.
+	 */
+	require '$data_dir/data/config.local.user.php';' >> $install_dir/config.local.php
+fi
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
@@ -41,17 +62,6 @@ then
 	ynh_setup_source --dest_dir="$install_dir" --keep="config.local.php data/plugins"
 fi
 
-if [ ! -f "$data_dir/data/config.local.user.php" ]; then
-  ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
-  chmod 650 "$data_dir/data/config.local.user.php"
-  chown $app:$app "$data_dir/data/config.local.user.php"
-  echo'
-	/**
-	 * Chemin vers le fichier pour des configurations personnelles
-	 * qui ne sera pas écraser lors des mises à jour.
-	 */
-	require "$data_dir/data/config.local.user.php";' >> $install_dir/config.local.php
-fi
 
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
@@ -75,12 +85,6 @@ chmod 644 "/etc/cron.d/$app"
 # SPECIFIC UPGRADE
 #=================================================
 
-if ynh_compare_current_package_version --comparison lt --version 1.3.1~ynh1
-then
-  ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
-  chmod 650 "$install_dir/config.local.php"
-  chown $app:$app "$install_dir/config.local.php"
-fi
 
 
 #=================================================
