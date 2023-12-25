@@ -63,18 +63,18 @@ chmod 644 "/etc/cron.d/$app"
 # SPECIFIC UPGRADE
 #=================================================
 
-# if ynh_compare_current_package_version --comparison lt --version 1.3.1~ynh1
-# then
-#   ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
-#   chmod 650 "$install_dir/config.local.php"
-#   chown $app:$app "$install_dir/config.local.php"
-# fi
+if ynh_compare_current_package_version --comparison lt --version 1.3.1~ynh1
+then
+  ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
+  chmod 650 "$install_dir/config.local.php"
+  chown $app:$app "$install_dir/config.local.php"
+fi
 
 if [ ! -f "$data_dir/data/config.local.user.php" ]; then
-  ynh_add_config --template="config.local.user.php" --destination="$data_dir/config.local.php"
-  chmod 650 "$data_dir/config.local.php"
-  chown $app:$app "$data_dir/config.local.php"
-
+	ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
+  ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
+  chmod 650 "$data_dir/data/config.local.user.php"
+  chown $app:$app "$data_dir/config.local.user.php"
 fi
 
 #=================================================
