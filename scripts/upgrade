@@ -33,22 +33,6 @@ fi
 # ADD SPECIFIC FILE IF NEEDED
 #=================================================
 
-# first add config file if not present
-if [ ! -f "$data_dir/data/config.local.user.php" ]; then
-
-	ynh_script_progression --message="Adding a configuration file..." --weight=5
-
-	ynh_script_progression --message=" files..." --weight=5
-  ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
-  chmod 650 "$data_dir/data/config.local.user.php"
-  chown $app:$app "$data_dir/data/config.local.user.php"
-  echo "
-	/**
-	 * Chemin vers le fichier pour des configurations personnelles
-	 * qui ne sera pas écraser lors des mises à jour.
-	 */
-	require '__DATA_DIR__/data/config.local.user.php';" >> $install_dir/config.local.php
-fi
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -64,6 +48,23 @@ fi
 
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
+
+# first add config file if not present
+if [ ! -f "$data_dir/data/config.local.user.php" ]; then
+
+	ynh_script_progression --message="Adding a configuration file..." --weight=5
+
+	ynh_script_progression --message=" files..." --weight=5
+  ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
+  chmod 650 "$data_dir/data/config.local.user.php"
+  chown $app:$app "$data_dir/data/config.local.user.php"
+  echo "
+/**
+ * Chemin vers le fichier pour des configurations personnelles
+ * qui ne sera pas écraser lors des mises à jour.
+ */
+require '$data_dir/data/config.local.user.php';" >> $install_dir/config.local.php
+fi
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
