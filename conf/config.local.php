@@ -8,7 +8,7 @@
  *
  * Pour ajouter des configurations personnelles à votre instance et les garder,
  * lisez attentivement ce fichier, puis ajoutez les constantes commentées nécessaires
- * dans le fichier '$data_dir/data/config.local.user.php'.
+ * dans le fichier __DATA_DIR__/data/config.local.user.php.
  */
 
 // Nécessaire pour situer les constantes dans le bon namespace
