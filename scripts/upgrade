@@ -42,9 +42,12 @@ then
 fi
 
 if [ ! -f "$data_dir/data/config.local.user.php" ]; then
-	ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
-  chmod 650 "$install_dir/config.local.php"
-  chown $app:$app "$install_dir/config.local.php"
+  echo'
+	/**
+	 * Chemin vers le fichier pour des configurations personnelles
+	 * qui ne sera pas écraser lors des mises à jour.
+	 */
+	require '$data_dir/data/config.local.user.php';' >> $install_dir/config.local.php
   ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
   chmod 650 "$data_dir/data/config.local.user.php"
   chown $app:$app "$data_dir/data/config.local.user.php"
