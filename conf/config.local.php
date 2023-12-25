@@ -890,4 +890,4 @@ const MAIL_SENDER = '__APP__@__DOMAIN__';
  * Chemin vers le fichier pour des configurations personnelles
  * qui ne sera pas écraser lors des mises à jour.
  */
-require '__DATA_DIR__/data/config.local.user.php';
+//require '__DATA_DIR__/data/config.local.user.php';
