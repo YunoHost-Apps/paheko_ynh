@@ -42,12 +42,12 @@ if [ ! -f "$data_dir/data/config.local.user.php" ]; then
   ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
   chmod 650 "$data_dir/data/config.local.user.php"
   chown $app:$app "$data_dir/data/config.local.user.php"
-  echo'
+    echo'
 	/**
 	 * Chemin vers le fichier pour des configurations personnelles
 	 * qui ne sera pas écraser lors des mises à jour.
 	 */
-	require '$data_dir/data/config.local.user.php';' >> $install_dir/config.local.php
+	require "'$data_dir/data/config.local.user.php'";' >> $install_dir/config.local.php
 fi
 
 #=================================================
@@ -61,7 +61,6 @@ then
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$install_dir" --keep="config.local.php data/plugins"
 fi
-
 
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
