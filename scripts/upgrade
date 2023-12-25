@@ -84,6 +84,8 @@ if [ ! -f "$data_dir/data/config.local.user.php" ]; then
  * qui ne sera pas écraser lors des mises à jour.
  */
 require '$data_dir/data/config.local.user.php';" >> $install_dir/config.local.php
+else
+	ynh_replace_string --match_string="require '$data_dir/data/config.local.user.php';" --replace_string="//require '$data_dir/data/config.local.user.php';" --target_file="$install_dir/config.local.php"
 fi
 
 #=================================================

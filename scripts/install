@@ -51,11 +51,6 @@ ynh_add_config --template="config.local.php" --destination="$install_dir/config.
 chmod 650 "$install_dir/config.local.php"
 chown $app:$app "$install_dir/config.local.php"
 
-ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
-
-chmod 650 "$data_dir/data/config.local.user.php"
-chown $app:$app "$data_dir/data/config.local.user.php"
-
 #=================================================
 # END OF SCRIPT
 #=================================================
