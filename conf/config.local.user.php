@@ -3,10 +3,9 @@
 /**
  * Ce fichier est ici pour ajouter des personnalisations à votre configuration.
  *
- * Modifiez ce fichier à votre guise, excepté les constantes déjà présentes dans le fichier
+ * Modifiez ce fichier à votre guise, excepté les constantes déjà éditées dans le fichier
  * __INSTALL_DIR__/config.local.php, il ne sera pas modifié lors des prochaines mises à jour.
- * Consultez le fichier __INSTALL_DIR__/config.local.php pour choisir des constantes commentées
- * que vous voudriez éventuellemnt ajouter.
+ * Consultez le fichier __INSTALL_DIR__/config.local.php pour choisir des constantes à ajouter.
  */
 
 // Nécessaire pour situer les constantes dans le bon namespace
