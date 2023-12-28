@@ -107,7 +107,7 @@ if [ ! -f "$data_dir/data/config.local.user.php" ]; then
 fi
 
 if [ -f "$install_dir/data/association.sqlite" ]; then
-	mv "$install_dir/data/*.sqlite" "$data_dir/data/"
+	mv $install_dir/data/association.*  $data_dir/data/
 	ynh_secure_remove "$install_dir/data/association.*"
 fi
 
