@@ -40,7 +40,7 @@ then
   chown $app:$app "$install_dir/config.local.php"
   ynh_secure_remove "$install_dir/config.local.php.old"
   ynh_secure_remove "$install_dir/config.local.user.php"
-  ynn_secure_remove "$install_dir/data/data"
+  ynh_secure_remove "$install_dir/data/data"
 fi
 
 #=================================================
