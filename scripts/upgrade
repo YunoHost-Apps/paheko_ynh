@@ -67,17 +67,22 @@ chmod 644 "/etc/cron.d/$app"
 #=================================================
 # SPECIFIC UPGRADE
 #=================================================
-# add the newest config.local.php from older version
-if ynh_compare_current_package_version --comparison lt --version 1.3.1~ynh1
-then
-  ynh_script_progression --message="Updating a configuration file..." --weight=5
+# UPDATE A CONFIG FILE
+#=================================================
+ynh_script_progression --message="Updating a configuration file..." --weight=5
 
-  ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
-  chmod 650 "$install_dir/config.local.php"
-  chown $app:$app "$install_dir/config.local.php"
-fi
+# Install configuration files
+ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
 
-# add config file if not present
+chmod 650 "$install_dir/config.local.php"
+chown $app:$app "$install_dir/config.local.php"
+
+ynh_replace_string --match_string="//require '$data_dir/data/config.local.user.php';" --replace_string="require '$data_dir/data/config.local.user.php';" --target_file="$install_dir/config.local.php"
+
+#=================================================
+# ADD A CONFIG FILE
+#=================================================
+
 if [ ! -d "$data_dir/data" ]; then
 	ynh_script_progression --message="Adding a configuration file..." --weight=5
 	mkdir "$data_dir/data"
@@ -90,15 +95,8 @@ if [ ! -f "$data_dir/data/config.local.user.php" ]; then
   ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
   chmod 650 "$data_dir/data/config.local.user.php"
   chown $app:$app "$data_dir/data/config.local.user.php"
-  echo "
-/**
- * Chemin vers le fichier pour des configurations personnelles
- * qui ne sera pas écraser lors des mises à jour.
- */
-require '$data_dir/data/config.local.user.php';" >> $install_dir/config.local.php
-else
-	ynh_replace_string --match_string="//require '$data_dir/data/config.local.user.php';" --replace_string="require '$data_dir/data/config.local.user.php';" --target_file="$install_dir/config.local.php"
 fi
+
 
 #=================================================
 # END OF SCRIPT

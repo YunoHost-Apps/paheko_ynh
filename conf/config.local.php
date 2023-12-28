@@ -887,7 +887,7 @@ const MAIL_SENDER = '__APP__@__DOMAIN__';
 //const ALERT_MESSAGE = 'Ceci est un compte de test.';
 
 /**
- * Chemin vers le fichier pour des configurations personnellesqui ne sera pas écraser
+ * Chemin vers le fichier pour des configurations personnelles qui ne sera pas écraser
  * lors des mises à jour. Cette ligne sera décommentée dès la première mise à jour.
  */
 //require '__DATA_DIR__/data/config.local.user.php';
