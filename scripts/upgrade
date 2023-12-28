@@ -32,7 +32,7 @@ fi
 #=================================================
 # KEEP DATA IF NEEDED
 #=================================================
-if ynh_app_upstream_version --manifest="1.2.8"
+if ynh_compare_current_package_version --comparison eq --version 1.2.8~ynh1
 then
 	ynh_script_progression --message="cleaning conf files..." --weight=5
 	mv "$install_dir/config.local.php" "$install_dir/config.local.php.old"
@@ -42,8 +42,6 @@ then
 	ynh_secure_remove "$install_dir/config.local.php.old"
 	ynh_secure_remove "$install_dir/config.local.user.php"
 	ynh_secure_remove "$install_dir/data/data"
-else
-	ynh_script_progression --message="next steps upgrade..." --weight=2
 fi
 
 #=================================================
