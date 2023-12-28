@@ -30,9 +30,18 @@ if [ -z "${secret_key:-}" ]; then
 fi
 
 #=================================================
-# ADD SPECIFIC FILE IF NEEDED
+# KEEP DATA IF NEEDED
 #=================================================
-
+if ynh_app_upstream_version --manifest="1.2.8"
+then
+  mv "$install_dir/config.local.php" "$install_dir/config.local.php.old"
+  mv "$install_dir/config.local.yunohost.php" "$install_dir/config.local.php"
+  chmod 650 "$install_dir/config.local.php"
+  chown $app:$app "$install_dir/config.local.php"
+  ynh_secure_remove "$install_dir/config.local.php.old"
+  ynh_secure_remove "$install_dir/config.local.user.php"
+  ynn_secure_remove "$install_dir/data/data"
+fi
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
