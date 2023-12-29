@@ -30,9 +30,10 @@ if [ -z "${secret_key:-}" ]; then
 fi
 
 #=================================================
-# KEEP DATA IF NEEDED
+# KEEP CONFIGS IF NEEDED
 #=================================================
-if ynh_compare_current_package_version --comparison eq --version 1.2.8~ynh1
+
+if [ -f "$install_dir/config.local.yunohost.php" ]
 then
 	ynh_script_progression --message="cleaning conf files..." --weight=5
 	mv "$install_dir/config.local.php" "$install_dir/config.local.php.old"
@@ -41,7 +42,19 @@ then
 	chown $app:$app "$install_dir/config.local.php"
 	ynh_store_file_checksum --file="$install_dir/config.local.php"
 	ynh_secure_remove "$install_dir/config.local.php.old"
+fi
+
+ynh_script_progression --message="removing old conf files if exists..." --weight=5
+
+if [ -f "$install_dir/config.local.user.php" ]; then
 	ynh_secure_remove "$install_dir/config.local.user.php"
+fi
+
+if [ -f "$install_dir/data/config.local.user.php" ]; then
+	ynh_secure_remove "$install_dir/data/config.local.user.php"
+fi
+
+if [ -f "$install_dir/data/data" ]; then
 	ynh_secure_remove "$install_dir/data/data"
 fi
 
@@ -95,7 +108,7 @@ ynh_replace_string --match_string="//require '$data_dir/data/config.local.user.p
 #=================================================
 
 if [ ! -d "$data_dir/data" ]; then
-	ynh_script_progression --message="Adding a configuration file..." --weight=5
+	ynh_script_progression --message="Adding a configuration directory..." --weight=5
 	mkdir "$data_dir/data"
 	chmod 770 "$data_dir/data"
 	chown -R $app:www-data "$data_dir/data/"
@@ -103,13 +116,13 @@ fi
 
 if [ ! -f "$data_dir/data/config.local.user.php" ]; then
   ynh_script_progression --message="Adding a configuration file..." --weight=5
-
   ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
   chmod 650 "$data_dir/data/config.local.user.php"
   chown $app:$app "$data_dir/data/config.local.user.php"
 fi
 
 if [ -f "$install_dir/data/association.sqlite" ]; then
+	ynh_script_progression --message="Moving db files..." --weight=5
 	mv $install_dir/data/association.*  $data_dir/data/
 	ynh_secure_remove "$install_dir/data/association.*"
 fi
