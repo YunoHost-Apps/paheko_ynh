@@ -113,9 +113,8 @@ if [ ! -d "$data_dir/data" ]; then
 	chmod 770 "$data_dir/data"
 	chown -R $app:www-data "$data_dir/data"
 else
-  chown -R $app:www-data "$data_dir/cache"
-  chown $app:www-data "$data_dir/index.html"
-
+  chown -R $app:www-data "$data_dir/data/cache"
+  chown $app:www-data "$data_dir/data/index.html"
 fi
 
 if [ ! -f "$data_dir/data/config.local.user.php" ]; then
