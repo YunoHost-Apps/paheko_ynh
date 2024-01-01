@@ -17,9 +17,8 @@ ynh_script_progression --message="Restoring the app main directory..." --weight=
 
 ynh_restore_file --origin_path="$install_dir"
 
+chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
-chmod -R u=rX,g=X,o= "$install_dir"
-chmod -R u=rX,g=rX,o= "$install_dir/www"
 
 #=================================================
 # RESTORE THE DATA DIRECTORY
@@ -27,9 +26,6 @@ chmod -R u=rX,g=rX,o= "$install_dir/www"
 ynh_script_progression --message="Restoring the data directory..." --weight=1
 
 ynh_restore_file --origin_path="$data_dir" --not_mandatory
-
-chown -R $app:www-data "$data_dir/"
-chmod -R u=rwX,g=,o= "$data_dir/"
 
 #=================================================
 # RESTORE SYSTEM CONFIGURATIONS

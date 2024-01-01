@@ -20,9 +20,8 @@ ynh_script_progression --message="Setting up source files..." --weight=4
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir"
 
+chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
-chmod -R u=rX,g=X,o= "$install_dir"
-chmod -R u=rX,g=rX,o= "$install_dir/www"
 
 #=================================================
 # SYSTEM CONFIGURATION
@@ -51,9 +50,6 @@ ynh_add_config --template="config.local.php" --destination="$install_dir/config.
 
 chmod 650 "$install_dir/config.local.php"
 chown $app:$app "$install_dir/config.local.php"
-
-chown -R $app:www-data "$data_dir/"
-chmod -R u=rwX,g=,o= "$data_dir/"
 
 #=================================================
 # END OF SCRIPT
