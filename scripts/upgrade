@@ -70,8 +70,8 @@ then
 	ynh_setup_source --dest_dir="$install_dir" --keep="config.local.php data/plugins"
 fi
 
-chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
+chmod 650 "$install_dir/config.local.php"
+chown $app:$app "$install_dir/config.local.php"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -103,6 +103,8 @@ chown $app:$app "$install_dir/config.local.php"
 
 ynh_replace_string --match_string="//require '$data_dir/data/config.local.user.php';" --replace_string="require '$data_dir/data/config.local.user.php';" --target_file="$install_dir/config.local.php"
 
+chmod -R u=rX,g=X,o= "$install_dir"
+chmod -R u=rX,g=rX,o= "$install_dir/www"
 #=================================================
 # ADD A CONFIG FILE
 #=================================================
@@ -110,11 +112,11 @@ ynh_replace_string --match_string="//require '$data_dir/data/config.local.user.p
 if [ ! -d "$data_dir/data" ]; then
 	ynh_script_progression --message="Adding a configuration directory..." --weight=5
 	mkdir "$data_dir/data"
-	chmod 770 "$data_dir/data"
 	chown -R $app:www-data "$data_dir/data"
+	chmod -R u=rwX,g=,o= "$data_dir/data"
 else
-  chown -R $app:www-data "$data_dir/data/cache"
-  chown $app:www-data "$data_dir/data/index.html"
+  chown -R $app:www-data "$data_dir/data"
+  chmod -R u=rwX,g=,o= "$data_dir/data"
 fi
 
 if [ ! -f "$data_dir/data/config.local.user.php" ]; then
