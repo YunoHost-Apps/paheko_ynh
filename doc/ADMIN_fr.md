@@ -1,6 +1,6 @@
 Vous pouvez si vous le souhaitez ajouter des configurations personnelles en éditant le fichier `__DATA_DIR__/data/config.local.user.php`.
 
-Privilégiez le dossier `__DATA-DIR__/data` si vous voulez conserver des documents ailleurs que dans la base de données. Example dans le fichier `__DATA_DIR__/data/config.local.user.php`
+Privilégiez le dossier `__DATA_DIR__/data` si vous voulez conserver des documents ailleurs que dans la base de données. Example dans le fichier `__DATA_DIR__/data/config.local.user.php`
 
 ```
 const FILE_STORAGE_BACKEND = 'FileSystem';
