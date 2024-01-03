@@ -44,7 +44,7 @@ then
 	ynh_secure_remove "$install_dir/config.local.php.old"
 fi
 
-ynh_script_progression --message="removing old conf files if exists..." --weight=5
+ynh_script_progression --message="removing old conf files if they exist..." --weight=5
 
 if [ -f "$install_dir/config.local.user.php" ]; then
 	ynh_secure_remove "$install_dir/config.local.user.php"
