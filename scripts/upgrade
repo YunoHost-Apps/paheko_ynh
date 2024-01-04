@@ -119,7 +119,7 @@ fi
 if [ ! -f "$data_dir/data/config.local.user.php" ]; then
   ynh_script_progression --message="Adding a configuration file..." --weight=5
   ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
-  chmod 440 "$data_dir/data/config.local.user.php"
+  chmod 640 "$data_dir/data/config.local.user.php"
   chown $app:$app "$data_dir/data/config.local.user.php"
 fi
 
