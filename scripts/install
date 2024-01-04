@@ -51,16 +51,6 @@ ynh_add_config --template="config.local.php" --destination="$install_dir/config.
 chmod 440 "$install_dir/config.local.php"
 chown $app:$app "$install_dir/config.local.php"
 
-ynh_script_progression --message="Adding a configuration directory..." --weight=5
-mkdir "$data_dir/data"
-chmod 770 "$data_dir/data"
-chown -R $app:www-data "$data_dir/data"
-
-ynh_script_progression --message="Adding a configuration file..." --weight=5
-ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
-chmod 440 "$data_dir/data/config.local.user.php"
-chown $app:$app "$data_dir/data/config.local.user.php"
-
 #=================================================
 # END OF SCRIPT
 #=================================================
