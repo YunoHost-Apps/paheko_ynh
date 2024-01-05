@@ -43,12 +43,12 @@ chmod 644 "/etc/cron.d/$app"
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding a configuration file..." --weight=5
+ynh_script_progression --message="Adding a configuration files..." --weight=5
 
 # Install configuration files
 ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
 
-chmod 650 "$install_dir/config.local.php"
+chmod 440 "$install_dir/config.local.php"
 chown $app:$app "$install_dir/config.local.php"
 
 #=================================================

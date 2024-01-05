@@ -30,22 +30,40 @@ if [ -z "${secret_key:-}" ]; then
 fi
 
 #=================================================
+# KEEP CONFIGS IF NEEDED
+#=================================================
+
+if [ -f "$install_dir/config.local.yunohost.php" ]
+then
+	ynh_script_progression --message="cleaning conf files..." --weight=5
+	ynh_secure_remove "$install_dir/config.local.php"
+	mv "$install_dir/config.local.yunohost.php" "$install_dir/config.local.php"
+	chmod 440 "$install_dir/config.local.php"
+	chown $app:$app "$install_dir/config.local.php"
+	ynh_store_file_checksum --file="$install_dir/config.local.php"
+fi
+
+ynh_script_progression --message="removing old conf files if they exist..." --weight=5
+
+if [ -f "$install_dir/config.local.user.php" ]; then
+	ynh_secure_remove "$install_dir/config.local.user.php"
+fi
+
+if [ -f "$install_dir/data/config.local.user.php" ]; then
+	ynh_secure_remove "$install_dir/data/config.local.user.php"
+fi
+
+if [ -d "$install_dir/data/data" ]; then
+	ynh_secure_remove "$install_dir/data/data"
+fi
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=5
-
-	if [ ! -d "$data_dir/data" ]; then
-    	ynh_print_warn "Migrating data directory to $data_dir..."
-
-    	# remove old configuration files
-		ynh_secure_remove --file="$install_dir/data/config.local.user.php"
-		ynh_secure_remove --file="$install_dir/config.local.yunohost.php"
-		
-		mv "$install_dir/data" "$data_dir"
-	fi
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$install_dir" --keep="config.local.php data/plugins"
@@ -79,8 +97,37 @@ ynh_script_progression --message="Updating a configuration file..." --weight=5
 # Install configuration files
 ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
 
-chmod 650 "$install_dir/config.local.php"
+chmod 440 "$install_dir/config.local.php"
 chown $app:$app "$install_dir/config.local.php"
+
+ynh_replace_string --match_string="//require '$data_dir/data/config.local.user.php';" --replace_string="require '$data_dir/data/config.local.user.php';" --target_file="$install_dir/config.local.php"
+
+#=================================================
+# ADD A CONFIG FILE
+#=================================================
+
+if [ ! -d "$data_dir/data" ]; then
+	ynh_script_progression --message="Adding a configuration directory..." --weight=5
+	mkdir "$data_dir/data"
+	chmod 770 "$data_dir/data"
+	chown -R $app:www-data "$data_dir/data"
+else
+  chown -R $app:www-data "$data_dir/data/cache"
+  chown $app:www-data "$data_dir/data/index.html"
+fi
+
+if [ ! -f "$data_dir/data/config.local.user.php" ]; then
+  ynh_script_progression --message="Adding a configuration file..." --weight=5
+  ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
+  chmod 640 "$data_dir/data/config.local.user.php"
+  chown $app:$app "$data_dir/data/config.local.user.php"
+fi
+
+if [ -f "$install_dir/data/association.sqlite" ]; then
+	ynh_script_progression --message="Moving db files..." --weight=5
+	mv $install_dir/data/association.*  $data_dir/data/
+	ynh_secure_remove "$install_dir/data/association.*"
+fi
 
 #=================================================
 # END OF SCRIPT
