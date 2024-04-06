@@ -57,6 +57,14 @@ if [ -d "$install_dir/data/data" ]; then
 	ynh_secure_remove "$install_dir/data/data"
 fi
 
+if ynh_compare_current_package_version --comparison le 1.3.6~ynh2; then
+  ynh_script_progression --message="keep old user configuration file..." --weight=5
+  mv "$data_dir/data/config.local.user.php" "$data_dir/data/config.local.user.php.old"
+  ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
+  chmod 640 "$data_dir/data/config.local.user.php"
+  chown $app:$app "$data_dir/data/config.local.user.php"
+fi
+
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
@@ -71,6 +79,7 @@ fi
 
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
+
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -123,13 +132,6 @@ if [ ! -f "$data_dir/data/config.local.user.php" ]; then
   chown $app:$app "$data_dir/data/config.local.user.php"
 fi
 
-if ynh_compare_current_package_version --comparison le 1.3.6~ynh2; then
-  ynh_script_progression --message="Adding a configuration file..." --weight=5
-  mv "$data_dir/data/config.local.user.php" "$data_dir/data/config.local.user.php.old"
-  ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
-  chmod 640 "$data_dir/data/config.local.user.php"
-  chown $app:$app "$data_dir/data/config.local.user.php"
-fi
 
 if [ -f "$install_dir/data/association.sqlite" ]; then
 	ynh_script_progression --message="Moving db files..." --weight=5
