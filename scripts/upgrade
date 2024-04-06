@@ -121,8 +121,11 @@ if [ ! -f "$data_dir/data/config.local.user.php" ]; then
   ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
   chmod 640 "$data_dir/data/config.local.user.php"
   chown $app:$app "$data_dir/data/config.local.user.php"
-elif
+fi
+
+if ynh_compare_current_package_version --comparison lt 1.3.6~ynh2; then
   ynh_script_progression --message="Adding a configuration file..." --weight=5
+  mv "$data_dir/data/config.local.user.php" "$data_dir/data/config.local.user.php.old"
   ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
   chmod 640 "$data_dir/data/config.local.user.php"
   chown $app:$app "$data_dir/data/config.local.user.php"
