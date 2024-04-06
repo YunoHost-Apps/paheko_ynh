@@ -9,7 +9,7 @@ It shall NOT be edited by hand.
 
 [![Install Paheko with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=paheko)
 
-*[Read this README is other languages.](./ALL_README.md)*
+*[Read this README in other languages.](./ALL_README.md)*
 
 > *This package allows you to install Paheko quickly and simply on a YunoHost server.*  
 > *If you don't have YunoHost, please consult [the guide](https://yunohost.org/install) to learn how to install it.*
@@ -19,7 +19,7 @@ It shall NOT be edited by hand.
 Paheko (a word from the Māori language meaning "to cooperate", illustrating the purpose of the software: to improve together the daily management of an association) is software for associative management. It is the tool of choice for managing an association, a sports club, an NGO, etc. It is designed to meet the needs of a small to medium-sized structure: management of members, accounting, website, note-taking in meetings, archiving and sharing of the association's operating documents, discussion between members. 
 
 
-**Shipped version:** 1.3.6~ynh2
+**Shipped version:** 1.3.6~ynh3
 
 **Demo:** <https://paheko.cloud/essai/>
 
