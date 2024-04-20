@@ -138,6 +138,9 @@ if [ ! -d "$data_dir/data/local_addresses" ]; then
   mkdir "$data_dir/data/local_addresses"
   chmod 770 "$data_dir/data/local_addresses"
   chown -R $app:www-data "$data_dir/data/local_addresses"
+else
+  chown -R $app:www-data "$data_dir/data/local_addresses"
+  chown $app:www-data "$data_dir/data/local_addresses"
 fi
 
 
