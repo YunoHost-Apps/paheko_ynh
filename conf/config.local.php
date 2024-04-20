@@ -325,7 +325,7 @@ const WWW_URL = 'https://__DOMAIN____PATH__/';
  * Défaut : null (= désactivé)
  * @var string|null
  */
-// const SQL_DEBUG = __DIR__ . '/debug_sql.sqlite';
+// const SQL_DEBUG = '__INSTALL_DIR__/debug_sql.sqlite';
 
 /**
 /**
@@ -369,7 +369,7 @@ const SQLITE_JOURNAL_MODE = 'WAL';
  * Default : null (= désactivé)
  * @var string|null
  */
-// const HTTP_LOG_FILE = __DIR__ . '/http.log';
+// const HTTP_LOG_FILE = '__INSTALL_DIR__/http.log';
 
 /**
  * Activer la possibilité de faire une mise à jour semi-automatisée
