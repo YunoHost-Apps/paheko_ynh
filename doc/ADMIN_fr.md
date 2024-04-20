@@ -14,7 +14,7 @@ en vous connectant avec le user root:
 ```
 cd __DATA_DIR__/data/local_addresses/
 wget https://paheko.cloud/addresses/fr.sqlite
-chown -R $app:www-data fr.sqlite
+chown -R __APP__:www-data fr.sqlite
 ```
 
 La base de données devrait normalement être mise à jours tous les mois, pour la mettre à jour, il vous faudra supprimer le fichier `fr.sqlite` et recommencer cette procédure.
