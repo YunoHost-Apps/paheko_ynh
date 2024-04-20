@@ -114,21 +114,3 @@ const MAIL_RETURN_PATH = '__APP__@__DOMAIN__';
 
 const MAIL_SENDER = '__APP__@__DOMAIN__';
 
-/**
- * Chemin vers le répertoire contenant les bases de données d'adresses
- * locales.
- *
- * Cela permet d'auto-compléter l'adresse d'un membre quand on crée
- * ou modifie sa fiche membre, sans faire appel à un service externe.
- *
- * Dans ce répertoire, chaque pays correspond à une BDD SQLite contenant
- * la liste de toutes les adresses du pays.
- *
- * Par exemple 'fr.sqlite' pour la France.
- *
- * Défaut : null
- *
- * @var null|string
- */
-
-//const LOCAL_ADDRESSES_ROOT = '__DATA_DIR__/data/local_addresses/';

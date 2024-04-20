@@ -951,7 +951,7 @@ const USE_CRON = true;
  * @var null|string
  */
 
-//const LOCAL_ADDRESSES_ROOT = '__DATA_DIR__/data/local_addresses/';
+const LOCAL_ADDRESSES_ROOT = '__DATA_DIR__/data/local_addresses/';
 
 /**
  * Chemin vers le fichier pour des configurations personnelles qui ne sera pas écraser
