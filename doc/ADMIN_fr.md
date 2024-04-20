@@ -18,7 +18,7 @@ cd __DATA_DIR__/data/local_addresses/
 wget https://paheko.cloud/addresses/fr.sqlite
 chown -R $app:www-data fr.sqlite
 ```
-puis dans le fichier `__DATA_DIR__/data/config.local.user.php`, décommentez la ligne `//const LOCAL_ADDRESSES_ROOT = '__DATA_DIR__/data/local_addresses/';`.
+puis dans le fichier `__DATA_DIR__/data/config.local.user.php`, décommentez la ligne `//const LOCAL_ADDRESSES_ROOT = '__DATA_DIR__/data/local_addresses/';` ou bien, si vous ne l'avez pas, ajoutez cette ligne `const LOCAL_ADDRESSES_ROOT = '__DATA_DIR__/data/local_addresses/';`
 
 La base de données devrait normalement être mise à jours tous les mois, pour la mettre à jour, il vous faudra supprimer le fichier `fr.sqlite` et recommencer cette procédure.
 
