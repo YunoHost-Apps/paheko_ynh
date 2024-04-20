@@ -21,6 +21,6 @@ La base de données devrait normalement être mise à jours tous les mois, pour 
 
 **Important** : Pour une raison quelconque, le courriel ne fonctionne pas lors de l’installation sur une sous-instance. Nous vous encourageons à utiliser un nom de domaine complet dédié à ce domaine (avec le chemin défini sur /). Sur une première installation, vous aurez peut-être besoin d'une première mise à jour  pour mettre à jour le dossier `__DATA_DIR__/data`, vous pouvez forcer la mise à jour:
 ```
-yunohost app $app upgrade -F
+yunohost app __APP__ upgrade -F
 ```
 
