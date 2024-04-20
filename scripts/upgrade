@@ -137,7 +137,7 @@ if [ ! -d "$data_dir/data/local_addresses" ]; then
   ynh_script_progression --message="Adding a configuration directory..." --weight=5
   mkdir "$data_dir/data//local_addresses"
   chmod 770 "$data_dir/data/local_addresses"
-  chown $app:www-data "$data_dir/data/config.local.user.php"
+  chown $app:www-data "$data_dir/data/local_addresses"
 fi
 
 
