@@ -149,6 +149,32 @@ const DATA_ROOT = '__DATA_DIR__/data';
 const PLUGINS_ROOT = '__INSTALL_DIR__/data/plugins';
 
 /**
+ * Liste des plugins autorisés.
+ *
+ * Permet de restreindre la liste des plugins autorisés. Les autres seront cachés.
+ *
+ * Si non défini, ou NULL, alors tous les plugins seront autorisés.
+ *
+ * Cette configuration n'affecte pas les plugins qui sont *déjà* installés.
+ *
+ * @var array|null
+ */
+//const PLUGINS_ALLOWLIST = ['caisse', 'webstats'];
+
+/**
+ * Liste des plugins interdits
+ *
+ * Permet d'empêcher l'installation de certains plugins.
+ *
+ * Si non défini, ou NULL, alors tous les plugins seront autorisés.
+ *
+ * Cette configuration n'affecte pas les plugins qui sont *déjà* installés.
+ *
+ * @var array|null
+ */
+//const PLUGINS_BLOCKLIST = ['dompdf'];
+
+/**
  * Signaux système
  *
  * Permet de déclencher des signaux sans passer par un plugin.
@@ -280,6 +306,26 @@ const WWW_URL = 'https://__DOMAIN____PATH__/';
 
 //const ENABLE_TECH_DETAILS = true;
 
+/**
+ * Activation du log SQL (option de développement)
+ *
+ * Si cette constante est renseignée par un chemin de fichier SQLite valide,
+ * alors *TOUTES* les requêtes SQL et leur contenu sera logué dans la base de données indiquée.
+ *
+ * Cette option permet ensuite de parcourir les requêtes via l'interface dans
+ * Configuration -> Fonctions avancées -> Journal SQL pour permettre d'identifier
+ * les requêtes qui mettent trop de temps, et comment elles pourraient
+ * être améliorées. Visualiser les requêtes SQL nécessite d'avoir également activé
+ * ENABLE_TECH_DETAILS.
+ *
+ * ATTENTION : cela signifie que des informations personnelles (mot de passe etc.)
+ * peuvent se retrouver dans le log. Ne pas utiliser à moins de tester en développement.
+ * Cette option peut significativement ralentir le chargement des pages.
+ *
+ * Défaut : null (= désactivé)
+ * @var string|null
+ */
+// const SQL_DEBUG = '__INSTALL_DIR__/debug_sql.sqlite';
 
 /**
 /**
@@ -309,6 +355,21 @@ const WWW_URL = 'https://__DOMAIN____PATH__/';
  */
 const SQLITE_JOURNAL_MODE = 'WAL';
 
+/**
+ * Activation du log HTTP (option de développement)
+ *
+ * Si cette constante est renseignée par un fichier texte, *TOUTES* les requêtes HTTP
+ * ainsi que leur contenu y sera enregistré.
+ *
+ * C'est surtout utile pour débuguer les problèmes de WebDAV par exemple.
+ *
+ * ATTENTION : cela signifie que des informations personnelles (mot de passe etc.)
+ * peuvent se retrouver dans le log. Ne pas utiliser à moins de tester en développement.
+ *
+ * Default : null (= désactivé)
+ * @var string|null
+ */
+// const HTTP_LOG_FILE = '__INSTALL_DIR__/http.log';
 
 /**
  * Activer la possibilité de faire une mise à jour semi-automatisée
@@ -473,7 +534,7 @@ const USE_CRON = true;
 
 /**
  * Adresse e-mail destinée à recevoir les erreurs de mail
- * (adresses invalides etc.) — Return-Path
+ * (adresses invalides etc.) — Return-Path / MAIL FROM
  *
  * Si laissé NULL, alors l'adresse e-mail de l'association sera utilisée.
  * En cas d'hébergement de plusieurs associations, il est conseillé
@@ -481,6 +542,9 @@ const USE_CRON = true;
  *
  * Voir la documentation de configuration sur des exemples de scripts
  * permettant de traiter les mails reçus à cette adresse.
+ *
+ * Si renseigné, cette adresse sera utilisée également comme "MAIL FROM"
+ * lors de la session avec le serveur SMTP.
  *
  * Défaut : null
  */
@@ -763,17 +827,19 @@ const USE_CRON = true;
 /**
  * DOCUMENT_THUMBNAIL_COMMANDS
  * Indique les commandes à utiliser pour générer des miniatures pour les documents
- * (LibreOffice, OOXML, PDF, SVG, etc.)
+ * (LibreOffice, OOXML, PDF, SVG, vidéos, etc.)
  *
  * Les options possibles sont (par ordre de rapidité) :
  * - mupdf : les miniatures PDF/SVG/XPS/EPUB sont générées avec mutool
  *   (apt install mupdf-tools)
- * - collabora : les miniatures sont générées par le serveur Collabora, via
- *   l'API dont l'URL est  indiquée dans WOPI_DISCOVERY_URL
+ * - collabora : les miniatures de documents bureautiques sont générées
+ *   par le serveur Collabora, via l'API dont l'URL est  indiquée dans WOPI_DISCOVERY_URL
  * - unoconvert : les miniatures des documents Office/LO sont générées
  *   avec unoconvert <https://github.com/unoconv/unoserver/>
+ * - ffmpeg : les miniatures de vidéos seront générées avec ffmpeg
  *
- * Il est conseillé d'utiliser mupdf en priorité pour les PDF, il est plus rapide et léger.
+ * Bien que Collabora/Unoconvert puissent générer des miniatures de PDF, il est plutôt
+ * conseillé d'utiliser mupdf quand même, il est plus rapide et léger.
  *
  * Note : cette option créera de nombreux fichiers de cache, et risque d'augmenter
  * la charge serveur de manière importante.
@@ -782,7 +848,7 @@ const USE_CRON = true;
  * @var null|array
  */
 
-//const DOCUMENT_THUMBNAIL_COMMANDS = ['mupdf', 'collabora'];
+//const DOCUMENT_THUMBNAIL_COMMANDS = ['mupdf', 'collabora', 'ffmpeg'];
 
 /**
  * PDFTOTEXT_COMMAND
@@ -841,24 +907,6 @@ const USE_CRON = true;
 //const DISABLE_INSTALL_PING = false;
 
 /**
- * Clé de licence
- *
- * Cette clé permet de débloquer certaines fonctionnalités dans des extensions officielles.
- *
- * Pour l'obtenir il faut se créer un compte sur Paheko.cloud
- * et faire une contribution financière.
- * La clé apparaîtra ensuite en dessous des informations
- * de l'association dans la page "Mon abonnement Paheko.cloud".
- *
- * Il faut recopier cette clé dans le fichier config.local.php
- * dans la constante CONTRIBUTOR_LICENSE.
- *
- * Merci de ne pas essayer de contourner cette licence et de contribuer au
- * financement de notre travail :-)
- */
-//const CONTRIBUTOR_LICENSE = 'XXXXX';
-
-/**
  * Informations légale sur l'hébergeur
  *
  * Ce texte (HTML) est affiché en bas de la page "mentions légales"
@@ -885,6 +933,25 @@ const USE_CRON = true;
  * @var null|string
  */
 //const ALERT_MESSAGE = 'Ceci est un compte de test.';
+
+/**
+ * Chemin vers le répertoire contenant les bases de données d'adresses
+ * locales.
+ *
+ * Cela permet d'auto-compléter l'adresse d'un membre quand on crée
+ * ou modifie sa fiche membre, sans faire appel à un service externe.
+ *
+ * Dans ce répertoire, chaque pays correspond à une BDD SQLite contenant
+ * la liste de toutes les adresses du pays.
+ *
+ * Par exemple 'fr.sqlite' pour la France.
+ *
+ * Défaut : null
+ *
+ * @var null|string
+ */
+
+const LOCAL_ADDRESSES_ROOT = '__DATA_DIR__/data/local_addresses/';
 
 /**
  * Chemin vers le fichier pour des configurations personnelles qui ne sera pas écraser
