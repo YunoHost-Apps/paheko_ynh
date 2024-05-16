@@ -11,7 +11,7 @@ const FILE_STORAGE_CONFIG = DATA_ROOT . /files';
 **Important**: for some reason, email does not work when installing on a subpath. You are encouraged to use a full, dedicated for this domain (with path set to /). You may need perhaps an first app upgrade to have all the configurations on the path `__DATA_DIR__/data`, you can force the upgrade:
 
 ```
-yunohost app $app upgrade -F
+yunohost app __APP__ upgrade -F
 ```
 
 
