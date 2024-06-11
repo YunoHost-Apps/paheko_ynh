@@ -307,6 +307,18 @@ const WWW_URL = 'https://__DOMAIN____PATH__/';
 //const ENABLE_TECH_DETAILS = true;
 
 /**
+ * Activation du profilage (option de développement)
+ *
+ * Si cette option est activée, une barre sera affichée en bas des pages
+ * indiquant les performances du code, des requêtes SQL, et la liste
+ * des requêtes exécutées.
+ *
+ * Défaut : false
+ * @var bool
+ */
+//const ENABLE_PROFILER = true;
+
+/**
  * Activation du log SQL (option de développement)
  *
  * Si cette constante est renseignée par un chemin de fichier SQLite valide,
@@ -327,7 +339,6 @@ const WWW_URL = 'https://__DOMAIN____PATH__/';
  */
 // const SQL_DEBUG = '__INSTALL_DIR__/debug_sql.sqlite';
 
-/**
 /**
  * Mode de journalisation de SQLite
  *
@@ -361,15 +372,39 @@ const SQLITE_JOURNAL_MODE = 'WAL';
  * Si cette constante est renseignée par un fichier texte, *TOUTES* les requêtes HTTP
  * ainsi que leur contenu y sera enregistré.
  *
- * C'est surtout utile pour débuguer les problèmes de WebDAV par exemple.
- *
  * ATTENTION : cela signifie que des informations personnelles (mot de passe etc.)
  * peuvent se retrouver dans le log. Ne pas utiliser à moins de tester en développement.
  *
  * Default : null (= désactivé)
  * @var string|null
  */
-// const HTTP_LOG_FILE = '__INSTALL_DIR__/http.log';
+// const HTTP_LOG_FILE = __DIR__ . '/http.log';
+
+/**
+ * Activation du log WOPI
+ *
+ * Si cette constante est renseignée par un fichier texte, les requêtes HTTP reçues par
+ * le serveur WOPI seront enregistrées dans ce fichier.
+ *
+ * C'est surtout utile pour débuguer les problèmes de WebDAV par exemple.
+ *
+ * Default : null (= désactivé)
+ * @var string|null
+ */
+// const WOPI_LOG_FILE = __DIR__ . '/wopi.log';
+
+/**
+ * Activation du log WebDAV
+ *
+ * Si cette constante est renseignée par un fichier texte, les requêtes HTTP reçues par
+ * le serveur WebDAV seront enregistrées dans ce fichier.
+ *
+ * C'est surtout utile pour débuguer les problèmes de WebDAV par exemple.
+ *
+ * Default : null (= désactivé)
+ * @var string|null
+ */
+// const WEBDAV_LOG_FILE = __DIR__ . '/webdav.log';
 
 /**
  * Activer la possibilité de faire une mise à jour semi-automatisée
@@ -467,10 +502,10 @@ const USE_CRON = true;
 
 
 /**
- * Hôte du serveur SMTP, mettre à false (défaut) pour utiliser la fonction
+ * Hôte du serveur SMTP, mettre à null (défaut) pour utiliser la fonction
  * mail() de PHP
  *
- * Défaut : false
+ * Défaut : null
  */
 
 //const SMTP_HOST = '__DOMAIN__';
@@ -530,7 +565,7 @@ const USE_CRON = true;
  * @var null|string
  */
 
-//const SMTP_HELO_HOSTNAME = '__DOMAIN__';
+//const SMTP_HELO_HOSTNAME = 'mail.domain.tld';
 
 /**
  * Adresse e-mail destinée à recevoir les erreurs de mail
