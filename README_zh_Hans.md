@@ -21,7 +21,6 @@ Paheko (a word from the Māori language meaning "to cooperate", illustrating the
 
 **分发版本：** 1.3.10~ynh1
 
-
 **演示：** <https://paheko.cloud/essai/>
 
 ## 截图

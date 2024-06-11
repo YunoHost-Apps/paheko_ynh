@@ -21,7 +21,6 @@ Paheko (a word from the Māori language meaning "to cooperate", illustrating the
 
 **Paketatutako bertsioa:** 1.3.10~ynh1
 
-
 **Demoa:** <https://paheko.cloud/essai/>
 
 ## Pantaila-argazkiak
