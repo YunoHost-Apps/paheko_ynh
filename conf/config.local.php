@@ -378,7 +378,7 @@ const SQLITE_JOURNAL_MODE = 'WAL';
  * Default : null (= désactivé)
  * @var string|null
  */
-// const HTTP_LOG_FILE = __DIR__ . '/http.log';
+// const HTTP_LOG_FILE = __INSTALL_DIR__ . '/http.log';
 
 /**
  * Activation du log WOPI
@@ -391,7 +391,7 @@ const SQLITE_JOURNAL_MODE = 'WAL';
  * Default : null (= désactivé)
  * @var string|null
  */
-// const WOPI_LOG_FILE = __DIR__ . '/wopi.log';
+// const WOPI_LOG_FILE = __INSTALL_DIR__ . '/wopi.log';
 
 /**
  * Activation du log WebDAV
@@ -404,7 +404,7 @@ const SQLITE_JOURNAL_MODE = 'WAL';
  * Default : null (= désactivé)
  * @var string|null
  */
-// const WEBDAV_LOG_FILE = __DIR__ . '/webdav.log';
+// const WEBDAV_LOG_FILE = __INSTALL_DIR__ . '/webdav.log';
 
 /**
  * Activer la possibilité de faire une mise à jour semi-automatisée
