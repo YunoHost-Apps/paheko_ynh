@@ -15,7 +15,7 @@ namespace Paheko;
  * Hôte du serveur SMTP, mettre à false (défaut) pour utiliser la fonction
  * mail() de PHP
  *
- * Défaut : false
+ * Défaut : null
  */
 
 const SMTP_HOST = '__DOMAIN__';
