@@ -378,7 +378,33 @@ const SQLITE_JOURNAL_MODE = 'WAL';
  * Default : null (= désactivé)
  * @var string|null
  */
-// const HTTP_LOG_FILE = '__INSTALL_DIR__/http.log';
+// const HTTP_LOG_FILE = __INSTALL_DIR__ . '/http.log';
+
+/**
+ * Activation du log WOPI
+ *
+ * Si cette constante est renseignée par un fichier texte, les requêtes HTTP reçues par
+ * le serveur WOPI seront enregistrées dans ce fichier.
+ *
+ * C'est surtout utile pour débuguer les problèmes de WebDAV par exemple.
+ *
+ * Default : null (= désactivé)
+ * @var string|null
+ */
+// const WOPI_LOG_FILE = __INSTALL_DIR__ . '/wopi.log';
+
+/**
+ * Activation du log WebDAV
+ *
+ * Si cette constante est renseignée par un fichier texte, les requêtes HTTP reçues par
+ * le serveur WebDAV seront enregistrées dans ce fichier.
+ *
+ * C'est surtout utile pour débuguer les problèmes de WebDAV par exemple.
+ *
+ * Default : null (= désactivé)
+ * @var string|null
+ */
+// const WEBDAV_LOG_FILE = __INSTALL_DIR__ . '/webdav.log';
 
 /**
  * Activation du log WOPI
@@ -565,7 +591,7 @@ const USE_CRON = true;
  * @var null|string
  */
 
-//const SMTP_HELO_HOSTNAME = '__DOMAIN__';
+//const SMTP_HELO_HOSTNAME = 'mail.domain.tld';
 
 /**
  * Adresse e-mail destinée à recevoir les erreurs de mail
