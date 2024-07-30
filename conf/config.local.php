@@ -78,7 +78,7 @@ const SECRET_KEY = '__SECRET_KEY__';
 /**
  * Répertoire où se situe le code source de Paheko
  *
- * Défaut : répertoire racine de Paheko (DIR)
+ * Défaut : répertoire racine de Paheko (__INSTALL_DIR__)
  */
 
 const ROOT = '__INSTALL_DIR__';
@@ -379,32 +379,6 @@ const SQLITE_JOURNAL_MODE = 'WAL';
  * @var string|null
  */
 // const HTTP_LOG_FILE = '__INSTALL_DIR__/http.log';
-
-/**
- * Activation du log WOPI
- *
- * Si cette constante est renseignée par un fichier texte, les requêtes HTTP reçues par
- * le serveur WOPI seront enregistrées dans ce fichier.
- *
- * C'est surtout utile pour débuguer les problèmes de WebDAV par exemple.
- *
- * Default : null (= désactivé)
- * @var string|null
- */
-// const WOPI_LOG_FILE = '__INSTALL_DIR__/wopi.log';
-
-/**
- * Activation du log WebDAV
- *
- * Si cette constante est renseignée par un fichier texte, les requêtes HTTP reçues par
- * le serveur WebDAV seront enregistrées dans ce fichier.
- *
- * C'est surtout utile pour débuguer les problèmes de WebDAV par exemple.
- *
- * Default : null (= désactivé)
- * @var string|null
- */
-// const WEBDAV_LOG_FILE = '__INSTALL_DIR__/webdav.log';
 
 /**
  * Activation du log WOPI
