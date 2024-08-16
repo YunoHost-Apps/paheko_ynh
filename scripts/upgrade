@@ -38,7 +38,7 @@ if [ -z "${smtp_host:-}" ]; then
 		smtp_port=25
 		smtp_user=$app
 		smtp_password=$mail_pwd
-		smtp_secutrity=STARTTLS
+		smtp_security=STARTTLS
 		mail_return_path=$app@$domain
 		mail_sender=$app@$domain
 	fi
@@ -46,7 +46,7 @@ if [ -z "${smtp_host:-}" ]; then
 		ynh_app_setting_set --app=$app --key=smtp_port --value=$smtp_port
 		ynh_app_setting_set --app=$app --key=smtp_user --value=$smtp_user
 		ynh_app_setting_set --app=$app --key=smtp_password --value=$smtp_password
-		ynh_app_setting_set --app=$app --key=smtp_secutrity --value=$smtp_secutrity
+		ynh_app_setting_set --app=$app --key=smtp_security --value=$smtp_security
 		ynh_app_setting_set --app=$app --key=mail_return_path --value=$mail_return_path
 		ynh_app_setting_set --app=$app --key=mail_sender --value=$mail_sender
 fi

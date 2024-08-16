@@ -16,7 +16,7 @@ ynh_app_setting_set --app=$app --key=smtp_host --value=$domain
 ynh_app_setting_set --app=$app --key=smtp_port --value=25
 ynh_app_setting_set --app=$app --key=smtp_user --value=$app
 ynh_app_setting_set --app=$app --key=smtp_password --value=$mail_pwd
-ynh_app_setting_set --app=$app --key=smtp_secutrity --value=STARTTLS
+ynh_app_setting_set --app=$app --key=smtp_security --value=STARTTLS
 ynh_app_setting_set --app=$app --key=mail_return_path --value=$app@$domain
 ynh_app_setting_set --app=$app --key=mail_sender --value=$app@$domain
 
