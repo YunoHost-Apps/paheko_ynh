@@ -51,7 +51,7 @@ name.fr = "Configuration SMTP"
         bind = "SMTP_SECURITY:__INSTALL_DIR__/config.local.php"
 
     [main.smtp.mail_return_path]
-        ask = "Adresse e-mail destinée à recevoir les erreurs de mail, si renseigné, cette adresse sera utilisée également comme MAIL FROM lors de la session avec le serveur SMTP"
+        ask = "Adresse e-mail destinée à recevoir les erreurs de mail"
         type = "string"
         bind = "MAIL_RETURN_PATH:__INSTALL_DIR__/config.local.php"
 
