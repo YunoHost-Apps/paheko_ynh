@@ -39,8 +39,8 @@ if [ -z "${smtp_host:-}" ]; then
 		smtp_security=$(ynh_read_var_in_file --file=$user_conf --key=SMTP_SECURITY)
 		mail_return_path=$(ynh_read_var_in_file --file=$user_conf --key=MAIL_RETURN_PATH)
 		mail_sender=$(ynh_read_var_in_file --file=$user_conf --key=SMTP_SENDER)
-		sed -i s@const SMTP_@//const SMTP_/@g $user_conf
-		sed -i s@const MAIL_@//const MAIL_/@g $user_conf
+		sed -i "s@const SMTP_@//const SMTP_/@g" $user_conf
+		sed -i "s@const MAIL_@//const MAIL_/@g" $user_conf
 	else
 		smtp_host=$domain
 		smtp_port=25
