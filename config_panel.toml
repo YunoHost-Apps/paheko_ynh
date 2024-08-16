@@ -47,7 +47,7 @@ name.fr = "Configuration SMTP"
         choices.NONE = "NONE, pas de chiffrement"
         choices.SSL = "SSL, connexion SSL native"
         choices.TLS = "TLS, connexion TLS native (le plus sécurisé)"
-        choices.STARTTLS = SARTTLS, utilisation de STARTTLS (moyennement sécurisé)"
+        choices.STARTTLS = "STARTTLS, utilisation de STARTTLS (moyennement sécurisé)"
         bind = "SMTP_SECURITY:__INSTALL_DIR__/config.local.php"
 
     [main.smtp.mail_return_path]
