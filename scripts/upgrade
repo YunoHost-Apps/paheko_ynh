@@ -43,7 +43,7 @@ if [ -z "${smtp_host:-}" ]; then
 		ynh_replace_string --match_string="const SMTP_" --replace_string="//const SMTP_" --target_file=$user_conf
 		ynh_replace_string --match_string="const MAIL_" --replace_string="//const MAIL_" --target_file=$user_conf
 	else
-		disable_email=true
+		disable_email=no
 		smtp_host=$domain
 		smtp_port=25
 		smtp_user=$app

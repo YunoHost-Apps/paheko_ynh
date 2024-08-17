@@ -12,7 +12,7 @@ source /usr/share/yunohost/helpers
 secret_key=$(ynh_string_random --length=50)
 ynh_app_setting_set --app=$app --key=secret_key --value=$secret_key
 
-ynh_app_setting_set --app=$app --key=smtp_disable_email --value=true
+ynh_app_setting_set --app=$app --key=smtp_disable_email --value=no
 ynh_app_setting_set --app=$app --key=smtp_host --value=$domain
 ynh_app_setting_set --app=$app --key=smtp_port --value=25
 ynh_app_setting_set --app=$app --key=smtp_user --value=$app
