@@ -20,29 +20,34 @@ name.fr = "Configuration SMTP"
 
     optional = false
 
+    [main.smtp.disable_email]
+        ask.fr = "Désactiver l'envoi des mails (non par défaut)"
+        type = "boolean"
+        bind = "DISABLE_EMAIL:__INSTALL_DIR__/config.local.php"
+
     [main.smtp.smtp_host]
-        ask = "Host"
+        ask.fr = "Serveur SMTP"
         type = "string"
         bind = "SMTP_HOST:__INSTALL_DIR__/config.local.php"
 
     [main.smtp.smtp_port]
-        ask = "Port"
+        ask.fr = "Port"
         min = 25
         type = "number"
         bind = "SMTP_PORT:__INSTALL_DIR__/config.local.php"
 
     [main.smtp.smtp_user]
-        ask = "User"
+        ask.fr = "Nom d'utilisateur"
         type = "string"
         bind = "SMTP_USER:__INSTALL_DIR__/config.local.php"
 
     [main.smtp.smtp_password]
-        ask = "Password"
+        ask.fr = "Mot de passe"
         type = "password"
         bind = "SMTP_PASSWORD:__INSTALL_DIR__/config.local.php"
 
     [main.smtp.smtp_security]
-        ask = "Security"
+        ask.fr = "Sécurité de la connexion"
         type = "string"
         choices.NONE = "NONE, pas de chiffrement"
         choices.SSL = "SSL, connexion SSL native"
@@ -51,11 +56,11 @@ name.fr = "Configuration SMTP"
         bind = "SMTP_SECURITY:__INSTALL_DIR__/config.local.php"
 
     [main.smtp.mail_return_path]
-        ask = "Adresse e-mail destinée à recevoir les erreurs de mail"
+        ask.fr = "Adresse e-mail destinée à recevoir les erreurs de mail"
         type = "string"
         bind = "MAIL_RETURN_PATH:__INSTALL_DIR__/config.local.php"
 
     [main.smtp.mail_sender]
-        ask = "Adresse e-mail expéditrice des messages"
+        ask.fr = "Adresse e-mail expéditrice des messages"
         type = "string"
         bind = "MAIL_SENDER:__INSTALL_DIR__/config.local.php"

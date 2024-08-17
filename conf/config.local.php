@@ -498,7 +498,7 @@ const USE_CRON = true;
  * @var bool
  */
 
-//const DISABLE_EMAIL = false;
+const DISABLE_EMAIL = __DISABLE_EMAIL__;
 
 
 /**
