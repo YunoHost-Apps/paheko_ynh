@@ -22,9 +22,7 @@ name.fr = "Configuration SMTP"
 
     [main.smtp.disable_email]
         ask.fr = "Désactiver l'envoi des mails (non par défaut)"
-        type = "string"
-        choices.false = "faux par défaut"
-        choices.true = "vrai, désactive l'envoi des mails"
+        type = "boolean"
         bind = "DISABLE_EMAIL:__INSTALL_DIR__/config.local.php"
 
     [main.smtp.smtp_host]
