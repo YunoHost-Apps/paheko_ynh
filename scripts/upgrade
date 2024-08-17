@@ -32,7 +32,6 @@ fi
 if [ -z "${smtp_host:-}" ]; then
   user_conf="$data_dir/data/config.local.user.php"
 	if [ -f $user_conf ]; then
-		disable_email=$(ynh_read_var_in_file --file=$user_conf --key=DISABLE_EMAIL)
 		smtp_host=$(ynh_read_var_in_file --file=$user_conf --key=SMTP_HOST)
 		smtp_port=$(ynh_read_var_in_file --file=$user_conf --key=SMTP_PORT)
 		smtp_user=$(ynh_read_var_in_file --file=$user_conf --key=SMTP_USER)
@@ -43,7 +42,6 @@ if [ -z "${smtp_host:-}" ]; then
 		ynh_replace_string --match_string="const SMTP_" --replace_string="//const SMTP_" --target_file=$user_conf
 		ynh_replace_string --match_string="const MAIL_" --replace_string="//const MAIL_" --target_file=$user_conf
 	else
-		disable_email=0
 		smtp_host=$domain
 		smtp_port=25
 		smtp_user=$app
@@ -52,7 +50,6 @@ if [ -z "${smtp_host:-}" ]; then
 		mail_return_path=$app@$domain
 		mail_sender=$app@$domain
 	fi
-	  ynh_app_setting_set --app=$app --key=disable_email --value=$disable_email
 		ynh_app_setting_set --app=$app --key=smtp_host --value=$smtp_host
 		ynh_app_setting_set --app=$app --key=smtp_port --value=$smtp_port
 		ynh_app_setting_set --app=$app --key=smtp_user --value=$smtp_user
