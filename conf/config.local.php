@@ -583,8 +583,7 @@ const SMTP_SECURITY = '__SMTP_SECURITY__';
  * Défaut : null
  */
 
-const MAIL_RETURN_PATH = '__MAIL_RETURN_PATH__';
-
+//const MAIL_RETURN_PATH = 'returns@monserveur.com';
 
 /**
  * Adresse e-mail expéditrice des messages (Sender)

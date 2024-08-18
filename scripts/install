@@ -12,6 +12,12 @@ source /usr/share/yunohost/helpers
 secret_key=$(ynh_string_random --length=50)
 ynh_app_setting_set --app=$app --key=secret_key --value=$secret_key
 
+ynh_app_setting_set --app=$app --key=smtp_host --value=$domain
+ynh_app_setting_set --app=$app --key=smtp_port --value=25
+ynh_app_setting_set --app=$app --key=smtp_user --value=$app
+ynh_app_setting_set --app=$app --key=smtp_password --value=$mail_pwd
+ynh_app_setting_set --app=$app --key=smtp_security --value=STARTTLS
+ynh_app_setting_set --app=$app --key=mail_sender --value=$app@$domain
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -53,13 +59,6 @@ ynh_add_config --template="config.local.php" --destination="$install_dir/config.
 chmod 440 "$install_dir/config.local.php"
 chown $app:$app "$install_dir/config.local.php"
 
-ynh_app_setting_set --app=$app --key=smtp_host --value=$domain
-ynh_app_setting_set --app=$app --key=smtp_port --value=25
-ynh_app_setting_set --app=$app --key=smtp_user --value=$app
-ynh_app_setting_set --app=$app --key=smtp_password --value=$mail_pwd
-ynh_app_setting_set --app=$app --key=smtp_security --value=STARTTLS
-ynh_app_setting_set --app=$app --key=mail_return_path --value=$app@$domain
-ynh_app_setting_set --app=$app --key=mail_sender --value=$app@$domain
 
 #=================================================
 # SETUP APPLICATION WITH CURL
