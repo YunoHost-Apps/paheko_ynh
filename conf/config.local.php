@@ -498,8 +498,7 @@ const USE_CRON = true;
  * @var bool
  */
 
-const DISABLE_EMAIL = __DISABLE_EMAIL__;
-
+//const DISABLE_EMAIL = false;
 
 /**
  * Hôte du serveur SMTP, mettre à null (défaut) pour utiliser la fonction
