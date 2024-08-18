@@ -50,11 +50,6 @@ name.fr = "Configuration SMTP"
         choices.STARTTLS = "STARTTLS, utilisation de STARTTLS (moyennement sécurisé)"
         bind = "SMTP_SECURITY:__INSTALL_DIR__/config.local.php"
 
-    [main.smtp.mail_return_path]
-        ask.fr = "Adresse e-mail destinée à recevoir les erreurs de mail"
-        type = "string"
-        bind = "MAIL_RETURN_PATH:__INSTALL_DIR__/config.local.php"
-
     [main.smtp.mail_sender]
         ask.fr = "Adresse e-mail expéditrice des messages"
         type = "string"
