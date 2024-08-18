@@ -12,13 +12,20 @@ source /usr/share/yunohost/helpers
 secret_key=$(ynh_string_random --length=50)
 ynh_app_setting_set --app=$app --key=secret_key --value=$secret_key
 
-ynh_app_setting_set --app=$app --key=smtp_host --value=$domain
-ynh_app_setting_set --app=$app --key=smtp_port --value=25
-ynh_app_setting_set --app=$app --key=smtp_user --value=$app
-ynh_app_setting_set --app=$app --key=smtp_password --value=$mail_pwd
-ynh_app_setting_set --app=$app --key=smtp_security --value=STARTTLS
-ynh_app_setting_set --app=$app --key=mail_return_path --value=$app@$domain
-ynh_app_setting_set --app=$app --key=mail_sender --value=$app@$domain
+smtp_host=$domain
+smtp_port=25
+smtp_user=$app
+smtp_password=$mail_pwd
+smtp_security=STARTTLS
+mail_return_path=$app@$domain
+mail_sender=$app@$domain
+ynh_app_setting_set --app=$app --key=smtp_host --value=$smtp_host
+ynh_app_setting_set --app=$app --key=smtp_port --value=$smtp_port
+ynh_app_setting_set --app=$app --key=smtp_user --value=$smtp_user
+ynh_app_setting_set --app=$app --key=smtp_password --value=$smtp_password
+ynh_app_setting_set --app=$app --key=smtp_security --value=$smtp_security
+ynh_app_setting_set --app=$app --key=mail_return_path --value=$mail_return_path
+ynh_app_setting_set --app=$app --key=mail_sender --value=$mail_sender
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
