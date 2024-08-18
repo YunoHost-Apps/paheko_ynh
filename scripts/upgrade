@@ -37,19 +37,26 @@ if [ -z "${smtp_host:-}" ]; then
 		smtp_user=$(ynh_read_var_in_file --file=$user_conf --key=SMTP_USER)
 		smtp_password=$(ynh_read_var_in_file --file=$user_conf --key=SMTP_PASSWORD)
 		smtp_security=$(ynh_read_var_in_file --file=$user_conf --key=SMTP_SECURITY)
+		mail_return_path=$(ynh_read_var_in_file --file=$user_conf --key=MAIL_RETURN_PATH)
+		mail_sender=$(ynh_read_var_in_file --file=$user_conf --key=MAIL_SENDER)
 		ynh_replace_string --match_string="const SMTP_" --replace_string="//const SMTP_" --target_file=$user_conf
+		ynh_replace_string --match_string="const MAIL_" --replace_string="//const MAIL_" --target_file=$user_conf
 	else
 		smtp_host=$domain
 		smtp_port=25
 		smtp_user=$app
 		smtp_password=$mail_pwd
 		smtp_security=STARTTLS
+		mail_return_path=$app@$domain
+		mail_sender=$app@$domain
 	fi
 		ynh_app_setting_set --app=$app --key=smtp_host --value=$smtp_host
 		ynh_app_setting_set --app=$app --key=smtp_port --value=$smtp_port
 		ynh_app_setting_set --app=$app --key=smtp_user --value=$smtp_user
 		ynh_app_setting_set --app=$app --key=smtp_password --value=$smtp_password
 		ynh_app_setting_set --app=$app --key=smtp_security --value=$smtp_security
+		ynh_app_setting_set --app=$app --key=mail_return_path --value=$mail_return_path
+		ynh_app_setting_set --app=$app --key=mail_sender --value=$mail_sender
 fi
 
 #=================================================

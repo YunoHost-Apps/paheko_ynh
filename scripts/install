@@ -17,6 +17,8 @@ ynh_app_setting_set --app=$app --key=smtp_port --value=25
 ynh_app_setting_set --app=$app --key=smtp_user --value=$app
 ynh_app_setting_set --app=$app --key=smtp_password --value=$mail_pwd
 ynh_app_setting_set --app=$app --key=smtp_security --value=STARTTLS
+ynh_app_setting_set --app=$app --key=mail_return_path --value=$app@$domain
+ynh_app_setting_set --app=$app --key=mail_sender --value=$app@$domain
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -32,7 +34,6 @@ chown -R $app:www-data "$install_dir"
 #=================================================
 # SYSTEM CONFIGURATION
 #=================================================
-
 ynh_script_progression --message="Adding system configurations related to $app..." --weight=1
 
 # Create a dedicated PHP-FPM config
@@ -57,7 +58,6 @@ ynh_add_config --template="config.local.php" --destination="$install_dir/config.
 
 chmod 440 "$install_dir/config.local.php"
 chown $app:$app "$install_dir/config.local.php"
-
 
 #=================================================
 # SETUP APPLICATION WITH CURL

@@ -583,7 +583,7 @@ const SMTP_SECURITY = '__SMTP_SECURITY__';
  * Défaut : null
  */
 
-//const MAIL_RETURN_PATH = 'returns@monserveur.com';
+const MAIL_RETURN_PATH = '__MAIL_RETURN_PATH__';
 
 /**
  * Adresse e-mail expéditrice des messages (Sender)
@@ -600,7 +600,7 @@ const SMTP_SECURITY = '__SMTP_SECURITY__';
  * Défaut : null
  */
 
-//const MAIL_SENDER = 'associations@monserveur.com';
+const MAIL_SENDER = '__MAIL_SENDER__';
 
 /**
  * Mot de passe pour l'accès à l'API permettant de gérer les mails d'erreur
