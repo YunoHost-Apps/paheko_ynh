@@ -500,7 +500,6 @@ const USE_CRON = true;
 
 //const DISABLE_EMAIL = false;
 
-
 /**
  * Hôte du serveur SMTP, mettre à null (défaut) pour utiliser la fonction
  * mail() de PHP
@@ -508,7 +507,7 @@ const USE_CRON = true;
  * Défaut : null
  */
 
-//const SMTP_HOST = '__DOMAIN__';
+const SMTP_HOST = '__SMTP_HOST__';
 
 /**
  * Port du serveur SMTP
@@ -519,7 +518,7 @@ const USE_CRON = true;
  * Défaut : 587
  */
 
-//const SMTP_PORT = 25;
+const SMTP_PORT = __SMTP_PORT__;
 
 /**
  * Login utilisateur pour le server SMTP
@@ -529,7 +528,7 @@ const USE_CRON = true;
  * Défaut : null
  */
 
-//const SMTP_USER = '__APP__';
+const SMTP_USER = '__SMTP_USER__';
 
 /**
  * Mot de passe pour le serveur SMTP
@@ -539,7 +538,7 @@ const USE_CRON = true;
  * Défaut : null
  */
 
-//const SMTP_PASSWORD = '__MAIL_PWD__';
+const SMTP_PASSWORD = '__SMTP_PASSWORD__';
 
 /**
  * Sécurité du serveur SMTP
@@ -552,7 +551,7 @@ const USE_CRON = true;
  * Défaut : STARTTLS
  */
 
-//const SMTP_SECURITY = 'STARTTLS';
+const SMTP_SECURITY = '__SMTP_SECURITY__';
 
 /**
  * Nom du serveur utilisé dans le HELO SMTP
@@ -584,8 +583,7 @@ const USE_CRON = true;
  * Défaut : null
  */
 
-//const MAIL_RETURN_PATH = '__APP__@__DOMAIN__';
-
+const MAIL_RETURN_PATH = '__MAIL_RETURN_PATH__';
 
 /**
  * Adresse e-mail expéditrice des messages (Sender)
@@ -602,7 +600,7 @@ const USE_CRON = true;
  * Défaut : null
  */
 
-//const MAIL_SENDER = '__APP__@__DOMAIN__';
+const MAIL_SENDER = '__MAIL_SENDER__';
 
 /**
  * Mot de passe pour l'accès à l'API permettant de gérer les mails d'erreur
