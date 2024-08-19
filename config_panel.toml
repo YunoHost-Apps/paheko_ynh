@@ -43,7 +43,7 @@ name.fr = "Configuration SMTP"
 
     [main.smtp.smtp_security]
         ask.fr = "Sécurité de la connexion"
-        type = "string"
+        type = "select"
         choices.NONE = "NONE, pas de chiffrement"
         choices.SSL = "SSL, connexion SSL native"
         choices.TLS = "TLS, connexion TLS native (le plus sécurisé)"
