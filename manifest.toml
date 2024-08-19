@@ -41,7 +41,7 @@ ram.runtime = "50M"
     choices.Belgique = "Belgique"
     choices.Suisse = "Suisse"
 
-    [install.name]
+    [install.name_association]
     ask.fr = "Nom de l'association"
     type = "string"
 

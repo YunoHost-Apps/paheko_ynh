@@ -81,13 +81,13 @@ ynh_script_progression --message="Finalizing installation..." --weight=1
 installUrl="/var/www/paheko/www/admin/install.php?submit"
 
 country=$country
-name=$name
+name_association=$name_association
 user_name=$user_name
 user_email=$user_email
 password=$password
 password_confirmed=$password_confirmed
 
-ynh_local_curl $installUrl "country=$country" "name=$name" "user_name=$user_name" "user_email=$user_email" "password=$password" "password_confirmed=$password_confirmed"
+ynh_local_curl $installUrl "country=$country" "name=$name_association" "user_name=$user_name" "user_email=$user_email" "password=$password" "password_confirmed=$password_confirmed"
 #https://paheko.rodinux.fr/admin/install.php --args="country=FR&name=toto&user_name=bob&user_email=bob@example.org&password=bopbidibopbopbop&password_confirmed=bopbidibopbopbop"
 #=================================================
 # END OF SCRIPT
