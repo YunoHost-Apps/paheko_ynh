@@ -34,6 +34,33 @@ ram.runtime = "50M"
     type = "group"
     default = "visitors"
 
+    [install.country]
+    ask.fr = "Nom de l'association"
+    type = "string"
+    choices.France = "France"
+    choices.Belgique = "Belgique"
+    choices.Suisse = "Suisse"
+
+    [install.name]
+    ask.fr = "Nom de l'association"
+    type = "string"
+
+    [install.user_name]
+    ask.fr = "Nom et Prénom"
+    type = "string"
+
+    [install.user_email]
+    ask.fr = "Adresse E-Mail"
+    type = "string"
+
+    [install.password]
+    ask.fr="Mot de passe"
+    type = "password"
+
+    [install.password_confirmed]
+    ask.fr="Encore le mot de passe (vérification)"
+    type = "password"
+
 [resources]
         [resources.sources.main]
         url = "https://fossil.kd2.org/paheko/uv/paheko-1.3.11.tar.gz"
