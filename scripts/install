@@ -67,19 +67,13 @@ chmod 440 "$install_dir/config.local.php"
 chown $app:$app "$install_dir/config.local.php"
 
 #=================================================
-# SETUP APPLICATION WITH CURL
+# SETUP APPLICATION
 #=================================================
 
-### Use these lines only if the app installation needs to be finalized through
-### web forms. We generally don't want to ask the final user,
-### so we're going to use curl to automatically fill the fields and submit the
-### forms.
+### Waiting for new script  which will be integrated in version 1.3.12 see https://fossil.kd2.org/paheko/wiki?name=Ligne+de+commande
 
-# Post-Installation with curl
+# Post-Installation
 # ynh_script_progression --message="Finalizing installation..." --weight=1
-
-# domain=$domain
-# admin_url="/admin/install.php"
 
 # country=$country
 # name_association=$name_association
@@ -88,7 +82,7 @@ chown $app:$app "$install_dir/config.local.php"
 # password=$password
 # password_confirmed=$password_confirmed
 
-# ynh_local_curl $admin_url "country=$country" "name=$name_association" "user_name=$user_name" "user_email=$user_email" "password=$password" "password_confirmed=$password_confirmed"
+# ynh_exec_as $app paheko init --country $country --orgname $name_association --name=${user_name} --email=${$user_email} --password ${password}
 
 #=================================================
 # END OF SCRIPT
