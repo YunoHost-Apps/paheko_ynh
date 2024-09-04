@@ -881,7 +881,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  * @var null|array
  */
 
-//const DOCUMENT_THUMBNAIL_COMMANDS = ['mupdf', 'collabora', 'ffmpeg'];
+const DOCUMENT_THUMBNAIL_COMMANDS = ['mupdf', 'ffmpeg'];
 
 /**
  * PDFTOTEXT_COMMAND
