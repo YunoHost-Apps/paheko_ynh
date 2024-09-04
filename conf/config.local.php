@@ -482,7 +482,7 @@ const USE_CRON = true;
  * Défaut : fr.pool.ntp.org
  */
 
-//const NTP_SERVER = 'fr.pool.ntp.org';
+const NTP_SERVER = 'fr.pool.ntp.org';
 
 /**
  * Désactiver l'envoi d'e-mails
