@@ -14,6 +14,7 @@ license = "AGPL-3.0-or-later"
 website = "https://paheko.cloud"
 demo = "https://paheko.cloud/essai/"
 admindoc = "https://fossil.kd2.org/paheko/wiki?name=Documentation"
+userdoc = "https://paheko.cloud/aide"
 code = "https://fossil.kd2.org/paheko/dir?ci=tip"
 fund = "https://paheko.cloud/don/"
 
