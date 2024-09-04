@@ -987,7 +987,7 @@ const PDFTOTEXT_COMMAND = 'mupdf';
 const LOCAL_ADDRESSES_ROOT = DATA_ROOT . '/local_addresses/';
 
 /**
- * Chemin vers le fichier pour des configurations personnelles qui ne sera pas écraser
+ * Chemin vers le fichier pour des configurations personnelles qui ne sera pas écrasé
  * lors des mises à jour. Cette ligne sera décommentée dès la première mise à jour.
  */
 //require '__DATA_DIR__/data/config.local.user.php';
