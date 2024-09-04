@@ -1,6 +1,6 @@
 ## Custom configurations*
 
-If needed, in the Custom Smtp Panel you can edit the SMTP user with a third party hosted SMTP server that will send emails on behalf of your own SMTP server.
+If needed, in the Custom SMTP Panel you can edit the SMTP user with a third party hosted SMTP server that will send emails on behalf of your own SMTP server.  
 If you want, you can add custom configurations by editing the file `__DATA_DIR__/data/config.local.user.php`.
 
 ## About file storage

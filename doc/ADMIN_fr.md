@@ -1,6 +1,6 @@
 ## Configurations personnelles
 
-Si nécessaire, dans le panneau SMTP personnalisé, vous pouvez modifier l'utilisateur SMTP avec un service tiers SMTP qui enverra des courriels au nom de votre propre serveur SMTP.
+Si nécessaire, dans le panneau SMTP personnalisé, vous pouvez modifier l'utilisateur SMTP avec un service tiers SMTP qui enverra des courriels au nom de votre propre serveur SMTP.  
 Vous pouvez, si vous le souhaitez ajouter des configurations personnelles en éditant le fichier `__DATA_DIR__/data/config.local.user.php`.
 
 ## Sur le stockage des fichiers
