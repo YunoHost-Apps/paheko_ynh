@@ -1,26 +1,42 @@
-Vous pouvez si vous le souhaitez ajouter des configurations personnelles en éditant le fichier `__DATA_DIR__/data/config.local.user.php`.
+## Configurations personnelles
 
-Privilégiez le dossier `__DATA_DIR__/data` si vous voulez conserver des documents ailleurs que dans la base de données. Example dans le fichier `__DATA_DIR__/data/config.local.user.php`
+Vous pouvez, si vous le souhaitez ajouter des configurations personnelles en éditant le fichier `__DATA_DIR__/data/config.local.user.php`.
 
-```
+## Sur le stockage des fichiers
+
+Privilégiez le dossier `__DATA_DIR__/data` si vous voulez conserver des documents ailleurs que dans la base de données.  
+Example dans le fichier `__DATA_DIR__/data/config.local.user.php` :
+
+```php
 const FILE_STORAGE_BACKEND = 'FileSystem';
 
 const FILE_STORAGE_CONFIG = DATA_ROOT . '/files';
-``` 
-
-Si vous voulez mettre en place la configuration de la recherche d'adresse postale ([documentation](https://fossil.kd2.org/paheko/wiki?name=Configuration/Adresses_postales)), voici la procédure:
-en vous connectant avec le user root:
-
 ```
+
+## Configuration de la recherche d'adresse postale
+
+Si vous voulez mettre en place la configuration de la recherche d'adresse postale ([documentation](https://fossil.kd2.org/paheko/wiki?name=Configuration/Adresses_postales)), voici la procédure :
+en vous connectant avec le user root :
+
+```bash
 cd __DATA_DIR__/data/local_addresses/
 wget https://paheko.cloud/addresses/fr.sqlite
 chown -R __APP__:www-data fr.sqlite
 ```
 
-La base de données devrait normalement être mise à jours tous les mois, pour la mettre à jour, il vous faudra supprimer le fichier `fr.sqlite` et recommencer cette procédure.
+La base de données devrait normalement être mise à jour tous les mois, pour la mettre à jour, il vous faudra supprimer le fichier `fr.sqlite` et recommencer cette procédure.
 
-**Important** : Pour une raison quelconque, le courriel ne fonctionne pas lors de l’installation sur une sous-instance. Nous vous encourageons à utiliser un nom de domaine complet dédié à ce domaine (avec le chemin défini sur /). Sur une première installation, vous aurez peut-être besoin d'une première mise à jour  pour mettre à jour le dossier `__DATA_DIR__/data`, vous pouvez forcer la mise à jour:
-```
+## Activation de la génération des PDF
+
+Afin que Paheko puisse générer des documents PDF, il est nécessaire d'installer l'extension "DomPDF".  
+Pour cela, rendez-vous dans Paheko, puis Configuration, Extensions, Inactives, DomPDF et cliquez sur "Activer".  
+Ou cliquez [sur ce lien](https://__DOMAIN____PATH__admin/config/ext/details.php?type=plugin&name=dompdf) pour y accéder directement et cliquez sur "Activer".
+
+## Notes importantes
+
+**Important** :  
+Sur une première installation, vous aurez peut-être besoin d'une première mise à jour  pour mettre à jour le dossier `__DATA_DIR__/data`, vous pouvez forcer la mise à jour :
+
+```bash
 yunohost app __APP__ upgrade -F
 ```
-
