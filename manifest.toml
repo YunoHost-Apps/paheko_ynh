@@ -15,6 +15,7 @@ website = "https://paheko.cloud"
 demo = "https://paheko.cloud/essai/"
 admindoc = "https://fossil.kd2.org/paheko/wiki?name=Documentation"
 code = "https://fossil.kd2.org/paheko/dir?ci=tip"
+fund = "https://paheko.cloud/don/"
 
 [integration]
 yunohost = ">= 11.2"
@@ -22,9 +23,9 @@ architectures = "all"
 multi_instance = true
 ldap = false
 sso = false
-disk = "50M"
-ram.build = "50M"
-ram.runtime = "50M"
+disk = "20M"
+ram.build = "150M"
+ram.runtime = "200M"
 
 [install]
     [install.domain]
@@ -43,12 +44,15 @@ ram.runtime = "50M"
     allow_email = true
 
     [resources.install_dir]
+    # note: permissions are set in the install/upgrade/restore script
 
     [resources.data_dir]
     dir = "/home/yunohost.app/__APP__"
     subdirs = ['data']
     owner = "__APP__:rwx"
     group = "www-data:rx"
+
+    # note: permissions are set in the install/upgrade/restore script
 
     [resources.permissions]
     main.url = "/"
@@ -64,4 +68,5 @@ ram.runtime = "50M"
     webdav.auth_header = false
 
     [resources.apt]
-    packages = "sqlite3, php8.2-sqlite3, php8.2-gd, php8.2-intl, php8.2-cli, php8.2-gnupg, php8.2-mbstring, php8.2-zip"
+    packages = "sqlite3, php8.2-sqlite3, php8.2-imagick, php8.2-intl, php8.2-cli, php8.2-gnupg, php8.2-mbstring, php8.2-zip, mupdf-tools, ffmpeg"
+    # php-imagick, mupdf-tools & ffmpeg are required for thumbnail generation: https://fossil.kd2.org/paheko/wiki?name=Configuration/Thumbnails

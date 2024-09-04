@@ -881,7 +881,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  * @var null|array
  */
 
-//const DOCUMENT_THUMBNAIL_COMMANDS = ['mupdf', 'collabora', 'ffmpeg'];
+const DOCUMENT_THUMBNAIL_COMMANDS = ['mupdf', 'ffmpeg'];
 
 /**
  * PDFTOTEXT_COMMAND
@@ -897,7 +897,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  *
  * Défaut : null (= fonctionnalité désactivée)
  */
-//const PDFTOTEXT_COMMAND = 'mupdf';
+const PDFTOTEXT_COMMAND = 'mupdf';
 
 /**
  * API_USER et API_PASSWORD
@@ -987,7 +987,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
 const LOCAL_ADDRESSES_ROOT = DATA_ROOT . '/local_addresses/';
 
 /**
- * Chemin vers le fichier pour des configurations personnelles qui ne sera pas écraser
+ * Chemin vers le fichier pour des configurations personnelles qui ne sera pas écrasé
  * lors des mises à jour. Cette ligne sera décommentée dès la première mise à jour.
  */
 require '__DATA_DIR__/data/config.local.user.php';

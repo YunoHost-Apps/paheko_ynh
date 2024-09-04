@@ -32,7 +32,3 @@ The database should normally be updated every month. To update it, you'll need t
 To allow Paheko to generate PDF documents, you need to install the “DomPDF” extension.  
 To do this, go to your Paheko, then Configuration, Extensions, Inactives, DomPDF and click on “Activate”.  
 Or click [on this link](https://__DOMAIN____PATH__admin/config/ext/details.php?type=plugin&name=dompdf) to access it directly then click on “Activate”.
-
-
-
-

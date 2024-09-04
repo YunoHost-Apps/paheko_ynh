@@ -32,5 +32,3 @@ La base de données devrait normalement être mise à jour tous les mois, pour l
 Afin que Paheko puisse générer des documents PDF, il est nécessaire d'installer l'extension "DomPDF".  
 Pour cela, rendez-vous dans Paheko, puis Configuration, Extensions, Inactives, DomPDF et cliquez sur "Activer".  
 Ou cliquez [sur ce lien](https://__DOMAIN____PATH__admin/config/ext/details.php?type=plugin&name=dompdf) pour y accéder directement et cliquez sur "Activer".
-
-

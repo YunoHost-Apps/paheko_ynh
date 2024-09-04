@@ -26,21 +26,21 @@ ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 # If secret_key doesn't exist, create it
 if [ -z "${secret_key:-}" ]; then
 	secret_key=$(ynh_string_random --length=50)
-	ynh_app_setting_set --app=$app --key=secret_key --value=$secret_key
+	ynh_app_setting_set --app="$app" --key=secret_key --value="$secret_key"
 fi
 
 if [ -z "${smtp_host:-}" ]; then
   user_conf="$data_dir/data/config.local.user.php"
-	if [ -f $user_conf ]; then
-		smtp_host=$(ynh_read_var_in_file --file=$user_conf --key=SMTP_HOST)
-		smtp_port=$(ynh_read_var_in_file --file=$user_conf --key=SMTP_PORT)
-		smtp_user=$(ynh_read_var_in_file --file=$user_conf --key=SMTP_USER)
-		smtp_password=$(ynh_read_var_in_file --file=$user_conf --key=SMTP_PASSWORD)
-		smtp_security=$(ynh_read_var_in_file --file=$user_conf --key=SMTP_SECURITY)
-		mail_return_path=$(ynh_read_var_in_file --file=$user_conf --key=MAIL_RETURN_PATH)
-		mail_sender=$(ynh_read_var_in_file --file=$user_conf --key=MAIL_SENDER)
-		ynh_replace_string --match_string="const SMTP_" --replace_string="//const SMTP_" --target_file=$user_conf
-		ynh_replace_string --match_string="const MAIL_" --replace_string="//const MAIL_" --target_file=$user_conf
+	if [ -f "$user_conf" ]; then
+		smtp_host=$(ynh_read_var_in_file --file="$user_conf" --key=SMTP_HOST)
+		smtp_port=$(ynh_read_var_in_file --file="$user_conf" --key=SMTP_PORT)
+		smtp_user=$(ynh_read_var_in_file --file="$user_conf" --key=SMTP_USER)
+		smtp_password=$(ynh_read_var_in_file --file="$user_conf" --key=SMTP_PASSWORD)
+		smtp_security=$(ynh_read_var_in_file --file="$user_conf" --key=SMTP_SECURITY)
+		mail_return_path=$(ynh_read_var_in_file --file="$user_conf" --key=MAIL_RETURN_PATH)
+		mail_sender=$(ynh_read_var_in_file --file="$user_conf" --key=MAIL_SENDER)
+		ynh_replace_string --match_string="const SMTP_" --replace_string="//const SMTP_" --target_file="$user_conf"
+		ynh_replace_string --match_string="const MAIL_" --replace_string="//const MAIL_" --target_file="$user_conf"
 	else
 		smtp_host=$domain
 		smtp_port=25
@@ -50,13 +50,13 @@ if [ -z "${smtp_host:-}" ]; then
 		mail_return_path=$app@$domain
 		mail_sender=$app@$domain
 	fi
-		ynh_app_setting_set --app=$app --key=smtp_host --value=$smtp_host
-		ynh_app_setting_set --app=$app --key=smtp_port --value=$smtp_port
-		ynh_app_setting_set --app=$app --key=smtp_user --value=$smtp_user
-		ynh_app_setting_set --app=$app --key=smtp_password --value=$smtp_password
-		ynh_app_setting_set --app=$app --key=smtp_security --value=$smtp_security
-		ynh_app_setting_set --app=$app --key=mail_return_path --value=$mail_return_path
-		ynh_app_setting_set --app=$app --key=mail_sender --value=$mail_sender
+		ynh_app_setting_set --app="$app" --key=smtp_host --value="$smtp_host"
+		ynh_app_setting_set --app="$app" --key=smtp_port --value="$smtp_port"
+		ynh_app_setting_set --app="$app" --key=smtp_user --value="$smtp_user"
+		ynh_app_setting_set --app="$app" --key=smtp_password --value="$smtp_password"
+		ynh_app_setting_set --app="$app" --key=smtp_security --value="$smtp_security"
+		ynh_app_setting_set --app="$app" --key=mail_return_path --value="$mail_return_path"
+		ynh_app_setting_set --app="$app" --key=mail_sender --value="$mail_sender"
 fi
 
 #=================================================
@@ -69,7 +69,7 @@ then
 	ynh_secure_remove "$install_dir/config.local.php"
 	mv "$install_dir/config.local.yunohost.php" "$install_dir/config.local.php"
 	chmod 440 "$install_dir/config.local.php"
-	chown $app:$app "$install_dir/config.local.php"
+	chown "$app:$app" "$install_dir/config.local.php"
 	ynh_store_file_checksum --file="$install_dir/config.local.php"
 fi
 
@@ -100,9 +100,11 @@ then
 	ynh_setup_source --dest_dir="$install_dir" --keep="config.local.php data/plugins"
 fi
 
-chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
-
+chown -R "$app:www-data" "$install_dir" "$data_dir"
+chmod -R u=rX,g=rX,o= "$install_dir"
+chmod -R g+rX "$install_dir/www"
+chmod -R u+wX "$install_dir/data" "$data_dir"
+# from https://fossil.kd2.org/paheko/wiki?name=Configuration/S%C3%A9curit%C3%A9
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -130,14 +132,14 @@ ynh_script_progression --message="Updating a configuration file..." --weight=5
 ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
 
 chmod 440 "$install_dir/config.local.php"
-chown $app:$app "$install_dir/config.local.php"
+chown "$app:$app" "$install_dir/config.local.php"
 
 if ynh_compare_current_package_version --comparison le --version 1.3.6~ynh2 && ynh_compare_current_package_version --comparison ge --version 1.3.0~ynh1; then
   ynh_script_progression --message="keep old user configuration file..." --weight=5
   mv "$data_dir/data/config.local.user.php" "$data_dir/data/config.local.user.php.old"
   ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
   chmod 640 "$data_dir/data/config.local.user.php"
-  chown $app:$app "$data_dir/data/config.local.user.php"
+  chown "$app:$app" "$data_dir/data/config.local.user.php"
 fi
 
 #=================================================
@@ -148,7 +150,7 @@ if [ ! -d "$data_dir/data" ]; then
 	ynh_script_progression --message="Adding a configuration directory..." --weight=5
 	mkdir "$data_dir/data"
 	chmod 770 "$data_dir/data"
-	chown -R $app:www-data "$data_dir/data"
+	chown -R "$app:www-data" "$data_dir/data"
 else
   chown -R $app:www-data "$data_dir"
   chmod -R o-rwx "$data_dir"
@@ -158,23 +160,23 @@ if [ ! -f "$data_dir/data/config.local.user.php" ]; then
   ynh_script_progression --message="Adding a configuration file..." --weight=5
   ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
   chmod 640 "$data_dir/data/config.local.user.php"
-  chown $app:$app "$data_dir/data/config.local.user.php"
+  chown "$app:$app" "$data_dir/data/config.local.user.php"
 fi
 
 if [ ! -d "$data_dir/data/local_addresses" ]; then
   ynh_script_progression --message="Adding a configuration directory..." --weight=5
   mkdir "$data_dir/data/local_addresses"
   chmod 770 "$data_dir/data/local_addresses"
-  chown -R $app:www-data "$data_dir/data/local_addresses"
+  chown -R "$app:www-data" "$data_dir/data/local_addresses"
 else
-  chown -R $app:www-data "$data_dir/data/local_addresses"
-  chown $app:www-data "$data_dir/data/local_addresses"
+  chown -R "$app:www-data" "$data_dir/data/local_addresses"
+  chown "$app:www-data" "$data_dir/data/local_addresses"
 fi
 
 if [ -f "$install_dir/data/association.sqlite" ]; then
 	ynh_script_progression --message="Moving db files..." --weight=5
-	mv $install_dir/data/association.*  $data_dir/data/
-	ynh_secure_remove "$install_dir/data/association.*"
+	mv "$install_dir"/data/association.*  $data_dir/data/
+	ynh_secure_remove "$install_dir"/data/association.*
 fi
 
 #=================================================
