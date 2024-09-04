@@ -43,8 +43,10 @@ ram.runtime = "50M"
     allow_email = true
 
     [resources.install_dir]
+    # note: permissions are set in the install/upgrade/restore script
 
     [resources.data_dir]
+    # note: permissions are set in the install/upgrade/restore script
 
     [resources.permissions]
     main.url = "/"

@@ -100,9 +100,11 @@ then
 	ynh_setup_source --dest_dir="$install_dir" --keep="config.local.php data/plugins"
 fi
 
-chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
-
+chown -R "$app:www-data" "$install_dir" "$data_dir"
+chmod -R u=rX,g=rX,o= "$install_dir"
+chmod -R g+rX "$install_dir/www"
+chmod -R u+wX "$install_dir/data" "$data_dir"
+# from https://fossil.kd2.org/paheko/wiki?name=Configuration/S%C3%A9curit%C3%A9
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
