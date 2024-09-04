@@ -62,7 +62,7 @@ ynh_script_progression --message="Adding a configuration files..." --weight=5
 
 # Install configuration files
 
-ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.user.local.php"
+ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
  
 chmod 640 "$data_dir/data/config.local.user.php"
 chown $app:$app "$data_dir/data/config.local.user.php"
