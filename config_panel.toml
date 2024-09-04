@@ -6,7 +6,7 @@ version = "1.0"
 
 [main]
 
-name.fr = "Configuration SMTP"
+name.fr = "Configuration de Paheko"
 
     ############################################################################
     #### ABOUT SECTIONS
@@ -14,7 +14,7 @@ name.fr = "Configuration SMTP"
 
     [main.smtp]
 
-    name = ""
+    name = "Configuration SMTP"
 
     ## (optional) This help properties is a short help displayed on the same line
 
