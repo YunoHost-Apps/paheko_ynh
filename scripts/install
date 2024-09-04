@@ -59,15 +59,29 @@ chmod 644 "/etc/cron.d/$app"
 #=================================================
 # SPECIFIC SETUP
 #=================================================
-# ADD A CONFIGURATION
+# ADD A CONFIGURATIONS
 #=================================================
-ynh_script_progression --message="Adding a configuration files..." --weight=5
+ynh_script_progression --message="Adding configuration files..." --weight=5
 
 # Install configuration files
+
+ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
+
+chmod 640 "$data_dir/data/config.local.user.php"
+chown $app:$app "$data_dir/data/config.local.user.php"
+
 ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
 
 chmod 440 "$install_dir/config.local.php"
 chown "$app:$app" "$install_dir/config.local.php"
+
+ynh_script_progression --message="Adding a configuration directory..." --weight=5
+
+if [ ! -d "$data_dir/data/local_addresses" ]; then
+mkdir "$data_dir/data/local_addresses"
+chmod 770 "$data_dir/data/local_addresses"
+chown -R $app:www-data "$data_dir/data/local_addresses"
+fi
 
 #=================================================
 # SETUP APPLICATION

@@ -1,5 +1,6 @@
 ## Configurations personnelles
 
+Si nécessaire, dans le panneau SMTP personnalisé, vous pouvez modifier l'utilisateur SMTP avec un service tiers SMTP qui enverra des courriels au nom de votre propre serveur SMTP.
 Vous pouvez, si vous le souhaitez ajouter des configurations personnelles en éditant le fichier `__DATA_DIR__/data/config.local.user.php`.
 
 ## Sur le stockage des fichiers
@@ -31,12 +32,3 @@ La base de données devrait normalement être mise à jour tous les mois, pour l
 Afin que Paheko puisse générer des documents PDF, il est nécessaire d'installer l'extension "DomPDF".  
 Pour cela, rendez-vous dans Paheko, puis Configuration, Extensions, Inactives, DomPDF et cliquez sur "Activer".  
 Ou cliquez [sur ce lien](https://__DOMAIN____PATH__admin/config/ext/details.php?type=plugin&name=dompdf) pour y accéder directement et cliquez sur "Activer".
-
-## Notes importantes
-
-**Important** :  
-Sur une première installation, vous aurez peut-être besoin d'une première mise à jour  pour mettre à jour le dossier `__DATA_DIR__/data`, vous pouvez forcer la mise à jour :
-
-```bash
-yunohost app __APP__ upgrade -F
-```

@@ -1,1 +1,0 @@
-ynh_local_curl https://paheko.rodinux.fr/admin/install.php --args="country=FR&name=toto&user_name=bob&user_email=bob@example.org&password=bopbidibopbopbop&password_confirmed=bopbidibopbopbop"

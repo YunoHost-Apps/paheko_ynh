@@ -1,11 +1,11 @@
+## Custom configurations*
 
-## Custom configurations
-
+If needed, in the Custom Smtp Panel you can edit the SMTP user with a third party hosted SMTP server that will send emails on behalf of your own SMTP server.
 If you want, you can add custom configurations by editing the file `__DATA_DIR__/data/config.local.user.php`.
 
 ## About file storage
 
-Use the `__DATA_DIR__/data` folder if you want to store documents elsewhere than in the database.  
+Use the `__DATA_DIR__/data` folder if you want to store documents elsewhere than in the database (recommanded).  
 Example in file `__DATA_DIR__/data/config.local.user.php`:
 
 ```php
@@ -32,12 +32,3 @@ The database should normally be updated every month. To update it, you'll need t
 To allow Paheko to generate PDF documents, you need to install the “DomPDF” extension.  
 To do this, go to your Paheko, then Configuration, Extensions, Inactives, DomPDF and click on “Activate”.  
 Or click [on this link](https://__DOMAIN____PATH__admin/config/ext/details.php?type=plugin&name=dompdf) to access it directly then click on “Activate”.
-
-## Important notes
-
-**Important**:  
-On a first-time installation, you may need a first update to update the `__DATA_DIR__/data` folder, you can force the update:
-
-```bash
-yunohost app **APP** upgrade -F
-```
