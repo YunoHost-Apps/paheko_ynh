@@ -48,11 +48,7 @@ ram.runtime = "200M"
     # note: permissions are set in the install/upgrade/restore script
 
     [resources.data_dir]
-    dir = "/home/yunohost.app/__APP__"
     subdirs = ['data']
-    owner = "__APP__:rwx"
-    group = "www-data:rx"
-
     # note: permissions are set in the install/upgrade/restore script
 
     [resources.permissions]
