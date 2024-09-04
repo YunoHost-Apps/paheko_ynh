@@ -10,7 +10,7 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 secret_key=$(ynh_string_random --length=50)
-ynh_app_setting_set --app=$app --key=secret_key --value=$secret_key
+ynh_app_setting_set --app="$app" --key=secret_key --value="$secret_key"
 
 smtp_host=$domain
 smtp_port=25
@@ -19,13 +19,13 @@ smtp_password=$mail_pwd
 smtp_security=STARTTLS
 mail_return_path=$app@$domain
 mail_sender=$app@$domain
-ynh_app_setting_set --app=$app --key=smtp_host --value=$smtp_host
-ynh_app_setting_set --app=$app --key=smtp_port --value=$smtp_port
-ynh_app_setting_set --app=$app --key=smtp_user --value=$smtp_user
-ynh_app_setting_set --app=$app --key=smtp_password --value=$smtp_password
-ynh_app_setting_set --app=$app --key=smtp_security --value=$smtp_security
-ynh_app_setting_set --app=$app --key=mail_return_path --value=$mail_return_path
-ynh_app_setting_set --app=$app --key=mail_sender --value=$mail_sender
+ynh_app_setting_set --app="$app" --key=smtp_host --value="$smtp_host"
+ynh_app_setting_set --app="$app" --key=smtp_port --value="$smtp_port"
+ynh_app_setting_set --app="$app" --key=smtp_user --value="$smtp_user"
+ynh_app_setting_set --app="$app" --key=smtp_password --value="$smtp_password"
+ynh_app_setting_set --app="$app" --key=smtp_security --value="$smtp_security"
+ynh_app_setting_set --app="$app" --key=mail_return_path --value="$mail_return_path"
+ynh_app_setting_set --app="$app" --key=mail_sender --value="$mail_sender"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -67,7 +67,7 @@ ynh_script_progression --message="Adding a configuration files..." --weight=5
 ynh_add_config --template="config.local.php" --destination="$install_dir/config.local.php"
 
 chmod 440 "$install_dir/config.local.php"
-chown $app:$app "$install_dir/config.local.php"
+chown "$app:$app" "$install_dir/config.local.php"
 
 #=================================================
 # SETUP APPLICATION
