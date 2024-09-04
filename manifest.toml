@@ -15,6 +15,7 @@ website = "https://paheko.cloud"
 demo = "https://paheko.cloud/essai/"
 admindoc = "https://fossil.kd2.org/paheko/wiki?name=Documentation"
 code = "https://fossil.kd2.org/paheko/dir?ci=tip"
+fund = "https://paheko.cloud/don/"
 
 [integration]
 yunohost = ">= 11.2"
