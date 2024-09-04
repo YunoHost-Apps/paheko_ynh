@@ -32,6 +32,7 @@ Il est conçu pour répondre aux besoins d'une structure de petite à moyenne ta
 ## Documentations et ressources
 
 - Site officiel de l’app : <https://paheko.cloud>
+- Documentation officielle utilisateur : <https://paheko.cloud/aide>
 - Documentation officielle de l’admin : <https://fossil.kd2.org/paheko/wiki?name=Documentation>
 - Dépôt de code officiel de l’app : <https://fossil.kd2.org/paheko/dir?ci=tip>
 - YunoHost Store : <https://apps.yunohost.org/app/paheko>

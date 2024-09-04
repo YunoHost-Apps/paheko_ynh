@@ -34,6 +34,7 @@ It is designed to meet the needs of a small to medium-sized structure: managemen
 ## 文档与资源
 
 - 官方应用网站： <https://paheko.cloud>
+- 官方用户文档： <https://paheko.cloud/aide>
 - 官方管理文档： <https://fossil.kd2.org/paheko/wiki?name=Documentation>
 - 上游应用代码库： <https://fossil.kd2.org/paheko/dir?ci=tip>
 - YunoHost 商店： <https://apps.yunohost.org/app/paheko>

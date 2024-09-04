@@ -34,6 +34,7 @@ It is designed to meet the needs of a small to medium-sized structure: managemen
 ## Documentación e recursos
 
 - Web oficial da app: <https://paheko.cloud>
+- Documentación oficial para usuarias: <https://paheko.cloud/aide>
 - Documentación oficial para admin: <https://fossil.kd2.org/paheko/wiki?name=Documentation>
 - Repositorio de orixe do código: <https://fossil.kd2.org/paheko/dir?ci=tip>
 - Tenda YunoHost: <https://apps.yunohost.org/app/paheko>

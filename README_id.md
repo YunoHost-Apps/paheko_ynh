@@ -34,6 +34,7 @@ It is designed to meet the needs of a small to medium-sized structure: managemen
 ## Dokumentasi dan sumber daya
 
 - Website aplikasi resmi: <https://paheko.cloud>
+- Dokumentasi pengguna resmi: <https://paheko.cloud/aide>
 - Dokumentasi admin resmi: <https://fossil.kd2.org/paheko/wiki?name=Documentation>
 - Depot kode aplikasi hulu: <https://fossil.kd2.org/paheko/dir?ci=tip>
 - Gudang YunoHost: <https://apps.yunohost.org/app/paheko>
