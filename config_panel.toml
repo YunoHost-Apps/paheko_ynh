@@ -1,0 +1,62 @@
+version = "1.0"
+
+################################################################################
+#### ABOUT PANELS
+################################################################################
+
+[main]
+
+name.fr = "Configuration de Paheko"
+
+    ############################################################################
+    #### ABOUT SECTIONS
+    ############################################################################
+
+    [main.smtp]
+
+    name = "Configuration SMTP"
+
+    ## (optional) This help properties is a short help displayed on the same line
+
+    optional = false
+
+    [main.smtp.smtp_host]
+        ask.fr = "Serveur SMTP"
+        type = "string"
+        bind = "SMTP_HOST:__INSTALL_DIR__/config.local.php"
+
+    [main.smtp.smtp_port]
+        ask.fr = "Port"
+        min = 25
+        type = "number"
+        bind = "SMTP_PORT:__INSTALL_DIR__/config.local.php"
+
+    [main.smtp.smtp_user]
+        ask.fr = "Nom d'utilisateur"
+        type = "string"
+        bind = "SMTP_USER:__INSTALL_DIR__/config.local.php"
+
+    [main.smtp.smtp_password]
+        ask.fr = "Mot de passe"
+        type = "password"
+        bind = "SMTP_PASSWORD:__INSTALL_DIR__/config.local.php"
+
+    [main.smtp.smtp_security]
+        ask.fr = "Sécurité de la connexion"
+        type = "select"
+        choices.NONE = "NONE, pas de chiffrement"
+        choices.SSL = "SSL, connexion SSL native"
+        choices.TLS = "TLS, connexion TLS native (le plus sécurisé)"
+        choices.STARTTLS = "STARTTLS, utilisation de STARTTLS (moyennement sécurisé)"
+        bind = "SMTP_SECURITY:__INSTALL_DIR__/config.local.php"
+
+    [main.smtp.mail_sender]
+        ask.fr = "Adresse e-mail expéditrice des messages"
+        type = "string"
+        bind = "MAIL_SENDER:__INSTALL_DIR__/config.local.php"
+
+    [main.smtp.mail_return_path]
+        ask.fr = "Adresse e-mail expéditrice des messages"
+        type = "string"
+        bind = "MAIL_RETURN_PATH:__INSTALL_DIR__/config.local.php"
+

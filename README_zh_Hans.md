@@ -16,10 +16,14 @@
 
 ## 概况
 
-Paheko (a word from the Māori language meaning "to cooperate", illustrating the purpose of the software: to improve together the daily management of an association) is software for associative management. It is the tool of choice for managing an association, a sports club, an NGO, etc. It is designed to meet the needs of a small to medium-sized structure: management of members, accounting, website, note-taking in meetings, archiving and sharing of the association's operating documents, discussion between members. 
+Paheko (a word from the Māori language meaning "to cooperate", illustrating the purpose of the software: to improve together the daily management of an association) is software for associative management.  
+It is the tool of choice for managing an association, a sports club, an NGO, etc.  
+It is designed to meet the needs of a small to medium-sized structure: management of members, accounting, website, note-taking in meetings, archiving and sharing of the association's operating documents, discussion between members.
+
+⚠️ Paheko is a French only software for now, even if an English translation is planned.
 
 
-**分发版本：** 1.3.11~ynh1
+**分发版本：** 1.3.11~ynh3
 
 **演示：** <https://paheko.cloud/essai/>
 
@@ -30,6 +34,7 @@ Paheko (a word from the Māori language meaning "to cooperate", illustrating the
 ## 文档与资源
 
 - 官方应用网站： <https://paheko.cloud>
+- 官方用户文档： <https://paheko.cloud/aide>
 - 官方管理文档： <https://fossil.kd2.org/paheko/wiki?name=Documentation>
 - 上游应用代码库： <https://fossil.kd2.org/paheko/dir?ci=tip>
 - YunoHost 商店： <https://apps.yunohost.org/app/paheko>
