@@ -51,12 +51,10 @@ then
 	ynh_script_progression "cleaning conf files..."
 	ynh_safe_rm "$install_dir/config.local.php"
 	mv "$install_dir/config.local.yunohost.php" "$install_dir/config.local.php"
-  
-	ynh_store_file_checksum "$install_dir/config.local.php"
-  
+#	ynh_store_file_checksum "$install_dir/config.local.php"
 	chmod 440 "$install_dir/config.local.php"
 	chown "$app:$app" "$install_dir/config.local.php"
-	ynh_store_file_checksum --file="$install_dir/config.local.php"
+	ynh_store_file_checksum "$install_dir/config.local.php"
 fi
 
 ynh_script_progression "removing old conf files if they exist..."
@@ -111,11 +109,8 @@ ynh_script_progression "Updating configuration..."
 # Install configuration files
 ynh_config_add --template="config.local.php" --destination="$install_dir/config.local.php"
 
-ynh_replace --match="//require '$data_dir/data/config.local.user.php';" --replace="require '$data_dir/data/config.local.user.php';" --file="$install_dir/config.local.php"
-
 chmod 440 "$install_dir/config.local.php"
 chown "$app:$app" "$install_dir/config.local.php"
-
 
 if ynh_app_upgrading_from_version_before_or_equal_to 1.3.6~ynh2 && [  -f  "$data_dir/data/config.local.user.php" ]; then
   ynh_script_progression "keep old user configuration file..."
@@ -123,7 +118,6 @@ if ynh_app_upgrading_from_version_before_or_equal_to 1.3.6~ynh2 && [  -f  "$data
   ynh_config_add --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
   chmod 640 "$data_dir/data/config.local.user.php"
   chown "$app:$app" "$data_dir/data/config.local.user.php"
-
 fi
 
 #=================================================
