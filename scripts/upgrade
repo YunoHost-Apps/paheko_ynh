@@ -22,8 +22,8 @@ if [ -z "${smtp_host:-}" ]; then
 		smtp_security=$(ynh_read_var_in_file --file="$user_conf" --key=SMTP_SECURITY)
 		mail_return_path=$(ynh_read_var_in_file --file="$user_conf" --key=MAIL_RETURN_PATH)
 		mail_sender=$(ynh_read_var_in_file --file="$user_conf" --key=MAIL_SENDER)
-		ynh_replace --match="const SMTP_" --replace="//const SMTP_" --target_file="$user_conf"
-		ynh_replace --match="const MAIL_" --replace="//const MAIL_" --target_file="$user_conf"
+		ynh_replace --match="const SMTP_" --replace="//const SMTP_" --file="$user_conf"
+		ynh_replace --match="const MAIL_" --replace="//const MAIL_" --file="$user_conf"
 	else
 		smtp_host=$domain
 		smtp_port=25
