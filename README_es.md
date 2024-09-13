@@ -42,7 +42,7 @@ It is designed to meet the needs of a small to medium-sized structure: managemen
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/paheko_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/paheko_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
