@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Load common variables and helpers
 source _common.sh
 source /usr/share/yunohost/helpers
 
@@ -9,7 +8,6 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Ensuring downward compatibility..."
 
-# If secret_key doesn't exist, create it
 ynh_app_setting_set_default --key=secret_key --value=$(ynh_string_random --length=50)
 
 if [ -z "${smtp_host:-}" ]; then
@@ -74,15 +72,9 @@ fi
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
+ynh_script_progression "Upgrading source files..."
 
-# FIXME: this is still supported but the recommendation is now to *always* re-setup the app sources wether or not the upstream sources changed
-if ynh_app_upstream_version_changed
-then
-	ynh_script_progression "Upgrading source files..."
-
-	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir" --keep="config.local.php data/plugins"
-fi
+ynh_setup_source --dest_dir="$install_dir" --keep="config.local.php data/plugins"
 
 chown -R "$app:www-data" "$install_dir" "$data_dir"
 chmod -R u=rX,g=rX,o= "$install_dir"
@@ -106,7 +98,6 @@ ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
 #=================================================
 ynh_script_progression "Updating configuration..."
 
-# Install configuration files
 ynh_config_add --template="config.local.php" --destination="$install_dir/config.local.php"
 
 chmod 440 "$install_dir/config.local.php"
