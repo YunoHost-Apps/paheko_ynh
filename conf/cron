@@ -1,2 +1,4 @@
-@daily __APP__ /usr/bin/php__PHPVERSION__ __INSTALL_DIR__/scripts/cron.php
-* * * * * __APP__ /usr/bin/php__PHPVERSION__ __INSTALL_DIR__/scripts/emails.php
+@daily __APP__ [ -f /__DATA_DIR__/data/association.sqlite] && /usr/bin/php__PHPVERSION__ __INSTALL_DIR__/scripts/cron.php
+* * * * * __APP__ [ -f /__DATA_DIR__/data/association.sqlite] && /usr/bin/php__PHPVERSION__ __INSTALL_DIR__/scripts/emails.php
+
+# the '-f' command is a workaround for a bug in the 1.3.12 release, so should be fixed in a future release
