@@ -1,0 +1,5 @@
+function yuno_create_user(\Paheko\Entities\Signal $signal)
+{
+$name = $signal->getIn('entity')->nom;
+exec(sprintf('yunohost user create %s …', escapeshellarg($name)));
+}

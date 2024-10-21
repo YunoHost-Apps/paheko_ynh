@@ -89,17 +89,29 @@ fi
 
 ### Waiting for new script  which will be integrated in version 1.3.12 see https://fossil.kd2.org/paheko/wiki?name=Ligne+de+commande
 
-# Post-Installation
-# ynh_script_progression --message="Finalizing installation..." --weight=1
+ Post-Installation
+#ynh_script_progression --message="Finalizing installation..." --weight=1
 
-# country=$country
-# name_association=$name_association
-# user_name=$user_name
-# user_email=$user_email
-# password=$password
-# password_confirmed=$password_confirmed
+country=$country
+name_association=$name_association
+user_name=$user_name
+user_email=$user_email
+password=$password
 
-# ynh_exec_as $app paheko init --country $country --orgname $name_association --name=${user_name} --email=${$user_email} --password ${password}
+
+ynh_exec_as $app bin/paheko init --country ${country} --orgname '${name_association}' --name='${user_name}' --email='${$user_email}' --password '${password}'
+
+#=====================================================
+# CONFIGURE UPDATE USERS PAHEKO CREATE YUNOHOST USERS
+#=====================================================
+
+if [ $enable_system_signal -eq 1 ]
+then
+	ynh_add_config --template="User.modify.before" "$install_dir/include/lib/Paheko/Entities/Users/User.modify.before"
+    ynh_replace_string --match_string="//const SYSTEM_SIGNALS = [['files.delete' => 'MyNamespace\Signals::deleteFile'], ['entity.Accounting\Transaction.save.before' => 'MyNamespace\Signals::saveTransaction']];" --replace_string="const SYSTEM_SIGNALS = ['entity.Users\User.modify.before' => 'yuno_create_user'];" --target_file=config.local.php
+    ynh_add_systemd_config --service="${app}-update-users-paheko.service" --template="update-users-paheko.service"
+    systemctl enable --now ${app}-update-users-paheko.service
+fi
 
 #=================================================
 # END OF SCRIPT

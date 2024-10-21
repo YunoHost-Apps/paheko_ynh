@@ -1,0 +1,11 @@
+[Unit]
+Description=Listen Paheko System Signals to create yunohost users
+Documentation=heko/wiki?name=Dev/Signaux
+
+[Service]
+Type=oneshot
+ExecStartPre=
+ExecStart=
+
+[Install]
+WantedBy=multi-user.target
