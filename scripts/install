@@ -90,16 +90,15 @@ fi
 ### Waiting for new script  which will be integrated in version 1.3.12 see https://fossil.kd2.org/paheko/wiki?name=Ligne+de+commande
 
 # Post-Installation
-# ynh_script_progression --message="Finalizing installation..." --weight=1
+ynh_script_progression --message="Finalizing Post-installation..." --weight=1
 
-# country=$country
-# name_association=$name_association
-# user_name=$user_name
-# user_email=$user_email
-# password=$password
-# password_confirmed=$password_confirmed
+country=$country
+name_association=$name_association
+user_name=$user_name
+user_email=$user_email
+password=$password
 
-# ynh_exec_as $app paheko init --country $country --orgname $name_association --name=${user_name} --email=${$user_email} --password ${password}
+ynh_exec_as $app bin/paheko init --country ${country} --orgname '${name_association}' --name='${user_name}' --email='${$user_email}' --password '${password}'
 
 #=================================================
 # END OF SCRIPT
