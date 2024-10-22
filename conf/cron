@@ -1,4 +1,4 @@
-@daily __APP__ [ -f __DATA_DIR__/data/association.sqlite ] && __INSTALL_DIR__/bin/paheko cron
-* * * * * __APP__ [ -f __DATA_DIR__/data/association.sqlite ] && __INSTALL_DIR__/bin/paheko queue run --quiet
+@daily __APP__ /usr/bin/php__PHPVERSION__ -f __INSTALL_DIR__/bin/paheko cron
+* * * * * __APP__ /usr/bin/php__PHPVERSION__ -f __INSTALL_DIR__/bin/paheko queue run --quiet
 
 # the '-f' command is a workaround for a bug in the 1.3.12 release, so should be fixed in a future release
