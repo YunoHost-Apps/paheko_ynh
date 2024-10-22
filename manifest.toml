@@ -37,26 +37,25 @@ ram.runtime = "200M"
     default = "visitors"
 
     [install.country]
-    ask.fr = "Pays (pour la comptabilité)"
+    ask = "Pays (pour la comptabilité)"
     type = "select"
     choices.FR = "FR, France"
     choices.BE = "BE, Belgique"
     choices.CH = "CH, Suisse"
 
     [install.name_association]
-    ask.fr = "Nom de l'association"
+    ask = "Nom de l'association"
     type = "string"
 
     [install.user_name]
-    ask.fr = "Nom et prénom (de l'administrateur)"
+    ask = "Nom et prénom (de l'administrateur)"
     type = "string"
 
     [install.user_email]
-    ask.fr = "Adresse E-Mail (de l'administrateur)"
+    ask = "Adresse E-Mail (de l'administrateur)"
     type = "email"
 
     [install.password]
-    ask.fr = "Mot de passe (de l'administrateur)"
     type = "password"
     help.fr = "Astuce : un mot de passe de quatre mots choisis au hasard dans le dictionnaire est plus sûr et plus simple à retenir qu'un mot de passe composé de 10 lettres et chiffres."
 
