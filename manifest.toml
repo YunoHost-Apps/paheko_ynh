@@ -57,7 +57,7 @@ ram.runtime = "200M"
 
     [install.password]
     type = "password"
-    help.fr = "Astuce : un mot de passe de quatre mots choisis au hasard dans le dictionnaire est plus sûr et plus simple à retenir qu'un mot de passe composé de 10 lettres et chiffres."
+    help = "Astuce : un mot de passe de quatre mots choisis au hasard dans le dictionnaire est plus sûr et plus simple à retenir qu'un mot de passe composé de 10 lettres et chiffres."
 
 [resources]
     [resources.sources.main]
