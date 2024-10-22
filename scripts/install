@@ -98,7 +98,7 @@ user_name=$user_name
 user_email=$user_email
 password=$password
 
-ynh_exec_as $app php$phpversion $install_dir/bin/paheko init --country $country --orgname '$name_association' --name='$user_name' --email='$user_email' --password='$password'
+ynh_exec_as $app php$phpversion $install_dir/bin/paheko init --country $country --orgname $name_association --name=$user_name --email=$user_email --password=$password
 
 #=================================================
 # END OF SCRIPT
