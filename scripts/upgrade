@@ -138,9 +138,9 @@ ynh_add_config --template="config.local.php" --destination="$install_dir/config.
 chmod 440 "$install_dir/config.local.php"
 chown "$app:$app" "$install_dir/config.local.php"
 
-if ynh_compare_current_package_version --comparison le --version 1.3.6~ynh2 && ynh_compare_current_package_version --comparison ge --version 1.3.0~ynh1; then
+if ynh_app_upgrading_from_version_before 1.3.0~ynh1; then
   ynh_script_progression --message="keep old user configuration file..." --weight=5
-  mv "$data_dir/data/config.local.user.php" "$data_dir/data/config.local.user.php.old"
+  mv "$install_dir/data/config.local.user.php" "$data_dir/data/config.local.user.php.old"
   ynh_add_config --template="config.local.user.php" --destination="$data_dir/data/config.local.user.php"
   chmod 640 "$data_dir/data/config.local.user.php"
   chown "$app:$app" "$data_dir/data/config.local.user.php"
