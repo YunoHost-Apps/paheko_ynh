@@ -2,6 +2,17 @@ test_format = 1.0
 
 [default]
 
+
+    # -------------------------------
+    # Default args to use for install
+    # -------------------------------
+    args.country = "FR"
+    args.name_association = "Mon Association"
+    args.user_name = "Agathe Afeeling"
+    args.user_email = "a.afeeling@example.com"
+    args.password = "Foutu Mémoire Adieu Distance Corneille"
+
+
     # -------------------------------
     # Commits to test upgrade from
     # -------------------------------

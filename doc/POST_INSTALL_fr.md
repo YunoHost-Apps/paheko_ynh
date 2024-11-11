@@ -1,1 +1,1 @@
-Pour finaliser l'installation de Paheko, rendez-vous sur https://__DOMAIN____PATH__ pour saisir les identifiants de votre association et créer le premier utilisateur qui sera aussi admin.
+Pour finaliser l'installation de Paheko, rendez-vous sur https://__DOMAIN____PATH__ pour saisir les identifiants de l'administrateur de votre association.
