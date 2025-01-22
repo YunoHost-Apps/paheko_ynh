@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # Paheko YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/paheko.svg)](https://ci-apps.yunohost.org/ci/apps/paheko/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/paheko.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/paheko.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/paheko)](https://ci-apps.yunohost.org/ci/apps/paheko/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/paheko)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/paheko)
 
 [![Instalatu Paheko YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=paheko)
 

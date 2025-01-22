@@ -5,7 +5,9 @@ Hij mag NIET handmatig aangepast worden.
 
 # Paheko voor Yunohost
 
-[![Integratieniveau](https://dash.yunohost.org/integration/paheko.svg)](https://ci-apps.yunohost.org/ci/apps/paheko/) ![Mate van functioneren](https://ci-apps.yunohost.org/ci/badges/paheko.status.svg) ![Onderhoudsstatus](https://ci-apps.yunohost.org/ci/badges/paheko.maintain.svg)
+[![Integratieniveau](https://apps.yunohost.org/badge/integration/paheko)](https://ci-apps.yunohost.org/ci/apps/paheko/)
+![Mate van functioneren](https://apps.yunohost.org/badge/state/paheko)
+![Onderhoudsstatus](https://apps.yunohost.org/badge/maintained/paheko)
 
 [![Paheko met Yunohost installeren](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=paheko)
 

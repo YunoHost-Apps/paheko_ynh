@@ -5,7 +5,9 @@ No se debe editar a mano.
 
 # Paheko para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/paheko.svg)](https://ci-apps.yunohost.org/ci/apps/paheko/) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/paheko.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/paheko.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/paheko)](https://ci-apps.yunohost.org/ci/apps/paheko/)
+![Estado funcional](https://apps.yunohost.org/badge/state/paheko)
+![Estado En Mantención](https://apps.yunohost.org/badge/maintained/paheko)
 
 [![Instalar Paheko con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=paheko)
 

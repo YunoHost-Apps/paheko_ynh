@@ -5,7 +5,9 @@
 
 # Paheko для YunoHost
 
-[![Уровень интеграции](https://dash.yunohost.org/integration/paheko.svg)](https://ci-apps.yunohost.org/ci/apps/paheko/) ![Состояние работы](https://ci-apps.yunohost.org/ci/badges/paheko.status.svg) ![Состояние сопровождения](https://ci-apps.yunohost.org/ci/badges/paheko.maintain.svg)
+[![Уровень интеграции](https://apps.yunohost.org/badge/integration/paheko)](https://ci-apps.yunohost.org/ci/apps/paheko/)
+![Состояние работы](https://apps.yunohost.org/badge/state/paheko)
+![Состояние сопровождения](https://apps.yunohost.org/badge/maintained/paheko)
 
 [![Установите Paheko с YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=paheko)
 

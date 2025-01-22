@@ -5,7 +5,9 @@ Ini TIDAK boleh diedit dengan tangan.
 
 # Paheko untuk YunoHost
 
-[![Tingkat integrasi](https://dash.yunohost.org/integration/paheko.svg)](https://ci-apps.yunohost.org/ci/apps/paheko/) ![Status kerja](https://ci-apps.yunohost.org/ci/badges/paheko.status.svg) ![Status pemeliharaan](https://ci-apps.yunohost.org/ci/badges/paheko.maintain.svg)
+[![Tingkat integrasi](https://apps.yunohost.org/badge/integration/paheko)](https://ci-apps.yunohost.org/ci/apps/paheko/)
+![Status kerja](https://apps.yunohost.org/badge/state/paheko)
+![Status pemeliharaan](https://apps.yunohost.org/badge/maintained/paheko)
 
 [![Pasang Paheko dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=paheko)
 
