@@ -5,7 +5,9 @@ It shall NOT be edited by hand.
 
 # Paheko for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/paheko.svg)](https://ci-apps.yunohost.org/ci/apps/paheko/) ![Working status](https://ci-apps.yunohost.org/ci/badges/paheko.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/paheko.maintain.svg)
+[![Integration level](https://apps.yunohost.org/badge/integration/paheko)](https://ci-apps.yunohost.org/ci/apps/paheko/)
+![Working status](https://apps.yunohost.org/badge/state/paheko)
+![Maintenance status](https://apps.yunohost.org/badge/maintained/paheko)
 
 [![Install Paheko with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=paheko)
 
@@ -23,7 +25,7 @@ It is designed to meet the needs of a small to medium-sized structure: managemen
 ⚠️ Paheko is a French only software for now, even if an English translation is planned.
 
 
-**Shipped version:** 1.3.12~ynh4
+**Shipped version:** 1.3.13~ynh1
 
 **Demo:** <https://paheko.cloud/essai/>
 
