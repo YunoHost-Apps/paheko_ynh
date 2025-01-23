@@ -24,6 +24,7 @@ It is designed to meet the needs of a small to medium-sized structure: managemen
 
 ⚠️ Paheko is a French only software for now, even if an English translation is planned.
 
+
 **Shipped version:** 1.3.13~ynh1
 
 **Demo:** <https://paheko.cloud/essai/>
