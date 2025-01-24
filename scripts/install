@@ -71,6 +71,21 @@ if [ ! -d "$data_dir/data/local_addresses" ]; then
 fi
 
 #=================================================
+# SETUP APPLICATION
+#=================================================
+
+### Waiting for new script  which will be integrated in version 1.3.12 see https://fossil.kd2.org/paheko/wiki?name=Ligne+de+commande
+
+# Post-Installation
+ynh_script_progression "Finalizing Post-installation..."
+
+if [ ! -f "$data_dir/data/association.sqlite" ]; then
+ynh_exec_as_app php$php_version $install_dir/bin/paheko init --country $country --orgname "$name_association" --name="$user_name" --email="$user_email" --password="$password"
+else
+ynh_script_progression "The database association.sqlite and the folder "$data_dir/data" already exit..."
+fi
+
+#=================================================
 # END OF SCRIPT
 #=================================================
 

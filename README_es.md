@@ -5,7 +5,9 @@ No se debe editar a mano.
 
 # Paheko para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/paheko.svg)](https://ci-apps.yunohost.org/ci/apps/paheko/) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/paheko.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/paheko.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/paheko)](https://ci-apps.yunohost.org/ci/apps/paheko/)
+![Estado funcional](https://apps.yunohost.org/badge/state/paheko)
+![Estado En Mantención](https://apps.yunohost.org/badge/maintained/paheko)
 
 [![Instalar Paheko con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=paheko)
 
@@ -23,7 +25,7 @@ It is designed to meet the needs of a small to medium-sized structure: managemen
 ⚠️ Paheko is a French only software for now, even if an English translation is planned.
 
 
-**Versión actual:** 1.3.11~ynh3
+**Versión actual:** 1.3.13~ynh1
 
 **Demo:** <https://paheko.cloud/essai/>
 
@@ -42,7 +44,7 @@ It is designed to meet the needs of a small to medium-sized structure: managemen
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/paheko_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/paheko_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 

@@ -38,7 +38,8 @@ const SECRET_KEY = '__SECRET_KEY__';
  * numéro sera connecté (sans besoin de mot de passe).
  *
  * Exemple: LOCAL_LOGIN = 42 connectera automatiquement le membre avec id = 42
- * Attention à ne pas utiliser en production !
+ * Attention aucune vérification ne sera faite, n'importe qui aura accès
+ * sans avoir à se connecter !
  *
  * Si le nombre spécifié est -1, alors c'est le premier membre trouvé qui
  * peut gérer la configuration (et donc modifier les droits des membres)
@@ -55,6 +56,7 @@ const SECRET_KEY = '__SECRET_KEY__';
  * ];
  *
  * Défault : null (connexion automatique désactivée)
+ * @var int|array|null
  */
 
 //const LOCAL_LOGIN = null;
@@ -70,7 +72,8 @@ const SECRET_KEY = '__SECRET_KEY__';
  * il est toujours possible de restaurer une base de données non signée en
  * la recopiant à la place du fichier association.sqlite
  *
- * Défaut : true
+ * Défaut : false
+ * @var  bool
  */
 
 //const ALLOW_MODIFIED_IMPORT = true;
@@ -79,6 +82,7 @@ const SECRET_KEY = '__SECRET_KEY__';
  * Répertoire où se situe le code source de Paheko
  *
  * Défaut : répertoire racine de Paheko (__INSTALL_DIR__)
+ * @var  string
  */
 
 const ROOT = '__INSTALL_DIR__';
@@ -97,6 +101,7 @@ const DATA_ROOT = '__DATA_DIR__/data';
  * exemples : graphiques de statistiques, templates Brindille, etc.
  *
  * Défaut : sous-répertoire 'cache' de DATA_ROOT
+ * @var  string
  */
 
 //const CACHE_ROOT = DATA_ROOT . '/cache';
@@ -107,6 +112,7 @@ const DATA_ROOT = '__DATA_DIR__/data';
  * le code PHP généré à partir des templates Smartyer.
  *
  * Défaut : sous-répertoire 'shared' de CACHE_ROOT
+ * @var  string
  */
 
 //const SHARED_CACHE_ROOT = CACHE_ROOT . '/shared';
@@ -136,6 +142,7 @@ const DATA_ROOT = '__DATA_DIR__/data';
  * Emplacement du fichier de base de données de Paheko
  *
  * Défaut : DATA_ROOT . '/association.sqlite'
+ * @var  string
  */
 
 //const DB_FILE = DATA_ROOT . '/association.sqlite';
@@ -144,6 +151,7 @@ const DATA_ROOT = '__DATA_DIR__/data';
  * Emplacement de stockage des plugins
  *
  * Défaut : DATA_ROOT . '/plugins'
+ * @var  string
  */
 
 const PLUGINS_ROOT = '__INSTALL_DIR__/data/plugins';
@@ -185,6 +193,7 @@ const PLUGINS_ROOT = '__INSTALL_DIR__/data/plugins';
  * La clé est le nom du signal, et la valeur est la fonction.
  *
  * Défaut: [] (tableau vide)
+ * @var array
  */
 //const SYSTEM_SIGNALS = [['files.delete' => 'MyNamespace\Signals::deleteFile'], ['entity.Accounting\Transaction.save.before' => 'MyNamespace\Signals::saveTransaction']];
 
@@ -225,6 +234,7 @@ const WWW_URL = 'https://__DOMAIN____PATH__/';
  * Défaut : TRUE (pour aider le debug de l'auto-hébergement)
  *
  * Il est fortement conseillé de mettre cette valeur à FALSE en production !
+ * @var bool
  */
 
 //const SHOW_ERRORS = false;
@@ -238,6 +248,7 @@ const WWW_URL = 'https://__DOMAIN____PATH__/';
  * Note : les erreurs sont déjà toutes loguées dans error.log à la racine de DATA_ROOT
  *
  * Défaut : false
+ * @var bool
  */
 
 //const MAIL_ERRORS = false;
@@ -259,6 +270,7 @@ const WWW_URL = 'https://__DOMAIN____PATH__/';
  * Configuration -> Fonctions avancées -> Journal d'erreurs
  *
  * Défaut : null
+ * @var string|null
  */
 
 //const ERRORS_REPORT_URL = null;
@@ -270,6 +282,7 @@ const WWW_URL = 'https://__DOMAIN____PATH__/';
  * est affiché. Il est possible de personnaliser ce message avec cette constante.
  *
  * Voir include/init.php pour le template par défaut.
+ * @var string|null
  */
 
 // const ERRORS_TEMPLATE = null;
@@ -302,6 +315,7 @@ const WWW_URL = 'https://__DOMAIN____PATH__/';
  *
  * Défaut : true
  * (Afin d'aider au rapport de bugs des instances auto-hébergées)
+ * @var bool
  */
 
 //const ENABLE_TECH_DETAILS = true;
@@ -365,6 +379,31 @@ const WWW_URL = 'https://__DOMAIN____PATH__/';
  * @var string
  */
 const SQLITE_JOURNAL_MODE = 'WAL';
+
+/**
+ * Activation du journal d'audit séparé
+ *
+ * Si cette constante est renseignée par un fichier texte, le journal d'audit y sera
+ * également enregistré.
+ *
+ * Cela permet d'enregistrer le journal d'audit en dehors de la base de données.
+ *
+ * Default : null (= désactivé)
+ * @var string|null
+ */
+// const AUDIT_LOG_FILE = __DIR__ . '/audit.log';
+
+/**
+ * Taille maximale du journal d'audit séparé (en octets)
+ *
+ * Une fois que le journal d'audit atteint cette taille, il est coupé en deux,
+ * afin de supprimer les anciennes entrées. Exemple : une limite de 200 Ko, quand
+ * elle est atteinte les premiers 100 Ko sont remplacés par "(cut...)".
+ *
+ * Default : 1024*1024 (1 Mo)
+ * @var int
+ */
+// const AUDIT_LOG_LIMIT = 1024*1024;
 
 /**
  * Activation du log HTTP (option de développement)
@@ -477,9 +516,10 @@ const USE_CRON = true;
  * Serveur NTP utilisé pour les connexions avec TOTP
  * (utilisé seulement si le code OTP fourni est faux)
  *
- * Désactiver (false) si vous êtes sûr que votre serveur est toujours à l'heure.
+ * Désactiver (NULL) si vous êtes sûr que votre serveur est toujours à l'heure.
  *
  * Défaut : fr.pool.ntp.org
+ * @var string|null
  */
 
 const NTP_SERVER = 'fr.pool.ntp.org';
@@ -500,11 +540,13 @@ const NTP_SERVER = 'fr.pool.ntp.org';
 
 //const DISABLE_EMAIL = false;
 
+
 /**
  * Hôte du serveur SMTP, mettre à null (défaut) pour utiliser la fonction
  * mail() de PHP
  *
  * Défaut : null
+ * @var string|null
  */
 
 const SMTP_HOST = '__SMTP_HOST__';
@@ -516,6 +558,7 @@ const SMTP_HOST = '__SMTP_HOST__';
  * 587 = port standard pour connexion SSL
  *
  * Défaut : 587
+ * @var int|null
  */
 
 const SMTP_PORT = __SMTP_PORT__;
@@ -526,6 +569,7 @@ const SMTP_PORT = __SMTP_PORT__;
  * mettre à null pour utiliser un serveur local ou anonyme
  *
  * Défaut : null
+ * @var string|null
  */
 
 const SMTP_USER = '__SMTP_USER__';
@@ -536,6 +580,7 @@ const SMTP_USER = '__SMTP_USER__';
  * mettre à null pour utiliser un serveur local ou anonyme
  *
  * Défaut : null
+ * @var string|null
  */
 
 const SMTP_PASSWORD = '__SMTP_PASSWORD__';
@@ -549,6 +594,7 @@ const SMTP_PASSWORD = '__SMTP_PASSWORD__';
  * STARTTLS = utilisation de STARTTLS (moyennement sécurisé)
  *
  * Défaut : STARTTLS
+ * @var string
  */
 
 const SMTP_SECURITY = '__SMTP_SECURITY__';
@@ -581,9 +627,11 @@ const SMTP_SECURITY = '__SMTP_SECURITY__';
  * lors de la session avec le serveur SMTP.
  *
  * Défaut : null
+ * @var string|null
  */
 
 const MAIL_RETURN_PATH = '__MAIL_RETURN_PATH__';
+
 
 /**
  * Adresse e-mail expéditrice des messages (Sender)
@@ -598,6 +646,7 @@ const MAIL_RETURN_PATH = '__MAIL_RETURN_PATH__';
  * qui sera utilisée.
  *
  * Défaut : null
+ * @var string|null
  */
 
 const MAIL_SENDER = '__MAIL_SENDER__';
@@ -621,7 +670,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  *
  * Défaut : null (l'API handlebounce est désactivée)
  *
- * @type string|null
+ * @var string|null
  */
 
 //const MAIL_BOUNCE_PASSWORD = null;
@@ -631,6 +680,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  * (peut être personnalisée dans la configuration)
  *
  * Défaut : #20787a
+ * @var string
  */
 
 //const ADMIN_COLOR1 = '#20787a';
@@ -638,6 +688,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
 /**
  * Couleur secondaire de l'interface admin
  * Défaut : #85b9ba
+ * @var string
  */
 
 //const ADMIN_COLOR2 = '#85b9ba';
@@ -653,6 +704,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  * sinon la personnalisation des couleurs ne fonctionnera pas
  *
  * Défaut : [ADMIN_URL]static/bg.png
+ * @var string
  */
 
 //const ADMIN_BACKGROUND_IMAGE = 'https://mon-asso.fr/fond_paheko.png';
@@ -700,6 +752,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  * pas correctement le répertoire de stockage des fichiers !
  *
  * Défaut : null
+ * @var string|null
  */
 
 //const FILE_STORAGE_BACKEND = null;
@@ -718,6 +771,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  * voir Configuration > Avancé (accessible uniquement si ENABLE_TECH_DETAILS est à true)
  *
  * Défaut : null
+ * @var string|null
  */
 
 //const FILE_STORAGE_CONFIG = null;
@@ -730,6 +784,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  * Tout envoi de fichier sera refusé.
  *
  * Défaut : null (dans ce cas c'est le stockage qui détermine la taille disponible, donc généralement l'espace dispo sur le disque dur !)
+ * @var int|null
  */
 
 //const FILE_STORAGE_QUOTA = 10*1024*1024; // Forcer le quota alloué à 10 Mo, quel que soit le backend de stockage
@@ -779,6 +834,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  * Si NULL, alors l'édition de documents est désactivée.
  *
  * Défaut : null
+ * @var string|null
  */
 
 //const WOPI_DISCOVERY_URL = 'http://localhost:9980/hosting/discovery';
@@ -831,73 +887,69 @@ const MAIL_SENDER = '__MAIL_SENDER__';
 //const PDF_USAGE_LOG = null;
 
 /**
- * CALC_CONVERT_COMMAND
- * Outil de conversion de formats de tableur vers un format propriétaire
+ * CONVERSION_TOOLS
+ * Outils de conversion de formats de fichier
  *
- * Paheko gère nativement les exports en ODS (OpenDocument : LibreOffice)
- * et CSV, et imports en CSV.
- *
- * En indiquant ici le nom d'un outil, Paheko autorisera aussi
- * l'import en XLSX, XLS et ODS, et l'export en XLSX.
- *
- * Pour cela il procédera simplement à une conversion entre les formats natifs
- * ODS/CSV et XLSX ou XLS.
- *
- * Note : installer ces commandes peut introduire des risques de sécurité sur le serveur.
+ * Ces outils sont utilisés pour convertir les documents d'un format à l'autre.
+ * Cette fonctionnalité est utilisée :
+ * - pour extraire le texte des documents PDF, XLS, DOC, EPUB et l'indexer
+ *   dans la recherche de documents
+ * - pour générer les images miniatures des documents (dans les listes de documents)
+ * - pour convertir les fichiers XLSX, XLS ou ODS pour l'import de membres,
+ *   d'écritures etc. (sinon seul CSV est accepté)
  *
  * Les outils supportés sont :
- * - ssconvert (apt install gnumeric) (plus rapide)
+ * - collabora : serveur Collabora externe, via l'API HTTP de conversion,
+ *   dont l'URL est indiquée dans WOPI_DISCOVERY_URL
+ * - onlyoffice (plus lent) : serveur OnlyOffice externe, via l'API HTTP de conversion,
+ *   dont l'URL est indiquée dans WOPI_DISCOVERY_URL, et la clé indiquée dans en paramètre
+ *   (voir ci-dessous)
+ * - ssconvert (apt install gnumeric --no-install-recommends) (plus léger, recommandé)
  * - unoconv (apt install unoconv) (utilise LibreOffice)
  * - unoconvert (https://github.com/unoconv/unoserver/) en spécifiant l'interface
- *
- * Défault : null (= fonctionnalité désactivée)
- * @var string|null
- */
-//const CALC_CONVERT_COMMAND = 'unoconv';
-//const CALC_CONVERT_COMMAND = 'ssconvert';
-//const CALC_CONVERT_COMMAND = 'unoconvert --interface localhost --port 2022';
-
-/**
- * DOCUMENT_THUMBNAIL_COMMANDS
- * Indique les commandes à utiliser pour générer des miniatures pour les documents
- * (LibreOffice, OOXML, PDF, SVG, vidéos, etc.)
- *
- * Les options possibles sont (par ordre de rapidité) :
  * - mupdf : les miniatures PDF/SVG/XPS/EPUB sont générées avec mutool
  *   (apt install mupdf-tools)
- * - collabora : les miniatures de documents bureautiques sont générées
- *   par le serveur Collabora, via l'API dont l'URL est  indiquée dans WOPI_DISCOVERY_URL
- * - unoconvert : les miniatures des documents Office/LO sont générées
- *   avec unoconvert <https://github.com/unoconv/unoserver/>
  * - ffmpeg : les miniatures de vidéos seront générées avec ffmpeg
  *
- * Bien que Collabora/Unoconvert puissent générer des miniatures de PDF, il est plutôt
- * conseillé d'utiliser mupdf quand même, il est plus rapide et léger.
+ * Si un outil permettant la conversion de documents bureautique est
+ * spécifié (collabora, unoconvert, unocov, onlyoffice), alors il sera
+ * possible d'importer des fichiers XLSX, XLS et ODS en plus du CSV
+ * (par exemple pour les imports de membres ou d'écritures comptables).
  *
- * Note : cette option créera de nombreux fichiers de cache, et risque d'augmenter
- * la charge serveur de manière importante.
+ * Paheko utilisera automatiquement en priorité l'outil le plus performant :
+ * - mupdf avant toute solution bureautique pour PDF/EPUB
+ * - collabora avant ssconvert, avant unoconvert
  *
- * Défaut : null (fonctionnalité désactivée)
- * @var null|array
+ * Note : installer ces outils sur le serveur peut introduire des risques de sécurité.
+ *
+ * Il est possible de passer des paramètres aux outils, en utilisant la notation
+ * 'nom_outil' => [...].
+ *
+ * Exemple pour spécifier la clé JWT pour OnlyOffice:
+ * ['mupdf', 'onlyoffice' => ['jwt_token' => 'XXX']]
+ *
+ * Pour les outils en ligne de commande il est possible de passer des arguments
+ * supplémentaires :
+ * ['unoconvert' => ['args' => '--interface server.tld --port 2022']]
+ *
+ * Défault : null (= désactivé)
+ * @var array|null
  */
-
-const DOCUMENT_THUMBNAIL_COMMANDS = ['mupdf', 'ffmpeg'];
+//const CONVERSION_TOOLS = ['mupdf', 'collabora', 'ffmpeg'];
+//const CONVERSION_TOOLS = ['ssconvert'];
+const CONVERSION_TOOLS = ['ffmpeg', 'mupdf', 'ssconvert'];
 
 /**
- * PDFTOTEXT_COMMAND
- * Outil de conversion de PDF au format texte.
+ * ENABLE_FILE_THUMBNAILS
+ * Activer ou désactiver la génération des miniatures de documents.
  *
- * Utilisé pour indexer un fichier PDF pour pouvoir rechercher dans son contenu
- * parmi les documents.
+ * Note : cette option créera de nombreux fichiers de cache, et risque d'augmenter
+ * la charge serveur.
  *
- * Il est possible de spécifier ici la commande suivante :
- * - mupdf (apt install mupdf-tools)
- *
- * Toute autre commande sera ignorée.
- *
- * Défaut : null (= fonctionnalité désactivée)
+ * Défaut : true
+ * @var bool
  */
-const PDFTOTEXT_COMMAND = 'mupdf';
+//const ENABLE_FILE_THUMBNAILS = false;
 
 /**
  * API_USER et API_PASSWORD
@@ -913,6 +965,7 @@ const PDFTOTEXT_COMMAND = 'mupdf';
  * identifiants d'accès à l'API, et aura accès à TOUT en écriture/administration.
  *
  * Défaut: null
+ * @var string|null
  */
 //const API_USER = 'coraline';
 //const API_PASSWORD = 'thisIsASecretPassword42';
@@ -936,6 +989,7 @@ const PDFTOTEXT_COMMAND = 'mupdf';
  * Pour désactiver cet envoi il suffit de placer cette constante à TRUE.
  *
  * Défaut : false
+ * @var bool
  */
 //const DISABLE_INSTALL_PING = false;
 
@@ -988,6 +1042,6 @@ const LOCAL_ADDRESSES_ROOT = DATA_ROOT . '/local_addresses/';
 
 /**
  * Chemin vers le fichier pour des configurations personnelles qui ne sera pas écrasé
- * lors des mises à jour. Cette ligne sera décommentée dès la première mise à jour.
+ * lors des mises à jour.
  */
 require '__DATA_DIR__/data/config.local.user.php';
