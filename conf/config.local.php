@@ -38,7 +38,8 @@ const SECRET_KEY = '__SECRET_KEY__';
  * numéro sera connecté (sans besoin de mot de passe).
  *
  * Exemple: LOCAL_LOGIN = 42 connectera automatiquement le membre avec id = 42
- * Attention à ne pas utiliser en production !
+ * Attention aucune vérification ne sera faite, n'importe qui aura accès
+ * sans avoir à se connecter !
  *
  * Si le nombre spécifié est -1, alors c'est le premier membre trouvé qui
  * peut gérer la configuration (et donc modifier les droits des membres)
@@ -55,6 +56,7 @@ const SECRET_KEY = '__SECRET_KEY__';
  * ];
  *
  * Défault : null (connexion automatique désactivée)
+ * @var int|array|null
  */
 
 //const LOCAL_LOGIN = null;
@@ -70,7 +72,8 @@ const SECRET_KEY = '__SECRET_KEY__';
  * il est toujours possible de restaurer une base de données non signée en
  * la recopiant à la place du fichier association.sqlite
  *
- * Défaut : true
+ * Défaut : false
+ * @var  bool
  */
 
 //const ALLOW_MODIFIED_IMPORT = true;
@@ -79,6 +82,7 @@ const SECRET_KEY = '__SECRET_KEY__';
  * Répertoire où se situe le code source de Paheko
  *
  * Défaut : répertoire racine de Paheko (__INSTALL_DIR__)
+ * @var  string
  */
 
 const ROOT = '__INSTALL_DIR__';
@@ -97,6 +101,7 @@ const DATA_ROOT = '__DATA_DIR__/data';
  * exemples : graphiques de statistiques, templates Brindille, etc.
  *
  * Défaut : sous-répertoire 'cache' de DATA_ROOT
+ * @var  string
  */
 
 //const CACHE_ROOT = DATA_ROOT . '/cache';
@@ -107,6 +112,7 @@ const DATA_ROOT = '__DATA_DIR__/data';
  * le code PHP généré à partir des templates Smartyer.
  *
  * Défaut : sous-répertoire 'shared' de CACHE_ROOT
+ * @var  string
  */
 
 //const SHARED_CACHE_ROOT = CACHE_ROOT . '/shared';
@@ -136,6 +142,7 @@ const DATA_ROOT = '__DATA_DIR__/data';
  * Emplacement du fichier de base de données de Paheko
  *
  * Défaut : DATA_ROOT . '/association.sqlite'
+ * @var  string
  */
 
 //const DB_FILE = DATA_ROOT . '/association.sqlite';
@@ -144,6 +151,7 @@ const DATA_ROOT = '__DATA_DIR__/data';
  * Emplacement de stockage des plugins
  *
  * Défaut : DATA_ROOT . '/plugins'
+ * @var  string
  */
 
 const PLUGINS_ROOT = '__INSTALL_DIR__/data/plugins';
@@ -185,6 +193,7 @@ const PLUGINS_ROOT = '__INSTALL_DIR__/data/plugins';
  * La clé est le nom du signal, et la valeur est la fonction.
  *
  * Défaut: [] (tableau vide)
+ * @var array
  */
 //const SYSTEM_SIGNALS = [['files.delete' => 'MyNamespace\Signals::deleteFile'], ['entity.Accounting\Transaction.save.before' => 'MyNamespace\Signals::saveTransaction']];
 
@@ -225,6 +234,7 @@ const WWW_URL = 'https://__DOMAIN____PATH__/';
  * Défaut : TRUE (pour aider le debug de l'auto-hébergement)
  *
  * Il est fortement conseillé de mettre cette valeur à FALSE en production !
+ * @var bool
  */
 
 //const SHOW_ERRORS = false;
@@ -238,6 +248,7 @@ const WWW_URL = 'https://__DOMAIN____PATH__/';
  * Note : les erreurs sont déjà toutes loguées dans error.log à la racine de DATA_ROOT
  *
  * Défaut : false
+ * @var bool
  */
 
 //const MAIL_ERRORS = false;
@@ -259,6 +270,7 @@ const WWW_URL = 'https://__DOMAIN____PATH__/';
  * Configuration -> Fonctions avancées -> Journal d'erreurs
  *
  * Défaut : null
+ * @var string|null
  */
 
 //const ERRORS_REPORT_URL = null;
@@ -270,6 +282,7 @@ const WWW_URL = 'https://__DOMAIN____PATH__/';
  * est affiché. Il est possible de personnaliser ce message avec cette constante.
  *
  * Voir include/init.php pour le template par défaut.
+ * @var string|null
  */
 
 // const ERRORS_TEMPLATE = null;
@@ -302,6 +315,7 @@ const WWW_URL = 'https://__DOMAIN____PATH__/';
  *
  * Défaut : true
  * (Afin d'aider au rapport de bugs des instances auto-hébergées)
+ * @var bool
  */
 
 //const ENABLE_TECH_DETAILS = true;
@@ -365,6 +379,31 @@ const WWW_URL = 'https://__DOMAIN____PATH__/';
  * @var string
  */
 const SQLITE_JOURNAL_MODE = 'WAL';
+
+/**
+ * Activation du journal d'audit séparé
+ *
+ * Si cette constante est renseignée par un fichier texte, le journal d'audit y sera
+ * également enregistré.
+ *
+ * Cela permet d'enregistrer le journal d'audit en dehors de la base de données.
+ *
+ * Default : null (= désactivé)
+ * @var string|null
+ */
+// const AUDIT_LOG_FILE = __DIR__ . '/audit.log';
+
+/**
+ * Taille maximale du journal d'audit séparé (en octets)
+ *
+ * Une fois que le journal d'audit atteint cette taille, il est coupé en deux,
+ * afin de supprimer les anciennes entrées. Exemple : une limite de 200 Ko, quand
+ * elle est atteinte les premiers 100 Ko sont remplacés par "(cut...)".
+ *
+ * Default : 1024*1024 (1 Mo)
+ * @var int
+ */
+// const AUDIT_LOG_LIMIT = 1024*1024;
 
 /**
  * Activation du log HTTP (option de développement)
@@ -477,9 +516,10 @@ const USE_CRON = true;
  * Serveur NTP utilisé pour les connexions avec TOTP
  * (utilisé seulement si le code OTP fourni est faux)
  *
- * Désactiver (false) si vous êtes sûr que votre serveur est toujours à l'heure.
+ * Désactiver (NULL) si vous êtes sûr que votre serveur est toujours à l'heure.
  *
  * Défaut : fr.pool.ntp.org
+ * @var string|null
  */
 
 const NTP_SERVER = 'fr.pool.ntp.org';
@@ -500,11 +540,13 @@ const NTP_SERVER = 'fr.pool.ntp.org';
 
 //const DISABLE_EMAIL = false;
 
+
 /**
  * Hôte du serveur SMTP, mettre à null (défaut) pour utiliser la fonction
  * mail() de PHP
  *
  * Défaut : null
+ * @var string|null
  */
 
 const SMTP_HOST = '__SMTP_HOST__';
@@ -516,6 +558,7 @@ const SMTP_HOST = '__SMTP_HOST__';
  * 587 = port standard pour connexion SSL
  *
  * Défaut : 587
+ * @var int|null
  */
 
 const SMTP_PORT = __SMTP_PORT__;
@@ -526,6 +569,7 @@ const SMTP_PORT = __SMTP_PORT__;
  * mettre à null pour utiliser un serveur local ou anonyme
  *
  * Défaut : null
+ * @var string|null
  */
 
 const SMTP_USER = '__SMTP_USER__';
@@ -536,6 +580,7 @@ const SMTP_USER = '__SMTP_USER__';
  * mettre à null pour utiliser un serveur local ou anonyme
  *
  * Défaut : null
+ * @var string|null
  */
 
 const SMTP_PASSWORD = '__SMTP_PASSWORD__';
@@ -549,6 +594,7 @@ const SMTP_PASSWORD = '__SMTP_PASSWORD__';
  * STARTTLS = utilisation de STARTTLS (moyennement sécurisé)
  *
  * Défaut : STARTTLS
+ * @var string
  */
 
 const SMTP_SECURITY = '__SMTP_SECURITY__';
@@ -581,9 +627,11 @@ const SMTP_SECURITY = '__SMTP_SECURITY__';
  * lors de la session avec le serveur SMTP.
  *
  * Défaut : null
+ * @var string|null
  */
 
 const MAIL_RETURN_PATH = '__MAIL_RETURN_PATH__';
+
 
 /**
  * Adresse e-mail expéditrice des messages (Sender)
@@ -598,6 +646,7 @@ const MAIL_RETURN_PATH = '__MAIL_RETURN_PATH__';
  * qui sera utilisée.
  *
  * Défaut : null
+ * @var string|null
  */
 
 const MAIL_SENDER = '__MAIL_SENDER__';
@@ -621,7 +670,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  *
  * Défaut : null (l'API handlebounce est désactivée)
  *
- * @type string|null
+ * @var string|null
  */
 
 //const MAIL_BOUNCE_PASSWORD = null;
@@ -631,6 +680,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  * (peut être personnalisée dans la configuration)
  *
  * Défaut : #20787a
+ * @var string
  */
 
 //const ADMIN_COLOR1 = '#20787a';
@@ -638,6 +688,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
 /**
  * Couleur secondaire de l'interface admin
  * Défaut : #85b9ba
+ * @var string
  */
 
 //const ADMIN_COLOR2 = '#85b9ba';
@@ -653,6 +704,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  * sinon la personnalisation des couleurs ne fonctionnera pas
  *
  * Défaut : [ADMIN_URL]static/bg.png
+ * @var string
  */
 
 //const ADMIN_BACKGROUND_IMAGE = 'https://mon-asso.fr/fond_paheko.png';
@@ -700,6 +752,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  * pas correctement le répertoire de stockage des fichiers !
  *
  * Défaut : null
+ * @var string|null
  */
 
 //const FILE_STORAGE_BACKEND = null;
@@ -718,6 +771,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  * voir Configuration > Avancé (accessible uniquement si ENABLE_TECH_DETAILS est à true)
  *
  * Défaut : null
+ * @var string|null
  */
 
 //const FILE_STORAGE_CONFIG = null;
@@ -730,6 +784,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  * Tout envoi de fichier sera refusé.
  *
  * Défaut : null (dans ce cas c'est le stockage qui détermine la taille disponible, donc généralement l'espace dispo sur le disque dur !)
+ * @var int|null
  */
 
 //const FILE_STORAGE_QUOTA = 10*1024*1024; // Forcer le quota alloué à 10 Mo, quel que soit le backend de stockage
@@ -779,6 +834,7 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  * Si NULL, alors l'édition de documents est désactivée.
  *
  * Défaut : null
+ * @var string|null
  */
 
 //const WOPI_DISCOVERY_URL = 'http://localhost:9980/hosting/discovery';
@@ -892,7 +948,6 @@ const CONVERSION_TOOLS = ['ffmpeg', 'mupdf', 'ssconvert'];
  *
  * Défaut : true
  * @var bool
- * @var string|null
  */
 //const ENABLE_FILE_THUMBNAILS = false;
 
@@ -910,6 +965,7 @@ const CONVERSION_TOOLS = ['ffmpeg', 'mupdf', 'ssconvert'];
  * identifiants d'accès à l'API, et aura accès à TOUT en écriture/administration.
  *
  * Défaut: null
+ * @var string|null
  */
 //const API_USER = 'coraline';
 //const API_PASSWORD = 'thisIsASecretPassword42';
@@ -933,6 +989,7 @@ const CONVERSION_TOOLS = ['ffmpeg', 'mupdf', 'ssconvert'];
  * Pour désactiver cet envoi il suffit de placer cette constante à TRUE.
  *
  * Défaut : false
+ * @var bool
  */
 //const DISABLE_INSTALL_PING = false;
 
