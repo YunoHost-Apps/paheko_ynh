@@ -30,7 +30,30 @@ namespace Paheko;
 const SECRET_KEY = '__SECRET_KEY__';
 
 /**
- * @var null|int|array
+ * OPEN_BASEDIR
+ *
+ * PHP propose la directive de configuration "open_basedir" pour
+ * améliorer la sécurité de l'installation.
+ *
+ * Indiquer `auto` pour ce réglage fait que Paheko va automatiquement
+ * ajouter à cette directive les chemins qu'il utilise.
+ *
+ * Il est possible d'ajouter d'autres chemins à la directive open_basedir
+ * en utilisant le caractère `:` comme séparateur :
+ * 'auto:/var/www/other:/var/lib/test'
+ *
+ * Avertissement : activer ce réglage désactive le cache realpath
+ * de PHP, risquant de rendre l'application plus lente.
+ *
+ * @see https://www.php.net/manual/en/ini.core.php#ini.open-basedir
+ * @var string|null
+ * @default null
+ */
+
+//const OPEN_BASEDIR = 'auto';
+
+/**
+ * LOCAL_LOGIN
  *
  * Forcer la connexion locale
  *
