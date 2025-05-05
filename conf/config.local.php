@@ -391,7 +391,7 @@ const SQLITE_JOURNAL_MODE = 'WAL';
  * Default : null (= désactivé)
  * @var string|null
  */
-// const AUDIT_LOG_FILE = __DIR__ . '/audit.log';
+// const AUDIT_LOG_FILE = __INSTALL_DIR__ . '/audit.log';
 
 /**
  * Taille maximale du journal d'audit séparé (en octets)
