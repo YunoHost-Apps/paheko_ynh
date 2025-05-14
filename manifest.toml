@@ -65,7 +65,7 @@ ram.runtime = "200M"
 [resources]
     [resources.sources.main]
     url = "https://fossil.kd2.org/paheko/uv/paheko-1.3.14.tar.gz"
-    sha256 = "d563a5cfed34d3c68c736d81fdf23d2a8f7a2fa8ae779390c2e2cdd82fa5a198"
+    sha256 = "84910a415e40aa3b10bf1c952a1edd25fd346dbf189406c372451676eb7ba7f1"
 
     [resources.system_user]
     allow_email = true
