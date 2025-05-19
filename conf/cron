@@ -1,2 +1,2 @@
-@daily __APP__ /usr/bin/php__PHP_VERSION__ __INSTALL_DIR__/scripts/cron.php
-* * * * * __APP__ /usr/bin/php__PHP_VERSION__ __INSTALL_DIR__/scripts/emails.php
+@daily __APP__ /usr/bin/php__PHP_VERSION__ __INSTALL_DIR__/bin/paheko cron
+* * * * * __APP__ /usr/bin/php__PHP_VERSION__ __INSTALL_DIR__/bin/paheko queue run
