@@ -280,7 +280,7 @@ const ROOT = '__INSTALL_DIR__';
 /**
  * DATA_ROOT
  * Répertoire où sont situées les données de Paheko
- * (incluant la base de données SQLite, les sauvegardes, le cache, les fichiers locaux et les plugins)
+ * (incluant la base de données SQLite, les sauvegardes et le cache)
  *
  * Défaut : sous-répertoire "data" de la racine
  * @var  string
