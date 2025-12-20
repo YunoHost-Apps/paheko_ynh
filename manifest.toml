@@ -91,5 +91,5 @@ ram.runtime = "200M"
     webdav.auth_header = false
 
     [resources.apt]
-    packages = "sqlite3, php8.3-sqlite3, php8.3-imagick, php8.3-intl, php8.3-cli, php8.3-gnupg, php8.3-mbstring, php8.3-zip, php8.3-xml, mupdf-tools, ffmpeg, gnumeric"
+    packages = "sqlite3, php8.3-sqlite3, php8.3-imagick, php8.3-intl, php8.3-cli, php8.3-gnupg, php8.3-mbstring, php8.3-zip, php8.3-xml, mupdf-tools, ffmpeg, gnumeric, php8.3-gd"
     # php-imagick, mupdf-tools, ffmpeg & gnumeric are required for file conversion and thumbnail generation: https://fossil.kd2.org/paheko/wiki?name=Configuration/Thumbnails
