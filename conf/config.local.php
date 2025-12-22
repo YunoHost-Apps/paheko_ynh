@@ -173,6 +173,49 @@ const SECRET_KEY = '__SECRET_KEY__';
 // const OIDC_CLIENT_DEFAULT_PERMISSIONS = ['users' => 'admin', 'config' => 'admin'];
 
 /**
+ * OIDC_CLIENT_CALLBACK
+ *
+ * Permet d'indiquer le nom d'une fonction PHP qui sera appelée après la connexion
+ * au serveur OIDC.
+ *
+ * Cela permet par exemple de créer ou mettre à jour un membre Paheko à partir des
+ * infos fournies à la connexion OIDC.
+ *
+ * Le premier paramètre passé à cette fonction sera un \stdClass contenant les
+ * informations renvoyées par le serveur OIDC. Le second paramètre sera l'entité
+ * User correspond à l'utilisateur connecté (à la suite de la règle OIDC_CLIENT_MATCH_EMAIL).
+ *
+ * La fonction peut renvoyer une entité User visant à remplacer celle qui est utilisée
+ * actuellement, ou NULL.
+ *
+ * Lire la doc pour plus d'exemples.
+ *
+ * @see https://fossil.kd2.org/paheko/wiki?name=Configuration+SSO+et+LDAP
+ * @default null
+ * @var null|callable
+ */
+
+// const OIDC_CLIENT_CALLBACK = '\Paheko\my_oidc_callback';
+
+/**
+ * ENABLE_PERMISSIONS
+ *
+ * Activer ou désactiver la gestion des permissions dans Paheko
+ *
+ * En mode client OIDC, on peut préférer désactiver la gestion des permissions
+ * dans Paheko, car celles-ci sont probablement gérées par le serveur OIDC.
+ *
+ * Si on désactive cette constante (false) on ne pourra plus afficher ou modifier
+ * les permissions pour chaque catégorie de membres. Les permissions d'un membre
+ * ne s'afficheront plus sur sa fiche membre non plus.
+ *
+ * @default true
+ * @var bool
+ */
+
+// const ENABLE_PERMISSIONS = false;
+
+/**
  * LOCAL_LOGIN
  *
  * Forcer la connexion locale
@@ -205,6 +248,7 @@ const SECRET_KEY = '__SECRET_KEY__';
 //const LOCAL_LOGIN = null;
 
 /**
+ * ALLOW_MODIFIED_IMPORT
  * Autoriser (ou non) l'import de sauvegarde qui a été modifiée ?
  *
  * Si mis à true, un avertissement et une confirmation seront demandés
@@ -214,6 +258,9 @@ const SECRET_KEY = '__SECRET_KEY__';
  * Ceci ne s'applique qu'à la page "Sauvegarde et restauration" de l'admin,
  * il est toujours possible de restaurer une base de données non signée en
  * la recopiant à la place du fichier association.sqlite
+ *
+ * Ceci n'est *PAS* une mesure de sécurité, mais pour empêcher les utilisateurs
+ * de bidouiller la BDD et casser le logiciel.
  *
  * Défaut : false
  * @var  bool
@@ -231,13 +278,25 @@ const SECRET_KEY = '__SECRET_KEY__';
 const ROOT = '__INSTALL_DIR__';
 
 /**
+ * DATA_ROOT
  * Répertoire où sont situées les données de Paheko
- * (incluant la base de données SQLite, les sauvegardes, le cache, les fichiers locaux et les plugins)
+ * (incluant la base de données SQLite, les sauvegardes et le cache)
  *
  * Défaut : sous-répertoire "data" de la racine
+ * @var  string
  */
 
 const DATA_ROOT = '__DATA_DIR__/data';
+
+/**
+ * BACKUPS_ROOT
+ * Répertoire où son stockées les sauvegardes de la base de données.
+ *
+ * Défaut : DATA_ROOT . '/backups'
+ * @var string
+ */
+
+//const BACKUPS_ROOT = DATA_ROOT . '/backups';
 
 /**
  * Répertoire où est situé le cache,
@@ -744,6 +803,21 @@ const SMTP_SECURITY = '__SMTP_SECURITY__';
 //const SMTP_HELO_HOSTNAME = '__DOMAIN__';
 
 /**
+ * SMTP_MAX_MESSAGES_PER_SESSION
+ *
+ * Nombre de messages à envoyer par session SMTP.
+ *
+ * Pour contourner les limitations de certains hébergeurs, comme IONOS,
+ * qui limitent le nombre de messages par session.
+ *
+ * Limite pour IONOS : 20
+ *
+ * Défaut : 50
+ * @var int
+ */
+//const SMTP_MAX_MESSAGES_PER_SESSION = 20;
+
+/**
  * Adresse e-mail destinée à recevoir les erreurs de mail
  * (adresses invalides etc.) — Return-Path / MAIL FROM
  *
@@ -805,6 +879,23 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  */
 
 //const MAIL_BOUNCE_PASSWORD = null;
+
+/**
+ * MAIL_TEST_RECIPIENTS
+ *
+ * Permet de spécifier une liste d'adresses mail "testeuses" de la réception
+ * des messages collectifs. Chacune des boîtes mails indiquée recevra une copie
+ * de chaque message collectif, comme si elle était dans les destinataires.
+ * Elles n'apparaîtront pas dans la liste des destinataires de l'interface.
+ *
+ * Lire https://fossil.kd2.org/paheko/wiki?name=Configuration%2FMailboxTestAccounts
+ * pour plus d'infos.
+ *
+ * Défaut : null (la fonctionnalité est désactivée)
+ * @var array|null
+ */
+
+//const MAIL_TEST_RECIPIENTS = ['testpaheko@yahoo.fr', 'testpaheko@gmail.com'];
 
 /**
  * Couleur primaire de l'interface admin par défaut
