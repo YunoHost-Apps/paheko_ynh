@@ -815,7 +815,7 @@ const SMTP_SECURITY = '__SMTP_SECURITY__';
  * Défaut : 50
  * @var int
  */
-//const SMTP_MAX_MESSAGES_PER_SESSION = 20;
+const SMTP_MAX_MESSAGES_PER_SESSION = 20;
 
 /**
  * Adresse e-mail destinée à recevoir les erreurs de mail
