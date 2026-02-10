@@ -5,7 +5,7 @@ name = "Paheko"
 description.en = "Association management software"
 description.fr = "Logiciel de gestion d'association"
 
-version = "1.3.18~ynh2"
+version = "1.3.19.1~ynh1"
 
 maintainers = ["rodinux"]
 
@@ -64,8 +64,8 @@ ram.runtime = "200M"
 
 [resources]
     [resources.sources.main]
-    url = "https://fossil.kd2.org/paheko/uv/paheko-1.3.18.tar.gz"
-    sha256 = "20c3dc445035dfd9fd75d661874c6a3a6216c3affe0a28bac29acdcaccf836a4"
+    url = "https://fossil.kd2.org/paheko/uv/paheko-1.3.19.1.tar.gz"
+    sha256 = "911fb53ee8f35290aec44b0d72af53ed90848d40a877c7285318ae971d77129e"
 
     [resources.system_user]
     allow_email = true
@@ -91,5 +91,5 @@ ram.runtime = "200M"
     webdav.auth_header = false
 
     [resources.apt]
-    packages = "sqlite3, php8.3-sqlite3, php8.3-imagick, php8.3-intl, php8.3-cli, php8.3-gnupg, php8.3-mbstring, php8.3-zip, php8.3-xml, mupdf-tools, ffmpeg, gnumeric, php8.3-gd"
+    packages = "sqlite3, php8.5-sqlite3, php8.5-imagick, php8.5-intl, php8.5-cli, php8.5-gnupg, php8.5-mbstring, php8.5-zip, php8.5-xml, mupdf-tools, ffmpeg, gnumeric, php8.5-gd"
     # php-imagick, mupdf-tools, ffmpeg & gnumeric are required for file conversion and thumbnail generation: https://fossil.kd2.org/paheko/wiki?name=Configuration/Thumbnails
