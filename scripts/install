@@ -71,7 +71,7 @@ fi
 
 # temporally correction fix for bug on version 1.3.20
 if ynh_app_upstream_version 1.3.20; then
-  ynh_replace --match="$this->log = '\'''\'';" --replace="/\* $this->log = '\'''\''; \*/" --file="$install_dir/include/lib/KD2/SMTP.php"
+  ynh_replace --match="\$this->log = '\'''\'';" --replace="/\* \$this->log = '\'''\''; \*/" --file="$install_dir/include/lib/KD2/SMTP.php"
 fi
 
 #=================================================
