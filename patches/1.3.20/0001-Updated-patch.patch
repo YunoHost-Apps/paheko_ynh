@@ -1,12 +1,3 @@
-From 01fff75e653069f2424697392d85f23545f4226e Mon Sep 17 00:00:00 2001
-From: Rodolphe Robles <rodinux07@rodinux.fr>
-Date: Thu, 28 May 2026 15:37:39 +0200
-Subject: [PATCH] Updated patch
-
----
- include/lib/KD2/SMTP.php | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
 diff --git a/include/lib/KD2/SMTP.php b/include/lib/KD2/SMTP.php
 index fec5b92..723a3fc 100644
 --- a/include/lib/KD2/SMTP.php
@@ -26,7 +17,3 @@ index fec5b92..723a3fc 100644
  	}
 -}
 +}
-\ No newline at end of file
--- 
-2.47.3
-
