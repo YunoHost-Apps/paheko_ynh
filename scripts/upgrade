@@ -114,8 +114,6 @@ if ynh_app_upgrading_from_version_before_or_equal_to 1.3.6~ynh2 && [  -f  "$data
   chown "$app:$app" "$data_dir/data/config.local.user.php"
 fi
 
-
-
 #=================================================
 # ADD A CONFIG FILE
 #=================================================
