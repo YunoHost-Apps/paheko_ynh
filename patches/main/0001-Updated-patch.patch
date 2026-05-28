@@ -9,11 +9,4 @@ index fec5b92..723a3fc 100644
 -		$this->log = '';
 +		/* $this->log = ''; */
  		$this->conn = stream_socket_client($this->server . ':' . $this->port, $errno, $errstr, $this->timeout);
- 		stream_set_timeout($this->conn, $this->timeout);
- 
-@@ -511,4 +511,4 @@ class SMTP
- 	{
- 		$this->log_pointer = $pointer;
- 	}
--}
-+}
+ 		stream_set_timeout($this->conn, $this->timeout); 
