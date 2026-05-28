@@ -81,7 +81,7 @@ ynh_script_progression "Finalizing Post-installation..."
 if [ ! -f "$data_dir/data/association.sqlite" ]; then
 ynh_exec_as_app php$php_version $install_dir/bin/paheko init --country $country --orgname "$name_association" --name="$user_name" --email="$user_email" --password="$password"
 else
-ynh_script_progression "The database association.sqlite and the folder "$data_dir/data" already exit..."
+ynh_script_progression "The database association.sqlite and the folder "$data_dir/data" already exist..."
 fi
 
 #=================================================
