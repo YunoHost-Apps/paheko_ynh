@@ -1,0 +1,55 @@
+#!/usr/bin/bash
+
+user="$YNH_USER_USERNAME"
+app="$(basename $0 | cut -d- -f 2-)" # Extract the app name from the script name, which is supposed to be something like "50-app_id"
+if yunohost user permission info paheko --json |jq -r ".corresponding_users[]" | grep -q "^$user$" ; then
+	# Création d'un user
+	BODY='--------------------------pahekoform
+Content-Disposition: form-data; name="ynh_username"
+
+'$YNH_USER_USERNAME'
+--------------------------pahekoform
+Content-Disposition: form-data; name="nom"
+
+'$YNH_USER_LASTNAME'
+--------------------------pahekoform
+Content-Disposition: form-data; name="prenom"
+
+'$YNH_USER_FIRSTNAME'
+--------------------------pahekoform
+Content-Disposition: form-data; name="email"
+
+'$YNH_USER_MAIL'
+--------------------------pahekoform--'
+#--------------------------pahekoform
+#Content-Disposition: form-data; name="statut"
+#
+#chomeur-euse
+#--------------------------pahekoform
+#Content-Disposition: form-data; name="montant_cotisation"
+#
+#O
+#--------------------------pahekoform
+#Content-Disposition: form-data; name="mode_reglement"
+#
+#virement
+#--------------------------pahekoform
+#Content-Disposition: form-data; name="engagement_valeurs"
+#
+#true
+#--------------------------pahekoform
+#Content-Disposition: form-data; name="password"
+#
+#blabla@75232156767986867
+
+	printf '%s' "$BODY" | \
+	SCRIPT_FILENAME=/var/www/paheko/www/_route.php \
+	REQUEST_METHOD=POST \
+	REQUEST_URI=/api/user/new \
+	CONTENT_TYPE='multipart/form-data; boundary=------------------------pahekoform' \
+	CONTENT_LENGTH="$(printf '%s' "$BODY" | wc -c)" \
+	PHP_AUTH_USER='ynh_user_hook' \
+	PHP_AUTH_PW='jdpjyDJwf9XkquK31JrUYw' \
+	cgi-fcgi -bind -connect /var/run/php/php8.5-fpm-paheko.sock
+
+fi
