@@ -27,7 +27,7 @@ if (array_key_exists('REMOTE_USER', $_SERVER)) {
 	$result = $stmt->execute();
 	$row = $result->fetchArray(SQLITE3_ASSOC);
 
-	$user_id = $db->querySingle('SELECT id FROM users WHERE identifiant_adhesion="'.$username.'"');
+	$user_id = $row ? $row['id'] : null;
 	if ($user_id) {
 		define('Paheko\LOCAL_LOGIN', $user_id);
 	}
