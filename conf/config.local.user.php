@@ -21,7 +21,6 @@
 if (array_key_exists('REMOTE_USER', $_SERVER)) {
 	$username = $_SERVER["REMOTE_USER"];
 	$db = new SQLite3('/home/yunohost.app/paheko/data/association.sqlite');
-
 	$stmt = $db->prepare('SELECT id FROM users WHERE identifiant_adhesion = :username');
 	$stmt->bindValue(':username', $username, SQLITE3_TEXT);
 
@@ -34,7 +33,7 @@ if (array_key_exists('REMOTE_USER', $_SERVER)) {
 	}
 	else {
 		$permission = 0;
-// ajouter les noms d'utilisateurices de yunohost qui n'ont pas de compte paheko dans l'array avec lesquels vous souhaitez administrer paheko sans créer de compte
+		// ajouter les noms d'utilisateurices de yunohost qui n'ont pas de compte paheko dans l'array avec lesquels vous souhaitez administrer paheko sans créer de compte
 		if (in_array($username, [""])) {
 			$permission = 9;
 		}
