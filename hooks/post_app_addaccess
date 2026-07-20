@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+users="$2"
+for user in ${users//,/ }
+do
+/usr/local/sbin/sync-paheko-user "$user"
+done
