@@ -85,6 +85,12 @@ ynh_script_progression "The database association.sqlite and the folder "$data_di
 fi
 
 #=================================================
+# COPY SCRIPT TO /usr/local/sbin
+#=================================================
+ynh_config_add --template="sync-paheko-user" --destination="/usr/locals/bin/sync-paheko-user"
+chmod u+x /usr/local/sbin/sync-paheko-user
+
+#=================================================
 # END OF SCRIPT
 #=================================================
 
