@@ -1285,8 +1285,20 @@ const CONVERSION_TOOLS = ['ffmpeg', 'mupdf', 'ssconvert'];
  *
  * @var null|string
  */
-
 const LOCAL_ADDRESSES_ROOT = DATA_ROOT . '/local_addresses/';
+
+/**
+ * DETECT_SUSPICIOUS_IPS
+ * @var bool
+ * @default true
+ *
+ * Paheko dispose sur son site web d'une fonctionnalité permettant de bloquer les
+ * IP suspectes (robots IA notamment).
+ *
+ * Si votre site Paheko est derrière un reverse proxy, il est conseillé de désactiver
+ * la détection et blocage des adresses IP suspectes.
+ */
+//const DETECT_SUSPICIOUS_IPS = false;
 
 /**
  * Chemin vers le fichier pour des configurations personnelles qui ne sera pas écrasé
