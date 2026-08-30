@@ -5,7 +5,7 @@ name = "Paheko"
 description.en = "Association management software"
 description.fr = "Logiciel de gestion d'association"
 
-version = "1.3.21~ynh1"
+version = "1.3.22.1~ynh1"
 
 maintainers = ["rodinux"]
 
@@ -19,7 +19,7 @@ code = "https://fossil.kd2.org/paheko/dir?ci=tip"
 fund = "https://paheko.cloud/don/"
 
 [integration]
-yunohost = ">= 12.1.38"
+yunohost = ">= 12.1.39"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
@@ -64,8 +64,8 @@ ram.runtime = "200M"
 
 [resources]
     [resources.sources.main]
-    url = "https://fossil.kd2.org/paheko/uv/paheko-1.3.21.tar.gz"
-    sha256 = "ff4010d08dcc306cf174ff50f2a15f006c30064948f2eb881d7f06d2831ceee8"
+    url = "https://fossil.kd2.org/paheko/uv/paheko-1.3.22.1.tar.gz"
+    sha256 = "0cf3103439781e9e129dd39b0b27659ae2ebc413bfad253e96a2dbd193adfa0a"
 
     [resources.system_user]
     allow_email = true

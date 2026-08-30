@@ -1062,6 +1062,32 @@ const MAIL_SENDER = '__MAIL_SENDER__';
 //const WOPI_DISCOVERY_URL = 'http://localhost:9980/hosting/discovery';
 
 /**
+ * EXECUTION_JAIL
+ * Indique l'outil à utiliser pour enfermer les programmes externes exécutés
+ *
+ * Cela permet d'enfermer l'exécution d'une commande dans un contexte particulier.
+ * Cela empêche (sauf faille) le programme exécuté d'accéder à autre chose
+ * que les fichiers utilisateur qui lui sont autorisés.
+ *
+ * Cela évite par exemple qu'une faille dans un programme comme mupdf permette
+ * d'accéder à d'autres documents, ou d'installer un programme espion sur le serveur.
+ *
+ * Ce n'est pas une sécurité absolue, mais c'est une mesure supplémentaire.
+ *
+ * Attention : ces outils utilisent souvent les namespaces et autres mesures du noyau
+ * Linux, et peuvent donc ne pas fonctionner à l'intérieur d'une VM LXC ou
+ * dans Docker/podman.
+ *
+ * Actuellement les outils supportés sont :
+ *
+ * - bubblewrap (apt install bubblewrap)
+ *
+ * Défaut : null
+ * @var bool
+ */
+//const EXECUTION_JAIL = 'bubblewrap';
+
+/**
  * PDF_COMMAND
  * Commande qui sera exécutée pour créer un fichier PDF à partir d'un HTML.
  *
@@ -1259,8 +1285,20 @@ const CONVERSION_TOOLS = ['ffmpeg', 'mupdf', 'ssconvert'];
  *
  * @var null|string
  */
-
 const LOCAL_ADDRESSES_ROOT = DATA_ROOT . '/local_addresses/';
+
+/**
+ * DETECT_SUSPICIOUS_IPS
+ * @var bool
+ * @default true
+ *
+ * Paheko dispose sur son site web d'une fonctionnalité permettant de bloquer les
+ * IP suspectes (robots IA notamment).
+ *
+ * Si votre site Paheko est derrière un reverse proxy, il est conseillé de désactiver
+ * la détection et blocage des adresses IP suspectes.
+ */
+//const DETECT_SUSPICIOUS_IPS = false;
 
 /**
  * Chemin vers le fichier pour des configurations personnelles qui ne sera pas écrasé
