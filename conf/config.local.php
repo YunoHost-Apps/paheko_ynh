@@ -269,6 +269,25 @@ const SECRET_KEY = '__SECRET_KEY__';
 //const ALLOW_MODIFIED_IMPORT = true;
 
 /**
+ * BRINDILLE_ALLOWED_EXTERNAL_HOSTS
+ * Liste des hôtes (noms de domaines) autorisés pour les requêtes API externes
+ * dans Brindille avec la fonction {{:api url="https://api.example.org/send"}}
+ *
+ * Cette fonction peut être utilisée à des fins malveillantes par une personne
+ * ayant accès à la configuration (administrateur), par exemple en utilisant votre
+ * infrastructure pour faire une attaque sur un autre site.
+ *
+ * - null autorise les requêtes vers tous les hôtes (déconseillé)
+ * - [] n'autorise aucun hôte
+ * - ['api.example.org', 'framapiaf.org'] autorise les requêtes vers ces deux hôtes
+ *
+ * Défaut: [] (tableau vide : rien n'est autorisé)
+ * @var array|null
+ */
+
+//const BRINDILLE_ALLOWED_EXTERNAL_HOSTS = ['api.example.org']
+
+/**
  * Répertoire où se situe le code source de Paheko
  *
  * Défaut : répertoire racine de Paheko (__INSTALL_DIR__)
@@ -645,7 +664,19 @@ const SQLITE_JOURNAL_MODE = 'WAL';
  * Default : null (= désactivé)
  * @var string|null
  */
-// const WEBDAV_LOG_FILE = '__INSTALL_DIR__/webdav.log';
+// const WEBDAV_LOG_FILE = __INSTALL_DIR__ . '/webdav.log';
+
+/**
+ * WAF_LOG_FILE
+ * Activation du log WAF (Web Application Firewall) au format CSV
+ *
+ * Si cette constante est renseignée par un fichier texte, les requêtes HTTP bloquées par
+ * le WAF (pare-feu de sécurité) y seront enregistrées.
+ *
+ * Default : DATA_ROOT . '/waf.log.csv'
+ * @var string|null
+ */
+// const WAF_LOG_FILE = __INSTALL_DIR__ . '/logs/waf.log.csv';
 
 /**
  * Activer la possibilité de faire une mise à jour semi-automatisée
@@ -1092,13 +1123,13 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  * Commande qui sera exécutée pour créer un fichier PDF à partir d'un HTML.
  *
  * Si laissé sur 'auto', Paheko essaiera de détecter une solution entre
- * PrinceXML, Chromium, wkhtmltopdf ou weasyprint (dans cet ordre).
+ * PrinceXML, Chromium ou weasyprint (dans cet ordre).
  * Si aucune solution n'est disponible, une erreur sera affichée.
  *
  * Il est possible d'indiquer NULL pour désactiver l'export en PDF.
  *
  * Il est possible d'indiquer uniquement le nom du programme :
- * 'chromium', 'prince', 'weasyprint', ou 'wkhtmltopdf'.
+ * 'chromium', 'prince', 'weasyprint'
  * Dans ce cas, Paheko utilisera les paramètres par défaut de ce programme.
  *
  * Alternativement, il est possible d'indiquer la commande complète avec
@@ -1109,10 +1140,6 @@ const MAIL_SENDER = '__MAIL_SENDER__';
  *
  * Si vous utilisez une extension pour générer les PDF (comme DomPDF), alors
  * laisser cette constante sur 'auto'.
- *
- * Exemples :
- * 'weasyprint'
- * 'wkhtmltopdf -q --print-media-type --enable-local-file-access %s %s'
  *
  * Si vous utilisez Prince, un message mentionnant l'utilisation de Prince
  * sera joint aux e-mails utilisant des fichiers PDF, conformément à la licence :
